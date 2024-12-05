@@ -3,17 +3,17 @@ import bcrypt from 'bcrypt';
 
 // Define an interface for the User document
 interface IUser extends Document {
-  username: string;
+  name: string;
   email: string;
   password: string;
-  thoughts: Schema.Types.ObjectId[];
+  compositions: Schema.Types.ObjectId[];
   isCorrectPassword(password: string): Promise<boolean>;
 }
 
 // Define the schema for the User document
 const userSchema = new Schema<IUser>(
   {
-    username: {
+    name: {
       type: String,
       required: true,
       unique: true,
@@ -28,12 +28,12 @@ const userSchema = new Schema<IUser>(
     password: {
       type: String,
       required: true,
-      minlength: 5,
+      minlength: 8,
     },
-    thoughts: [
+    compositions: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Thought',
+        ref: 'Compositions',
       },
     ],
   },
