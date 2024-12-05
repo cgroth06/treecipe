@@ -1,16 +1,16 @@
 [
     {
-        "username": "JollyGuru",
+        "name": "JollyGuru",
         "email": "jolly@guru.com",
         "password": "password"
     },
     {
-        "username": "SunnyScribe",
+        "name": "SunnyScribe",
         "email": "sunny@scribe.com",
         "password": "password"
     },
     {
-        "username": "RadiantComet",
+        "name": "RadiantComet",
         "email": "radiant@comet.com",
         "password": "password"
     }
