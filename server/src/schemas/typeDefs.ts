@@ -1,33 +1,33 @@
 const typeDefs = `
   type User {
     _id: ID
-    username: String
+    name: String
     email: String
     password: String
-    thoughts: [Thought]!
+    compositions: [Composition]!
   }
 
-  type Thought {
+  type Composition {
     _id: ID
-    thoughtText: String
-    thoughtAuthor: String
+    compositionText: String
+    compositionAuthor: String
     createdAt: String
-    comments: [Comment]!
+    /* comments: [Comment]! */
   }
 
-  type Comment {
+  /* type Comment {
     _id: ID
     commentText: String
     createdAt: String
-  }
+  } */
 
-  input ThoughtInput {
-    thoughtText: String!
-    thoughtAuthor: String!
+  input CompositionInput {
+    compositionText: String!
+    compositionAuthor: String!
   }
 
   input UserInput {
-    username: String!
+    name: String!
     email: String!
     password: String!
   }
@@ -39,19 +39,19 @@ const typeDefs = `
 
   type Query {
     users: [User]
-    user(username: String!): User
-    thoughts: [Thought]!
-    thought(thoughtId: ID!): Thought
+    user(name: String!): User
+    compositions: [Composition]!
+    composition(compositionId: ID!): Composition
     me: User
   }
 
   type Mutation {
     addUser(input: UserInput!): Auth
     login(email: String!, password: String!): Auth
-    addThought(input: ThoughtInput!): Thought
-    addComment(thoughtId: ID!, commentText: String!): Thought
-    removeThought(thoughtId: ID!): Thought
-    removeComment(thoughtId: ID!, commentId: ID!): Thought
+    addComposition(input: CompositionInput!): Composition
+    /* addComment(compositionId: ID!, commentText: String!): Composition */
+    removeComposition(compositionId: ID!): Composition
+    /* removeComment(compositionId: ID!, commentId: ID!): Composition */
   }
 `;
 
