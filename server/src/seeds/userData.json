@@ -1,17 +1,27 @@
 [
     {
-        "username": "JollyGuru",
-        "email": "jolly@guru.com",
-        "password": "password"
+        "name": "Ethan",
+        "email": "ethan@artvine.com",
+        "password": "ethan"
     },
     {
-        "username": "SunnyScribe",
-        "email": "sunny@scribe.com",
-        "password": "password"
+        "name": "Chris",
+        "email": "chris@artvine.com",
+        "password": "chris"
     },
     {
-        "username": "RadiantComet",
-        "email": "radiant@comet.com",
-        "password": "password"
+        "name": "Brad",
+        "email": "brad@artvine.com",
+        "password": "brad"
+    },
+    {
+        "name": "Yahye",
+        "email": "yahye@artvine.com",
+        "password": "yahye"
+    },
+    {
+        "name": "Dimintri",
+        "email": "dimintri@artvine.com",
+        "password": "dimintri"
     }
 ]
