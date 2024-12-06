@@ -53,6 +53,7 @@ export const QUERY_ME = gql`
       email
       compositions {
         _id
+        compositionTitle
         compositionText
         compositionAuthor
         createdAt
