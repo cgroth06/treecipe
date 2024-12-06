@@ -9,6 +9,8 @@ import Login from './components/login.jsx';
 //import SingleThought from './pages/SingleThought';
 import Profile from './pages/profile.jsx';
 import ErrorPage from './components/error.jsx';
+import ExplorePage from './pages/explore.tsx';
+//import AboutArtVine from './pages/AboutArtVine.tsx';
 
 const router = createBrowserRouter([
   {
@@ -32,8 +34,8 @@ const router = createBrowserRouter([
         path: '/me',
         //element: <Profile />
       }, {
-        path: '/thoughts/:thoughtId',
-        //element: <SingleThought />
+        path: '/explore',
+        element: <ExplorePage />
       }
     ]
   },
@@ -43,3 +45,4 @@ const rootElement = document.getElementById('root');
 if (rootElement) {
   ReactDOM.createRoot(rootElement).render(<RouterProvider router={router} />);
 }
+
