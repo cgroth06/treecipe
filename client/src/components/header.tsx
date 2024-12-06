@@ -12,52 +12,56 @@ const Header = () => {
     return (
         <header className="navbar" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
-                <a className="navbar-item">
-                    <img src={LogoImage}></img>
+                <Link className="navbar-item" to="/">
+                    <a className="navbar-item">
+                        <img src={LogoImage} height="100px"></img>
+                        ArtVine
+                    </a>
+                </Link>
+
+
+                {/* The following block of code is for collapsing the navbar into a burger menu on mobile */}
+                <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar-main">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
                 </a>
             </div>
-            <div className="container flex-row justify-space-between-lg justify-center align-center">
-                <div>
-                    <Link className="text-light" to="/">
-                        <h1 className="m-0">ArtVine</h1>
+
+            <div id="navbar-main" className="navbar-menu">
+                <div className="navbar-start">
+                    <Link className="navbar-item" to="/explore">
+                        Explore
                     </Link>
-                    <p className="m-0">Login To Share your work!</p>
                 </div>
-                <div>
+
+                <div className="navbar-end">
                     {/* Checking if the user is logged in to conditionally render profile link and logout button */}
                     {Auth.loggedIn() ? (
                         <>
-                            <Link className="btn btn-lg btn-light m-2" to="/explore">
-                                Explore
-                            </Link>
-                            <br />
-                            <Link className="btn btn-lg btn-info m-2" to="/profile">
+
+                            <Link className="navbar-item" to="/profile">
                                 {/* Retrieving the logged-in user's profile to display the username */}
                                 {Auth.getProfile().data.email}
                             </Link>
-                            <br />
-                            <button className="btn btn-lg btn-light m-2" onClick={logout}>
+                            <button className="navbar-item" onClick={logout}>
                                 Logout
                             </button>
                         </>
                     ) : (
                         <>
-                            <Link className="btn btn-lg btn-light m-2" to="/explore">
-                                Explore
-                            </Link>
-                            <br />
-                            <Link className="btn btn-lg btn-info m-2" to="/login">
+                            <Link className="navbar-item" to="/login">
                                 Login
                             </Link>
-                            <br />
-                            <Link className="btn btn-lg btn-light m-2" to="/signup">
+                            <Link className="navbar-item" to="/signup">
                                 Signup
                             </Link>
                         </>
                     )}
                 </div>
             </div>
-        </header>
+        </header >
     );
 };
 
