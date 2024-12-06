@@ -1,9 +1,9 @@
 import { Composition, User } from '../models/index.js';
-import { signToken, AuthenticationError } from '../utils/auth.js'; 
+import { signToken, AuthenticationError } from '../utils/auth.js';
 
 // Define types for the arguments
 interface AddUserArgs {
-  input:{
+  input: {
     name: string;
     email: string;
     password: string;
@@ -24,7 +24,7 @@ interface CompositionArgs {
 }
 
 interface AddCompositionArgs {
-  input:{
+  input: {
     compositionTitle: string;
     compositionText: string;
     compositionAuthor: string;
@@ -66,39 +66,62 @@ const resolvers = {
       // If the user is not authenticated, throw an AuthenticationError
       throw new AuthenticationError('Could not authenticate user.');
     },
+    searchCompositionsAndUsers: async (_parent: unknown, { query }: {query: string}) => {
+      const searchRegex = new RegExp(query, 'i'); // Case-insensitive search
+
+      const users = await User.find({
+        $or: [
+          { name: searchRegex },
+          { email: searchRegex },
+        ],
+      });
+
+      const compositions = await Composition.find({
+        $or: [
+          { compositionAuthor: searchRegex },
+          { title: searchRegex },
+          { text: searchRegex },
+          { tags: { $in: [searchRegex] } }, // Search tags array
+        ],
+      });
+
+      return { users, compositions };
+    },
+
+
   },
   Mutation: {
     addUser: async (_parent: any, { input }: AddUserArgs) => {
       // Create a new user with the provided name, email, and password
       const user = await User.create({ ...input });
-    
+
       // Sign a token with the user's information
       const token = signToken(user.name, user.email, user._id);
-    
+
       // Return the token and the user
       return { token, user };
     },
-    
+
     login: async (_parent: any, { email, password }: LoginUserArgs) => {
       // Find a user with the provided email
       const user = await User.findOne({ email });
-    
+
       // If no user is found, throw an AuthenticationError
       if (!user) {
         throw new AuthenticationError('Could not authenticate user.');
       }
-    
+
       // Check if the provided password is correct
       const correctPw = await user.isCorrectPassword(password);
-    
+
       // If the password is incorrect, throw an AuthenticationError
       if (!correctPw) {
         throw new AuthenticationError('Could not authenticate user.');
       }
-    
+
       // Sign a token with the user's information
       const token = signToken(user.name, user.email, user._id);
-    
+
       // Return the token and the user
       return { token, user };
     },
@@ -140,7 +163,7 @@ const resolvers = {
           compositionAuthor: context.user.name,
         });
 
-        if(!composition){
+        if (!composition) {
           throw AuthenticationError;
         }
 
@@ -158,14 +181,14 @@ const resolvers = {
         if (context.user._id === followId) {
           throw new Error("You cannot follow yourself.");
         }
-    
+
         // Use $addToSet to ensure no duplicates
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
           { $addToSet: { follows: followId } }, // Ensures no duplicate follows
           { new: true }
         ).populate('follows'); // Populate to return updated follows data
-    
+
         return updatedUser;
       }
       throw new AuthenticationError('You need to be logged in!');
@@ -176,19 +199,19 @@ const resolvers = {
         if (context.user._id.toString() === followId) {
           throw new Error("You cannot unfollow yourself.");
         }
-    
+
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
           { $pull: { follows: followId } }, // Removes the followId from the follows array
           { new: true } // Return the updated user
         ).populate('follows'); //  update follows data
-    
+
         return updatedUser;
       }
-    
+
       throw new AuthenticationError('You need to be logged in!');
     },
-    
+
     saveToLibrary: async (_parent: any, { compositionId }: { compositionId: string }, context: any) => {
       if (context.user) {
         // Check if the composition exists
@@ -196,19 +219,19 @@ const resolvers = {
         if (!composition) {
           throw new Error('Composition not found.');
         }
-    
+
         // user cannot save their own composition
         if (composition.compositionAuthor === context.user.name) {
           throw new Error('You cannot save your own composition.');
         }
-    
+
         // no duplicate compositions in the library
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
           { $addToSet: { library: compositionId } }, // ensures unique compositions
           { new: true }
         ).populate('library'); //update library
-    
+
         return updatedUser;
       }
       throw new AuthenticationError('You need to be logged in!');
@@ -220,14 +243,14 @@ const resolvers = {
           { $pull: { library: compositionId } }, // compositionId from the library
           { new: true }
         ).populate('library'); // update library
-    
+
         return updatedUser;
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    
-    
-    
+
+
+
     /* removeComment: async (_parent: any, { compositionId, commentId }: RemoveCommentArgs, context: any) => {
       if (context.user) {
         return Composition.findOneAndUpdate(

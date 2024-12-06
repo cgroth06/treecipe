@@ -61,3 +61,23 @@ export const QUERY_ME = gql`
     }
   }
 `;
+
+export const SEARCH_COMPOSITIONS_AND_USERS = gql`
+  query SearchCompositionsAndUsers($query: String!) {
+    searchCompositionsAndUsers(query: $query) {
+      users {
+        _id
+        name
+        email
+      }
+      compositions {
+        _id
+        title
+        text
+        compositionAuthor
+        createdAt
+        tags
+      }
+    }
+  }
+`;
