@@ -5,6 +5,8 @@ const typeDefs = `
     email: String
     password: String
     compositions: [Composition]!
+    library: [Composition]!
+    follows: [User]!
   }
 
   type Composition {
@@ -17,8 +19,10 @@ const typeDefs = `
   }
 
   input CompositionInput {
+    compositionTitle: String
     compositionText: String!
     compositionAuthor: String!
+    tags: [String]
   }
 
   input UserInput {
@@ -53,9 +57,9 @@ const typeDefs = `
     login(email: String!, password: String!): Auth
     addComposition(input: CompositionInput!): Composition
     removeComposition(compositionId: ID!): Composition
-    addToLibrary(input: LibraryInput!): User
+    saveToLibrary(input: LibraryInput!): User
     removeFromLibrary(compositionId: ID!): User
-    addToFollows(input: FollowInput!): User
+    followUser(input: FollowInput!): User
     unfollowUser(followId: ID!): User
   }
 `;
