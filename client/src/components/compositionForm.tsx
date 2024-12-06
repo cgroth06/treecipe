@@ -16,7 +16,9 @@ const CompositionForm: React.FC = () => {
         try {
             const { data } = await addComposition({
                 variables: {
-                    compositionText,
+                    compositionTitle: "",
+                    compositionAuthor: Auth.getProfile().data.email,
+                    compositionText: "",
                 },
             });
             setCompositionText(''); // Reset form
