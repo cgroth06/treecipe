@@ -10,6 +10,7 @@ import Login from './components/login.tsx';
 //import Profile from './pages/Profile';
 import ErrorPage from './components/error.tsx';
 import ExplorePage from './pages/explore.tsx';
+//import AboutArtVine from './pages/AboutArtVine.tsx';
 
 const router = createBrowserRouter([
   {
@@ -44,3 +45,4 @@ const rootElement = document.getElementById('root');
 if (rootElement) {
   ReactDOM.createRoot(rootElement).render(<RouterProvider router={router} />);
 }
+
