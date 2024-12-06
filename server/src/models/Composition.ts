@@ -37,8 +37,8 @@ const compositionSchema = new Schema<IComposition>(
         compositionText: {
             type: String,
             required: true,
-            minlength: 1,
-            maxlength: 280,
+            minlength: 2,
+            maxlength: 10000,
             trim: true,
         },
         compositionAuthor: {
