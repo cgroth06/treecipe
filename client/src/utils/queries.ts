@@ -19,6 +19,7 @@ export const QUERY_COMPOSITIONS = gql`
   query getCompositions {
     compositions {
       _id
+      compositionTitle
       compositionText
       compositionAuthor
       createdAt
@@ -30,6 +31,7 @@ export const QUERY_SINGLE_COMPOSITION = gql`
   query getSingleComposition($compositionId: ID!) {
     composition(compositionId: $compositionId) {
       _id
+      compositionTitle
       compositionText
       compositionAuthor
       createdAt
