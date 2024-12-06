@@ -12,14 +12,7 @@ const typeDefs = `
     compositionText: String
     compositionAuthor: String
     createdAt: String
-    /* comments: [Comment]! */
   }
-
-  /* type Comment {
-    _id: ID
-    commentText: String
-    createdAt: String
-  } */
 
   input CompositionInput {
     compositionText: String!
@@ -49,9 +42,7 @@ const typeDefs = `
     addUser(input: UserInput!): Auth
     login(email: String!, password: String!): Auth
     addComposition(input: CompositionInput!): Composition
-    /* addComment(compositionId: ID!, commentText: String!): Composition */
     removeComposition(compositionId: ID!): Composition
-    /* removeComment(compositionId: ID!, commentId: ID!): Composition */
   }
 `;
 
