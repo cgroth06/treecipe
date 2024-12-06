@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { QUERY_COMPOSITIONS } from '../utils/queries';
-import Composition from './composition';
+import Composition from './compositionCard';
 
 const CompositionList: React.FC = () => {
     const { loading, error, data } = useQuery(QUERY_COMPOSITIONS);
