@@ -9,6 +9,7 @@ import Login from './components/login.tsx';
 //import SingleThought from './pages/SingleThought';
 //import Profile from './pages/Profile';
 import ErrorPage from './components/error.tsx';
+import ExplorePage from './pages/explore.tsx';
 
 const router = createBrowserRouter([
   {
@@ -32,8 +33,8 @@ const router = createBrowserRouter([
         path: '/me',
         //element: <Profile />
       }, {
-        path: '/thoughts/:thoughtId',
-        //element: <SingleThought />
+        path: '/explore',
+        element: <ExplorePage />
       }
     ]
   },
