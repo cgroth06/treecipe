@@ -18,6 +18,7 @@ export const ADD_USER = gql`
     user {
       name
       _id
+      # email
     }
     token
   }
@@ -31,10 +32,10 @@ export const ADD_THOUGHT = gql`
       thoughtText
       thoughtAuthor
       createdAt
-      comments {
-        _id
-        commentText
-      }
+      # comments {
+      #   _id
+      #   commentText
+      # }
     }
   }
 `;

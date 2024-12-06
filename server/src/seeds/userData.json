@@ -2,26 +2,26 @@
     {
         "name": "Ethan",
         "email": "ethan@artvine.com",
-        "password": "ethan"
+        "password": "12345678"
     },
     {
         "name": "Chris",
         "email": "chris@artvine.com",
-        "password": "chris"
+        "password": "12345678"
     },
     {
         "name": "Brad",
         "email": "brad@artvine.com",
-        "password": "brad"
+        "password": "12345678"
     },
     {
         "name": "Yahye",
         "email": "yahye@artvine.com",
-        "password": "yahye"
+        "password": "12345678"
     },
     {
         "name": "Dimintri",
         "email": "dimintri@artvine.com",
-        "password": "dimintri"
+        "password": "12345678"
     }
 ]
