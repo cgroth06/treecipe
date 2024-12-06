@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { type MouseEvent } from 'react';
 import Auth from '../utils/auth';
+import LogoImage from '../assets/ArtVine_transparent.png';
 
 const Header = () => {
     const logout = (event: MouseEvent<HTMLButtonElement>) => {
@@ -9,19 +10,18 @@ const Header = () => {
         Auth.logout();
     };
     return (
-        <header className="bg-primary text-light mb-4 py-3 flex-row align-center">
+        <header className="navbar" role="navigation" aria-label="main navigation">
+            <div className="navbar-brand">
+                <a className="navbar-item">
+                    <img src={LogoImage}></img>
+                </a>
+            </div>
             <div className="container flex-row justify-space-between-lg justify-center align-center">
                 <div>
                     <Link className="text-light" to="/">
-<<<<<<< HEAD
                         <h1 className="m-0">ArtVine</h1>
                     </Link>
                     <p className="m-0">Login To Share your work!</p>
-=======
-                        <h1 className="m-0">Art Vine</h1>
-                    </Link>
-                    <p className="m-0">KABOOM!</p>
->>>>>>> c0afc415fd38b120b3cdb42d30a52dc6810a146c
                 </div>
                 <div>
                     {/* Checking if the user is logged in to conditionally render profile link and logout button */}
