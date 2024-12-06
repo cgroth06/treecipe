@@ -2,7 +2,7 @@
 
 [![License Badge](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-ArtVine is a platform designed to connect artists with art enthusiasts. It enables artists to showcase their portfolios, sell their artwork, and build a following. Buyers can browse collections, save favorites, and purchase directly through the platform, fostering a community that supports creative talent.
+ArtVine is a platform designed to connect artists with art enthusiasts. It enables artists to showcase their portfolios, sell their artwork, and build a following. Buyers can browse collections, save to their own library, and purchase directly through the platform, fostering a community that supports creative talent.
 
 ## Description
 ArtVine bridges the gap between artists and buyers by providing an intuitive platform for:

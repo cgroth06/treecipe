@@ -189,7 +189,7 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
     
-    saveToCollection: async (_parent: any, { compositionId }: { compositionId: string }, context: any) => {
+    saveToLibrary: async (_parent: any, { compositionId }: { compositionId: string }, context: any) => {
       if (context.user) {
         // Check if the composition exists
         const composition = await Composition.findById(compositionId);
@@ -202,24 +202,24 @@ const resolvers = {
           throw new Error('You cannot save your own composition.');
         }
     
-        // no duplicate compositions in the collection
+        // no duplicate compositions in the library
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { collection: compositionId } }, // ensures unique compositions
+          { $addToSet: { library: compositionId } }, // ensures unique compositions
           { new: true }
-        ).populate('collection'); //update collection
+        ).populate('library'); //update library
     
         return updatedUser;
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    removeFromCollection: async (_parent: any, { compositionId }: { compositionId: string }, context: any) => {
+    removeFromLibrary: async (_parent: any, { compositionId }: { compositionId: string }, context: any) => {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { collection: compositionId } }, // compositionId from the collection
+          { $pull: { library: compositionId } }, // compositionId from the library
           { new: true }
-        ).populate('collection'); // update collection
+        ).populate('library'); // update library
     
         return updatedUser;
       }

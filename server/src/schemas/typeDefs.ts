@@ -31,7 +31,7 @@ const typeDefs = `
     followId: ID!
   }
 
-  input CollectionInput {
+  input LibraryInput {
     compositionId: ID!
   }
   
@@ -53,8 +53,8 @@ const typeDefs = `
     login(email: String!, password: String!): Auth
     addComposition(input: CompositionInput!): Composition
     removeComposition(compositionId: ID!): Composition
-    addToCollection(input: CollectionInput!): User
-    removeFromCollection(compositionId: ID!): User
+    addToLibrary(input: LibraryInput!): User
+    removeFromLibrary(compositionId: ID!): User
     addToFollows(input: FollowInput!): User
     unfollowUser(followId: ID!): User
   }
