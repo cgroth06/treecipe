@@ -21,16 +21,25 @@ const Header = () => {
                     {/* Checking if the user is logged in to conditionally render profile link and logout button */}
                     {Auth.loggedIn() ? (
                         <>
-                            <Link className="btn btn-lg btn-info m-2" to="/me">
-                                {/* Retrieving the logged-in user's profile to display the username */}
-                                {Auth.getProfile().data.email}'s profile
+                            <Link className="btn btn-lg btn-light m-2" to="/explore">
+                                Explore
                             </Link>
+                            <br />
+                            <Link className="btn btn-lg btn-info m-2" to="/profile">
+                                {/* Retrieving the logged-in user's profile to display the username */}
+                                {Auth.getProfile().data.email}
+                            </Link>
+                            <br />
                             <button className="btn btn-lg btn-light m-2" onClick={logout}>
                                 Logout
                             </button>
                         </>
                     ) : (
                         <>
+                            <Link className="btn btn-lg btn-light m-2" to="/explore">
+                                Explore
+                            </Link>
+                            <br />
                             <Link className="btn btn-lg btn-info m-2" to="/login">
                                 Login
                             </Link>
