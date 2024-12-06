@@ -202,6 +202,30 @@ Eve ignites indigo, a soothing flame I implore
 Under the crown of violet what began has ended
 And with the sum of it all a blank page becomes splendid`,
             "tags": [`meta`,`writing`,`color`,`internal rhyme`]
+        },
+        {
+            "_id": `000000000000000000000010`,
+            "compositionTitle": `Where The Sidewalk Ends`,
+            "compositionAuthor": `Shel Silverstein`,
+            "compositionText": `There is a place where the sidewalk ends
+and before the street begins,
+and there the grass grows soft and white,
+and there the sun burns crimson bright,
+and there the moon-bird rests from his flight
+to cool in the peppermint wind.
+
+Let us leave this place where the smoke blows black
+and the dark street winds and bends.
+Past the pits where the asphalt flowers grow
+we shall walk with a walk that is measured and slow
+and watch where the chalk-white arrows go
+to the place where the sidewalk ends.
+
+Yes we'll walk with a walk that is measured and slow,
+and we'll go where the chalk-white arrows go,
+for the children, they mark, and the children, they know,
+the place where the sidewalk ends. `,
+            "tags": [`classic`]
         }
         // {
         //     "_id": `000000000000000000000001`,
