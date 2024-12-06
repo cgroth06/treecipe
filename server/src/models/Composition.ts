@@ -7,9 +7,11 @@ import { Schema, model, Document } from 'mongoose';
 } */
 
 interface IComposition extends Document {
+    compositionTitle: string;
     compositionText: string;
     compositionAuthor: string;
     createdAt: Date;
+    tags: string[];
     /* comments: IComment[]; */
 }
 
@@ -38,7 +40,7 @@ const compositionSchema = new Schema<IComposition>(
             type: String,
             required: true,
             minlength: 1,
-            maxlength: 280,
+            // maxlength: 280,
             trim: true,
         },
         compositionAuthor: {
