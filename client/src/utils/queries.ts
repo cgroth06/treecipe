@@ -27,11 +27,11 @@ export const QUERY_COMPOSITIONS = gql`
 `;
 
 export const QUERY_SINGLE_COMPOSITION = gql`
-  query getSingleThought($thoughtId: ID!) {
-    thought(thoughtId: $thoughtId) {
+  query getSingleComposition($compositionId: ID!) {
+    composition(compositionId: $compositionId) {
       _id
-      thoughtText
-      thoughtAuthor
+      compositionText
+      compositionAuthor
       createdAt
       # comments {
       #   _id
