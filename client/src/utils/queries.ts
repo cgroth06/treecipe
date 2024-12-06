@@ -47,12 +47,12 @@ export const QUERY_ME = gql`
   query me {
     me {
       _id
-      username
+      name
       email
-      thoughts {
+      compositions {
         _id
-        thoughtText
-        thoughtAuthor
+        compositionText
+        compositionAuthor
         createdAt
       }
     }
