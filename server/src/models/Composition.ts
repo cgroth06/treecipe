@@ -1,4 +1,5 @@
 import { Schema, model, Document } from 'mongoose';
+import { ObjectId } from 'mongoose';
 
 // Define an interface for the Composition document
 /* interface IComment extends Document {
@@ -10,6 +11,8 @@ interface IComposition extends Document {
     compositionTitle: string;
     compositionText: string;
     compositionAuthor: string;
+    compositions: ObjectId[];
+    library: ObjectId[];
     createdAt: Date;
     tags: string[];
     /* comments: IComment[]; */
@@ -36,6 +39,11 @@ interface IComposition extends Document {
 // Define the schema for the Composition document
 const compositionSchema = new Schema<IComposition>(
     {
+        compositionTitle: {
+            type: String,
+            required: true,
+            minlength: 1,
+        },
         compositionText: {
             type: String,
             required: true,
