@@ -44,7 +44,7 @@ const CompositionForm: React.FC = () => {
 };
 
 export default CompositionForm;
-<div>  
+{/* <div>  
     <h2>Submission Terms and Conditions</h2>
     <p>By submitting your work to ArtVine, you agree to the following:
         Originality of Work
@@ -68,4 +68,4 @@ export default CompositionForm;
         </input>
     </form>
     
-</div>
+</div> */}

@@ -32,6 +32,12 @@ interface AddCompositionArgs {
   }
 }
 
+interface SaveToLibraryArgs {
+  input:{
+    compositionId: string;
+  };
+}
+
 /* interface AddCommentArgs {
   compositionId: string;
   commentText: string;
