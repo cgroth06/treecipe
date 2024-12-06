@@ -25,8 +25,10 @@ interface CompositionArgs {
 
 interface AddCompositionArgs {
   input:{
+    compositionTitle: string;
     compositionText: string;
     compositionAuthor: string;
+    tags: string[];
   }
 }
 

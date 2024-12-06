@@ -9,8 +9,10 @@ const typeDefs = `
 
   type Composition {
     _id: ID
+    compositionTitle: String
     compositionText: String
     compositionAuthor: String
+    tags: [String]
     createdAt: String
   }
 
