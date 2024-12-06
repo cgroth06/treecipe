@@ -1,12 +1,15 @@
-import { Schema, model, Document } from 'mongoose';
+import { Schema, model, Document, Types } from 'mongoose';
 import bcrypt from 'bcrypt';
+
 
 // Define an interface for the User document
 interface IUser extends Document {
   name: string;
   email: string;
   password: string;
-  compositions: Schema.Types.ObjectId[];
+  compositions: Types.ObjectId[];
+  library: Types.ObjectId[];
+  follows: Types.ObjectId[];
   isCorrectPassword(password: string): Promise<boolean>;
 }
 
@@ -33,7 +36,19 @@ const userSchema = new Schema<IUser>(
     compositions: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Compositions',
+        ref: 'Composition',
+      },
+    ],
+    library: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Composition',
+      },
+    ],
+    follows: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
       },
     ],
   },

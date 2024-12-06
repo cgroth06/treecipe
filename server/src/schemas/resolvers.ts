@@ -153,6 +153,81 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
+    followUser: async (_parent: any, { followId }: { followId: string }, context: any) => {
+      if (context.user) {
+        if (context.user._id === followId) {
+          throw new Error("You cannot follow yourself.");
+        }
+    
+        // Use $addToSet to ensure no duplicates
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { follows: followId } }, // Ensures no duplicate follows
+          { new: true }
+        ).populate('follows'); // Populate to return updated follows data
+    
+        return updatedUser;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    unfollowUser: async (_parent: any, { followId }: { followId: string }, context: any) => {
+      if (context.user) {
+        // Ensure the user is not trying to unfollow themselves
+        if (context.user._id.toString() === followId) {
+          throw new Error("You cannot unfollow yourself.");
+        }
+    
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { follows: followId } }, // Removes the followId from the follows array
+          { new: true } // Return the updated user
+        ).populate('follows'); //  update follows data
+    
+        return updatedUser;
+      }
+    
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    
+    saveToLibrary: async (_parent: any, { compositionId }: { compositionId: string }, context: any) => {
+      if (context.user) {
+        // Check if the composition exists
+        const composition = await Composition.findById(compositionId);
+        if (!composition) {
+          throw new Error('Composition not found.');
+        }
+    
+        // user cannot save their own composition
+        if (composition.compositionAuthor === context.user.name) {
+          throw new Error('You cannot save your own composition.');
+        }
+    
+        // no duplicate compositions in the library
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { library: compositionId } }, // ensures unique compositions
+          { new: true }
+        ).populate('library'); //update library
+    
+        return updatedUser;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    removeFromLibrary: async (_parent: any, { compositionId }: { compositionId: string }, context: any) => {
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { library: compositionId } }, // compositionId from the library
+          { new: true }
+        ).populate('library'); // update library
+    
+        return updatedUser;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    
+    
+    
     /* removeComment: async (_parent: any, { compositionId, commentId }: RemoveCommentArgs, context: any) => {
       if (context.user) {
         return Composition.findOneAndUpdate(

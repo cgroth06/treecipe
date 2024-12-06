@@ -48,6 +48,9 @@ const compositionSchema = new Schema<IComposition>(
             required: true,
             trim: true,
         },
+        tags: {
+            type: [String],
+        },
         /* comments: [commentSchema], */
     },
     {
