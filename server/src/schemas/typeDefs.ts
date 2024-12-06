@@ -24,6 +24,14 @@ const typeDefs = `
     email: String!
     password: String!
   }
+
+  input FollowInput {
+    followId: ID!
+  }
+
+  input CollectionInput {
+    compositionId: ID!
+  }
   
   type Auth {
     token: ID!
@@ -43,6 +51,10 @@ const typeDefs = `
     login(email: String!, password: String!): Auth
     addComposition(input: CompositionInput!): Composition
     removeComposition(compositionId: ID!): Composition
+    addToCollection(input: CollectionInput!): User
+    removeFromCollection(compositionId: ID!): User
+    addToFollows(input: FollowInput!): User
+    unfollowUser(followId: ID!): User
   }
 `;
 

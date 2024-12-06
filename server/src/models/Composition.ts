@@ -10,6 +10,7 @@ interface IComposition extends Document {
     compositionText: string;
     compositionAuthor: string;
     createdAt: Date;
+    tags: string[];
     /* comments: IComment[]; */
 }
 
@@ -45,6 +46,9 @@ const compositionSchema = new Schema<IComposition>(
             type: String,
             required: true,
             trim: true,
+        },
+        tags: {
+            type: [String],
         },
         /* comments: [commentSchema], */
     },
