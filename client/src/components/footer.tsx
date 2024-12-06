@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../assets/CodexX Logo.png';
+import logo from '../assets/ArtVine_transparent.png';
 
 const Footer: React.FC = () => {
   return (
