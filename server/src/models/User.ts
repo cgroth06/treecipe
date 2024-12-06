@@ -1,17 +1,14 @@
 import { Schema, model, Document, Types } from 'mongoose';
 import bcrypt from 'bcrypt';
-import e from 'express';
 
-interface ICollection extends Document {
-  _id: Types.ObjectId;
-}
+
 // Define an interface for the User document
 interface IUser extends Document {
   name: string;
   email: string;
   password: string;
   compositions: Types.ObjectId[];
-  collection: ICollection[];
+  library: Types.ObjectId[];
   follows: Types.ObjectId[];
   isCorrectPassword(password: string): Promise<boolean>;
 }
@@ -42,7 +39,7 @@ const userSchema = new Schema<IUser>(
         ref: 'Composition',
       },
     ],
-    collection: [
+    library: [
       {
         type: Schema.Types.ObjectId,
         ref: 'Composition',
