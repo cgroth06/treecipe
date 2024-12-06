@@ -9,7 +9,8 @@ import Login from './components/login.tsx';
 //import SingleThought from './pages/SingleThought';
 //import Profile from './pages/Profile';
 import ErrorPage from './components/error.tsx';
-import AboutArtVine from './pages/AboutArtVine.tsx';
+import ExplorePage from './pages/explore.tsx';
+//import AboutArtVine from './pages/AboutArtVine.tsx';
 
 const router = createBrowserRouter([
   {
@@ -33,12 +34,8 @@ const router = createBrowserRouter([
         path: '/me',
         //element: <Profile />
       }, {
-        path: '/thoughts/:thoughtId',
-        //element: <SingleThought />
-      }, {
-        path: '/AboutArtVine1',
-        element: <AboutArtVine />
-
+        path: '/explore',
+        element: <ExplorePage />
       }
     ]
   },
