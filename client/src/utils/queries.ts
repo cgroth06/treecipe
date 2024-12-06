@@ -6,32 +6,34 @@ export const QUERY_USER = gql`
       _id
       name
       email
-      thoughts {
+      compositions {
         _id
-        thoughtText
+        compositionText
         createdAt
       }
     }
   }
 `;
 
-export const QUERY_THOUGHTS = gql`
-  query getThoughts {
-    thoughts {
+export const QUERY_COMPOSITIONS = gql`
+  query getCompositions {
+    compositions {
       _id
-      thoughtText
-      thoughtAuthor
+      compositionTitle
+      compositionText
+      compositionAuthor
       createdAt
     }
   }
 `;
 
-export const QUERY_SINGLE_THOUGHT = gql`
-  query getSingleThought($thoughtId: ID!) {
-    thought(thoughtId: $thoughtId) {
+export const QUERY_SINGLE_COMPOSITION = gql`
+  query getSingleComposition($compositionId: ID!) {
+    composition(compositionId: $compositionId) {
       _id
-      thoughtText
-      thoughtAuthor
+      compositionTitle
+      compositionText
+      compositionAuthor
       createdAt
       # comments {
       #   _id
@@ -47,12 +49,13 @@ export const QUERY_ME = gql`
   query me {
     me {
       _id
-      username
+      name
       email
-      thoughts {
+      compositions {
         _id
-        thoughtText
-        thoughtAuthor
+        compositionTitle
+        compositionText
+        compositionAuthor
         createdAt
       }
     }

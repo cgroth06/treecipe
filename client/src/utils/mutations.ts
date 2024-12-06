@@ -25,12 +25,13 @@ export const ADD_USER = gql`
 }
 `;
 
-export const ADD_THOUGHT = gql`
-  mutation AddThought($input: ThoughtInput!) {
-    addThought(input: $input) {
+export const ADD_COMPOSITION = gql`
+  mutation AddComposition($input: CompositionInput!) {
+    addComposition(input: $input) {
       _id
-      thoughtText
-      thoughtAuthor
+      compositionTitle
+      compositionText
+      compositionAuthor
       createdAt
       # comments {
       #   _id
