@@ -4,6 +4,7 @@ import { ADD_COMPOSITION } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 const CompositionForm: React.FC = () => {
+    const [compositionTitle, setCompositionTitle] = useState('');
     const [compositionText, setCompositionText] = useState('');
     const [addComposition] = useMutation(ADD_COMPOSITION);
 
@@ -13,39 +14,57 @@ const CompositionForm: React.FC = () => {
             return alert('You need to be logged in to submit a poem.');
         }
 
+        // Validate input before sending the mutation
+        if (!compositionTitle.trim() || !compositionText.trim()) {
+            return alert('Please fill in all required fields.');
+        }
+
         try {
             const { data } = await addComposition({
                 variables: {
-                    compositionTitle: "",
-                    compositionAuthor: Auth.getProfile().data.email,
-                    compositionText: "",
+                    input: {
+                        compositionTitle,
+                        compositionText,
+                        compositionAuthor: Auth.getProfile().data.email,
+                        tags: [],
+                    },
                 },
             });
-            setCompositionText(''); // Reset form
+            setCompositionTitle('');
+            setCompositionText('');
             alert('Poem added successfully!');
         } catch (err) {
             console.error(err);
+            alert('An error occurred while submitting your poem.');
         }
     };
 
     return (
-        <form onSubmit={handleSubmit} style={{ margin: '2rem 0' }}>
-            <textarea
-                value={compositionText}
-                onChange={(e) => setCompositionText(e.target.value)}
-                placeholder="Write your poem here..."
-                rows={5}
-                style={{ width: '100%', padding: '1rem' }}
-                required
-            ></textarea>
-            <button type="submit" style={{ marginTop: '1rem', padding: '0.5rem 2rem', backgroundColor: '#007bff', color: 'white', border: 'none', borderRadius: '4px' }}>
-                Submit
-            </button>
+        <form onSubmit={handleSubmit}>
+            <label>
+                Title:
+                <input
+                    type="text"
+                    value={compositionTitle}
+                    onChange={(e) => setCompositionTitle(e.target.value)}
+                    required
+                />
+            </label>
+            <label>
+                Poem:
+                <textarea
+                    value={compositionText}
+                    onChange={(e) => setCompositionText(e.target.value)}
+                    required
+                ></textarea>
+            </label>
+            <button type="submit">Submit Poem</button>
         </form>
     );
 };
 
 export default CompositionForm;
+
 {/* <div>  
     <h2>Submission Terms and Conditions</h2>
     <p>By submitting your work to ArtVine, you agree to the following:
