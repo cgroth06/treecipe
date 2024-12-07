@@ -9,6 +9,7 @@ interface CompositionProps {
     compositionText: string;
     compositionAuthor: string;
     createdAt: string;
+    tags: string[];
 }
 
 interface CompositionListProps {
@@ -77,6 +78,7 @@ const CompositionList: React.FC<CompositionListProps> = ({ filterByAuthor }) => 
                     compositionText={composition.compositionText}
                     compositionAuthor={composition.compositionAuthor}
                     createdAt={composition.createdAt}
+                    tags={composition.tags}
                 />
             ))}
         </div>

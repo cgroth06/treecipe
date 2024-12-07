@@ -37,6 +37,7 @@ const CompositionForm: React.FC = () => {
             setCompositionText('');
             setTags('');
             alert('Poem added successfully!');
+            
         } catch (err) {
             console.error(err);
             alert('An error occurred while submitting your poem.');

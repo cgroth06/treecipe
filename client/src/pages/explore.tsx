@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { SEARCH_COMPOSITIONS_AND_USERS } from '../utils/queries';
 import SearchBar from '../components/searchBar';
@@ -6,6 +7,14 @@ import CompositionCard from '../components/compositionCard'; // Import the Compo
 
 const ExplorePage = () => {
     const [searchQuery, setSearchQuery] = useState('');
+    const location = useLocation();
+
+    useEffect(() => {
+        const params = new URLSearchParams(location.search);
+        const tag = params.get('search');
+        if (tag) {setSearchQuery(tag);
+        }
+    }, [location]);
 
     // Use the search query in a GraphQL query via Apollo Client's useQuery hook
     const { data, loading, error } = useQuery(SEARCH_COMPOSITIONS_AND_USERS, {
@@ -40,13 +49,14 @@ const ExplorePage = () => {
 
                 <h2>Compositions</h2>
                 {data?.searchCompositionsAndUsers?.compositions?.length > 0 ? (
-                    data.searchCompositionsAndUsers.compositions.map((composition: { _id: string; title: string; text: string; createdAt: string; compositionAuthor: string }) => (
+                    data.searchCompositionsAndUsers.compositions.map((composition: { _id: string; compositionTitle: string; compositionText: string; createdAt: string; compositionAuthor: string; tags: string[]}) => (
                         <CompositionCard
                             key={composition._id}
                             compositionTitle={composition.compositionTitle}
                             compositionText={composition.compositionText}
                             compositionAuthor={composition.compositionAuthor}
                             createdAt={composition.createdAt}
+                            tags={composition.tags}
                         />
                     ))
                 ) : (

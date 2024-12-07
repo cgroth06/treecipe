@@ -1,11 +1,21 @@
+import { useNavigate } from "react-router-dom";
+import React from "react";
+
 interface CompositionProps {
     compositionTitle: string;
     compositionText: string;
     compositionAuthor: string;
     createdAt: string;
+    tags: string[];
 }
 
-const CompositionCard: React.FC<CompositionProps> = ({ compositionTitle, compositionText, compositionAuthor, createdAt }) => {
+const CompositionCard: React.FC<CompositionProps> = ({ compositionTitle, compositionText, compositionAuthor, tags }) => {
+    const navigate = useNavigate();
+
+    const handleTagClick = (tag: string) => {
+        navigate(`/explore?search=${encodeURIComponent(tag)}`);
+    };
+
     return (
         // <div className="composition-card" style={{ border: '1px solid #ccc', padding: '1rem', margin: '1rem', borderRadius: '8px' }}>
         //     <h3>{compositionAuthor}</h3>
@@ -15,7 +25,7 @@ const CompositionCard: React.FC<CompositionProps> = ({ compositionTitle, composi
         <div className="card">
             <div className="card-content">
                 <div className="media">
-                    <div className="media-content" style={{height: "70px"}}>
+                    <div className="media-content" style={{ height: "70px" }}>
                         <p className="title is-4 has-text-primary">{compositionTitle}</p>
                         <p className="subtitle is-6 has-text-primary-30">by {compositionAuthor}</p>
                     </div>
@@ -29,11 +39,17 @@ const CompositionCard: React.FC<CompositionProps> = ({ compositionTitle, composi
                             </div>
                             <div className="dropdown-menu" id="dropdown-menu" role="menu">
                                 <div className="dropdown-content">
-                                    <div className="dropdown-content">
-                                        <a href="#" className="dropdown-item"> More Details </a>
-                                        <a href="#" className="dropdown-item"> Author Page </a>
-                                        <hr className="dropdown-divider" />
-                                        <a href="#" className="dropdown-item"> Collect </a>
+                                    <div className="tags" style={{ marginTop: '10px' }}>
+                                        {tags && tags.map((tag, index) => (
+                                            <span
+                                                key={index}
+                                                className="tag is-link"
+                                                style={{ margin: '0 5px', cursor: 'pointer' }}
+                                                onClick={() => handleTagClick(tag)}
+                                            >
+                                                #{tag}
+                                            </span>
+                                        ))}
                                     </div>
                                 </div>
                             </div>
