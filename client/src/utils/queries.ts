@@ -72,8 +72,8 @@ export const SEARCH_COMPOSITIONS_AND_USERS = gql`
       }
       compositions {
         _id
-        title
-        text
+        compositionTitle
+        compositionText
         compositionAuthor
         createdAt
         tags

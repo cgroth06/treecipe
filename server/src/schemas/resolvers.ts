@@ -72,15 +72,14 @@ const resolvers = {
       const users = await User.find({
         $or: [
           { name: searchRegex },
-          { email: searchRegex },
         ],
       });
 
       const compositions = await Composition.find({
         $or: [
           { compositionAuthor: searchRegex },
-          { title: searchRegex },
-          { text: searchRegex },
+          { compositionTitle: searchRegex },
+          { compositionText: searchRegex },
           { tags: { $in: [searchRegex] } }, // Search tags array
         ],
       });
