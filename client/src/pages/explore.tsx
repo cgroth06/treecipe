@@ -70,7 +70,7 @@ const ExplorePage = () => {
                     )}
                 </div>
             ) : (
-                <CompositionList filterByAuthor={false} />
+                <CompositionList />
             )}
         </div>
     );

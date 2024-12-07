@@ -37,9 +37,9 @@ const CompositionCard: React.FC<CompositionProps> = ({ compositionTitle, composi
                                     <span>#</span>
                                 </button>
                             </div>
-                            <div className="dropdown-menu" id="dropdown-menu" role="menu">
+                            <div className="dropdown-menu" id="dropdown-menu" role="menu" style={{ right: 0, left: 'auto', maxWidth: '300px', overflow: 'auto' }}>
                                 <div className="dropdown-content">
-                                    <div className="tags" style={{ marginTop: '10px' }}>
+                                    <div className="tags" style={{ marginTop: '10px', display: 'flex', flexDirection: 'column' }}>
                                         {tags && tags.map((tag, index) => (
                                             <span
                                                 key={index}
