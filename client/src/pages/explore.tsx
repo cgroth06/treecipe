@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { SEARCH_COMPOSITIONS_AND_USERS } from '../utils/queries';
 import SearchBar from '../components/searchBar';
-import Composition from '../components/compositionCard'; // Import the Composition card component
+import CompositionCard from '../components/compositionCard'; // Import the Composition card component
 
 const ExplorePage = () => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -41,9 +41,10 @@ const ExplorePage = () => {
                 <h2>Compositions</h2>
                 {data?.searchCompositionsAndUsers?.compositions?.length > 0 ? (
                     data.searchCompositionsAndUsers.compositions.map((composition: { _id: string; title: string; text: string; createdAt: string; compositionAuthor: string }) => (
-                        <Composition
+                        <CompositionCard
                             key={composition._id}
-                            compositionText={composition.text}
+                            compositionTitle={composition.compositionTitle}
+                            compositionText={composition.compositionText}
                             compositionAuthor={composition.compositionAuthor}
                             createdAt={composition.createdAt}
                         />
