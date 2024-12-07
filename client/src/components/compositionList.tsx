@@ -65,7 +65,7 @@ const CompositionList: React.FC<CompositionListProps> = ({ filterByAuthor }) => 
             className="composition-grid"
             style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
                 gap: '1rem',
                 margin: '2rem 0',
             }}
@@ -73,6 +73,7 @@ const CompositionList: React.FC<CompositionListProps> = ({ filterByAuthor }) => 
             {displayedCompositions.map((composition) => (
                 <Composition
                     key={composition._id}
+                    compositionTitle={composition.compositionTitle}
                     compositionText={composition.compositionText}
                     compositionAuthor={composition.compositionAuthor}
                     createdAt={composition.createdAt}
