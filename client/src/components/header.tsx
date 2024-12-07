@@ -13,10 +13,8 @@ const Header = () => {
         <header className="navbar" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
                 <Link className="navbar-item" to="/">
-                    <a className="navbar-item">
                         <img src={LogoImage} height="100px"></img>
                         ArtVine
-                    </a>
                 </Link>
 
 

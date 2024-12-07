@@ -33,7 +33,7 @@ const Profile: React.FC = () => {
             </button>
             {showForm && <CompositionForm />}
             <h3>Your Poems</h3>
-            <CompositionList />
+            <CompositionList filterByAuthor={true}/>
         </div>
     );
 };
