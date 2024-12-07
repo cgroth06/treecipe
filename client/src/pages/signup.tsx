@@ -38,59 +38,75 @@ const Signup = () => {
     };
 
     return (
-        <main className="flex-row justify-center mb-4">
-            <div className="col-12 col-lg-10">
-                <div className="card">
-                    <h4 className="card-header bg-dark text-light p-2">Sign Up</h4>
-                    <div className="card-body">
-                        {data ? (
-                            <p>
-                                Success! You may now head{' '}
-                                <Link to="/">back to the homepage.</Link>
-                            </p>
-                        ) : (
-                            <form onSubmit={handleFormSubmit}>
+        <main className="content" style={{marginBottom: "20px"}}>
+            <h2 className="has-text-primary">Sign Up</h2>
+            <div className="">
+                {data ? (
+                    <p>
+                        Success! You may now head{' '}
+                        <Link to="/">back to the homepage.</Link>
+                    </p>
+                ) : (
+                    <form onSubmit={handleFormSubmit}>
+
+                        <div className="field">
+                            <label className="label">Name</label>
+                            <div className="control">
                                 <input
-                                    className="form-input"
+                                    className="input"
                                     placeholder="Your first and last name"
                                     name="name"
                                     type="text"
                                     value={formState.name}
                                     onChange={handleChange}
                                 />
+                            </div>
+                        </div>
+
+                        <div className="field">
+                            <label className="label">Email</label>
+                            <div className="control">
                                 <input
-                                    className="form-input"
+                                    className="input"
                                     placeholder="Your email"
                                     name="email"
                                     type="email"
                                     value={formState.email}
                                     onChange={handleChange}
                                 />
+                            </div>
+                        </div>
+
+                        <div className="field">
+                            <label className="label">Password</label>
+                            <div className="control">
                                 <input
-                                    className="form-input"
+                                    className="input"
                                     placeholder="******"
                                     name="password"
                                     type="password"
                                     value={formState.password}
                                     onChange={handleChange}
                                 />
-                                <button
-                                    className="btn btn-block btn-primary"
-                                    style={{ cursor: 'pointer' }}
-                                    type="submit"
-                                >
-                                    Submit
-                                </button>
-                            </form>
-                        )}
-
-                        {error && (
-                            <div className="my-3 p-3 bg-danger text-white">
-                                {error.message}
                             </div>
-                        )}
+                        </div>
+                        <div className="control">
+                            <button
+                                className="button is-link"
+                                style={{ cursor: 'pointer' }}
+                                type="submit"
+                            >
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+                )}
+
+                {error && (
+                    <div className="is-danger">
+                        {error.message}
                     </div>
-                </div>
+                )}
             </div>
         </main>
     );

@@ -4,13 +4,14 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import App from './App.jsx';
 //import Home from './pages/Home';
-import Signup from './components/signup.jsx';
-import Login from './components/login.jsx';
+import Signup from './pages/signup.js';
+import Login from './pages/login.js';
 //import SingleThought from './pages/SingleThought';
 import Profile from './pages/profile.jsx';
 import ErrorPage from './components/error.jsx';
-import ExplorePage from './pages/explore.tsx';
+import ExplorePage from './pages/explore.jsx';
 //import AboutArtVine from './pages/AboutArtVine.tsx';
+import Home from './pages/home.tsx';
 
 const router = createBrowserRouter([
   {
@@ -19,8 +20,8 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        index: true,
-        //element: <Home />
+        path: '/',
+        element: <Home />
       }, {
         path: '/login',
         element: <Login />
@@ -30,9 +31,6 @@ const router = createBrowserRouter([
       }, {
         path: '/profile',
         element: <Profile />
-      }, {
-        path: '/me',
-        //element: <Profile />
       }, {
         path: '/explore',
         element: <ExplorePage />
