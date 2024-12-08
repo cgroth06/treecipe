@@ -38,7 +38,7 @@ const Signup = () => {
     };
 
     return (
-        <main className="content" style={{marginBottom: "20px"}}>
+        <main className="content box mt-3" style={{marginBottom: "20px"}}>
             <h2 className="has-text-primary">Sign Up</h2>
             <div className="">
                 {data ? (
@@ -92,7 +92,7 @@ const Signup = () => {
                         </div>
                         <div className="control">
                             <button
-                                className="button is-link"
+                                className="button is-primary"
                                 style={{ cursor: 'pointer' }}
                                 type="submit"
                             >
