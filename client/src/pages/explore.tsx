@@ -73,14 +73,48 @@ const ExplorePage = () => {
 
             {displaySearchResults ? (
                 <div>
-                    <div className="block">
-                        <p className="title is-4">Users:</p>
-                        {data?.searchCompositionsAndUsers?.users?.length > 0 ? (
-                            data.searchCompositionsAndUsers.users.map((user: { _id: string; name: string; email: string }) => (
-                                <div key={user._id}>
-                                    <p className="tag is-primary">{user.name} - {user.email}</p>
-                                </div>
-                            ))
+                    <p className="title is-4">Users:</p>
+                    {data?.searchCompositionsAndUsers?.users?.length > 0 ? (
+                        data.searchCompositionsAndUsers.users.map((user: { _id: string; name: string; email: string }) => (
+                            <div key={user._id}>
+                                <p className="tag is-primary">{user.name} - {user.email}</p>
+                            </div>
+                        ))
+                    ) : (
+                        <p className="tag is-warning">No users found.</p>
+                    )}
+
+                    <p className="title is-4">Compositions:</p>
+                    <div
+                        className="composition-grid"
+                        style={{
+                            display: 'grid',
+                            gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
+                            gap: '1rem',
+                            margin: '2rem 0',
+                        }}
+                    >
+                        {compositions.length > 0 ? (
+                            compositions.map(
+                                (composition: {
+                                    _id: string;
+                                    compositionTitle: string;
+                                    compositionText: string;
+                                    createdAt: string;
+                                    compositionAuthor: string;
+                                    tags: string[];
+                                }) => (
+                                    <CompositionCard
+                                        key={composition._id}
+                                        compositionId={composition._id}
+                                        compositionTitle={composition.compositionTitle}
+                                        compositionText={composition.compositionText}
+                                        compositionAuthor={composition.compositionAuthor}
+                                        createdAt={composition.createdAt}
+                                        tags={composition.tags}
+                                    />
+                                )
+                            )
                         ) : (
                             <p className="tag is-warning">No users found.</p>
                         )}
