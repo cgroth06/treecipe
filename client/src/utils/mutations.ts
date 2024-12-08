@@ -41,6 +41,22 @@ export const ADD_COMPOSITION = gql`
   }
 `;
 
+export const SAVE_TO_LIBRARY = gql`
+  mutation saveToLibrary($compositionId: ID!) {
+    saveToLibrary(compositionId: $compositionId) {
+      _id
+      library {
+        _id
+        compositionTitle
+        compositionText
+        compositionAuthor
+        createdAt
+        tags
+      }
+    }
+  }
+`;
+
 // export const ADD_COMMENT = gql`
 //   mutation addComment($thoughtId: ID!, $commentText: String!) {
 //     addComment(thoughtId: $thoughtId, commentText: $commentText) {
