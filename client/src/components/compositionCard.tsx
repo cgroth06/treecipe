@@ -33,7 +33,7 @@ const CompositionCard: React.FC<CompositionProps> = ({ compositionTitle, composi
                     <div className="media-right">
                         <div className="dropdown is-hoverable">
                             <div className="dropdown-trigger">
-                                <button className="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                                <button id="dropdown-button" className="button" aria-haspopup="true" aria-controls="dropdown-menu">
                                     <span>#</span>
                                 </button>
                             </div>
@@ -58,7 +58,7 @@ const CompositionCard: React.FC<CompositionProps> = ({ compositionTitle, composi
                     {/* End of dropdown */}
                 </div>
                 <div className="content" style={{ height: "330px" }}>
-                    <textarea className="textarea has-fixed-size" style={{ minHeight: '100%' }} readOnly>
+                    <textarea className="card-textarea textarea has-fixed-size" style={{ minHeight: '100%' }} readOnly>
                         {compositionText}
                     </textarea>
                 </div>
