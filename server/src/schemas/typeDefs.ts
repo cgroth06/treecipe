@@ -17,6 +17,16 @@ const typeDefs = `
     tags: [String]
     createdAt: String
   }
+  
+  type Auth {
+    token: ID!
+    user: User
+  }
+
+  type SearchResults {
+    users: [User]
+    compositions: [Composition]
+  }
 
   input CompositionInput {
     compositionTitle: String
@@ -38,11 +48,6 @@ const typeDefs = `
   input LibraryInput {
     compositionId: ID!
   }
-  
-  type Auth {
-    token: ID!
-    user: User
-  }
 
   type Query {
     users: [User]
@@ -50,6 +55,7 @@ const typeDefs = `
     compositions: [Composition]!
     composition(compositionId: ID!): Composition
     me: User
+    searchCompositionsAndUsers(query: String): SearchResults
   }
 
   type Mutation {

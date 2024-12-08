@@ -6,6 +6,7 @@ import Auth from '../utils/auth';
 const CompositionForm: React.FC = () => {
     const [compositionTitle, setCompositionTitle] = useState('');
     const [compositionText, setCompositionText] = useState('');
+    const [tags, setTags] = useState('');
     const [addComposition] = useMutation(ADD_COMPOSITION);
 
     const handleSubmit = async (event: React.FormEvent) => {
@@ -19,6 +20,8 @@ const CompositionForm: React.FC = () => {
             return alert('Please fill in all required fields.');
         }
 
+        const tagsArray = tags.split(',').map((tag) => tag.trim()).filter((tag) => tag);
+
         try {
             const { data } = await addComposition({
                 variables: {
@@ -26,13 +29,15 @@ const CompositionForm: React.FC = () => {
                         compositionTitle,
                         compositionText,
                         compositionAuthor: Auth.getProfile().data.email,
-                        tags: [],
+                        tags: tagsArray,
                     },
                 },
             });
             setCompositionTitle('');
             setCompositionText('');
+            setTags('');
             alert('Poem added successfully!');
+            
         } catch (err) {
             console.error(err);
             alert('An error occurred while submitting your poem.');
@@ -55,6 +60,14 @@ const CompositionForm: React.FC = () => {
                 <textarea
                     value={compositionText}
                     onChange={(e) => setCompositionText(e.target.value)}
+                    required
+                ></textarea>
+            </label>
+            <label>
+                Tags (separate with commas):
+                <textarea
+                    value={tags}
+                    onChange={(e) => setTags(e.target.value)}
                     required
                 ></textarea>
             </label>
