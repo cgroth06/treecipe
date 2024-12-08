@@ -26,12 +26,7 @@ const CompositionCard: React.FC<CompositionProps> = ({ compositionId, compositio
         try {
             await saveToLibrary({ variables: { compositionId } });
         } catch (err) {
-            console.error('Error 1 saving composition:', err);
-            if (err instanceof Error) {
-                alert('Failed 2 to save the composition. ' + err.message);
-            } else {
-                alert('Failed 3 to save the composition.');
-            }
+            console.error('Error saving composition:', err);
         }
     };
 
