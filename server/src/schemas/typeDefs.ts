@@ -63,7 +63,7 @@ const typeDefs = `
     login(email: String!, password: String!): Auth
     addComposition(input: CompositionInput!): Composition
     removeComposition(compositionId: ID!): Composition
-    saveToLibrary(input: LibraryInput!): User
+    saveToLibrary(compositionId: ID!): User
     removeFromLibrary(compositionId: ID!): User
     followUser(input: FollowInput!): User
     unfollowUser(followId: ID!): User

@@ -8,8 +8,11 @@ export const QUERY_USER = gql`
       email
       compositions {
         _id
+        compositionTitle
         compositionText
+        compositionAuthor
         createdAt
+        tags
       }
     }
   }
@@ -23,6 +26,7 @@ export const QUERY_COMPOSITIONS = gql`
       compositionText
       compositionAuthor
       createdAt
+      tags
     }
   }
 `;
@@ -35,6 +39,7 @@ export const QUERY_SINGLE_COMPOSITION = gql`
       compositionText
       compositionAuthor
       createdAt
+      tags
       # comments {
       #   _id
       #   commentText
@@ -57,6 +62,7 @@ export const QUERY_ME = gql`
         compositionText
         compositionAuthor
         createdAt
+        tags
       }
     }
   }

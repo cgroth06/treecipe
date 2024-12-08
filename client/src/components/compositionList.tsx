@@ -5,6 +5,7 @@ import Composition from './compositionCard';
 
 interface CompositionProps {
     _id: string;
+    compositionId: string;
     compositionTitle: string;
     compositionText: string;
     compositionAuthor: string;
@@ -74,6 +75,7 @@ const CompositionList: React.FC<CompositionListProps> = ({ filterByAuthor }) => 
             {displayedCompositions.map((composition) => (
                 <Composition
                     key={composition._id}
+                    compositionId={composition._id}
                     compositionTitle={composition.compositionTitle}
                     compositionText={composition.compositionText}
                     compositionAuthor={composition.compositionAuthor}
