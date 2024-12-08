@@ -38,7 +38,7 @@ const Login = () => {
     };
 
     return (
-        <main className="content" style={{marginBottom: "20px"}}>
+        <main className="content box mt-3" style={{marginBottom: "20px"}}>
             <h2 className="has-text-primary">Login</h2>
             {data ? (
                 <p>
@@ -77,7 +77,7 @@ const Login = () => {
                     </div>
 
                     <button
-                        className="button is-link"
+                        className="button is-primary"
                         style={{ cursor: 'pointer' }}
                         type="submit"
                     >

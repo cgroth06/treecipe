@@ -18,14 +18,15 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, placeholder = "Search..
     };
 
     return (
-        <form onSubmit={handleSubmit} style={{ display: 'flex', alignItems: 'center' }}>
+        <form className="mt-2 mb-2" onSubmit={handleSubmit} style={{ display: 'flex', alignItems: 'center' }}>
             <input
+                className="input mr-2"
                 type="text"
                 value={query}
                 onChange={handleInputChange}
                 placeholder={placeholder}
             />
-            <button type="submit">Search</button>
+            <button className="button is-primary" type="submit">Search</button>
         </form>
     );
 };

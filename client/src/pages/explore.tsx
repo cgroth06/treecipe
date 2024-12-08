@@ -64,25 +64,27 @@ const ExplorePage = () => {
 
 
     return (
-        <div >
-            <h1>Explore</h1>
-            <p>Here you can explore all the work that has been submitted to ArtVine.</p>
-            <SearchBar onSearch={onSearch} />
+        <div className="mt-3">
+            <div className="hero is-small">
+                <p className="title has-text-primary">Explore</p>
+                <p className="subtitle">Here you can explore all the work that has been submitted to ArtVine.</p>
+                <SearchBar onSearch={onSearch} />
+            </div>
 
             {displaySearchResults ? (
                 <div>
-                    <h2>Users:</h2>
+                    <p className="title is-4">Users:</p>
                     {data?.searchCompositionsAndUsers?.users?.length > 0 ? (
                         data.searchCompositionsAndUsers.users.map((user: { _id: string; name: string; email: string }) => (
                             <div key={user._id}>
-                                <p>{user.name} - {user.email}</p>
+                                <p className="tag is-primary">{user.name} - {user.email}</p>
                             </div>
                         ))
                     ) : (
-                        <p>No users found.</p>
+                        <p className="tag is-warning">No users found.</p>
                     )}
 
-                    <h2>Compositions:</h2>
+                    <p className="title is-4">Compositions:</p>
                     <div
                         className="composition-grid"
                         style={{
@@ -114,8 +116,44 @@ const ExplorePage = () => {
                                 )
                             )
                         ) : (
-                            <p>No compositions found.</p>
+                            <p className="tag is-warning">No users found.</p>
                         )}
+                    </div>
+                    <div className="block">
+                        <p className="title is-4">Compositions:</p>
+                        <div
+                            className="composition-grid"
+                            style={{
+                                display: 'grid',
+                                gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
+                                gap: '1rem',
+                                margin: '2rem 0',
+                            }}
+                        >
+                            {compositions.length > 0 ? (
+                                compositions.map(
+                                    (composition: {
+                                        _id: string;
+                                        compositionTitle: string;
+                                        compositionText: string;
+                                        createdAt: string;
+                                        compositionAuthor: string;
+                                        tags: string[];
+                                    }) => (
+                                        <CompositionCard
+                                            key={composition._id}
+                                            compositionTitle={composition.compositionTitle}
+                                            compositionText={composition.compositionText}
+                                            compositionAuthor={composition.compositionAuthor}
+                                            createdAt={composition.createdAt}
+                                            tags={composition.tags}
+                                        />
+                                    )
+                                )
+                            ) : (
+                                <p>No compositions found.</p>
+                            )}
+                        </div>
                     </div>
                 </div>
             ) : (

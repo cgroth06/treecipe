@@ -10,7 +10,7 @@ const Header = () => {
         Auth.logout();
     };
     return (
-        <header className="navbar" role="navigation" aria-label="main navigation">
+        <header className="navbar is-fixed-top" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
                 <Link className="navbar-item" to="/">
                         <img src={LogoImage} height="100px"></img>
