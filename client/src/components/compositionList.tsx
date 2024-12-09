@@ -15,30 +15,33 @@ interface CompositionProps {
 
 interface CompositionListProps {
     filterByAuthor?: boolean; // Determines if we filter by the logged-in user
+    filterBySaved?: boolean;  // Determines if we filter by the user's saved compositions
 }
 
-const CompositionList: React.FC<CompositionListProps> = ({ filterByAuthor }) => {
+const CompositionList: React.FC<CompositionListProps> = ({ filterByAuthor, filterBySaved }) => {
     const [displayedCompositions, setDisplayedCompositions] = useState<CompositionProps[]>([]);
     const [startIndex, setStartIndex] = useState(0);
     const compositionsPerPage = 6;
 
-    // Use the appropriate query
-    const { loading, error, data } = useQuery(filterByAuthor ? QUERY_ME : QUERY_COMPOSITIONS);
+    // Use the appropriate query based on filters
+    const { loading, error, data } = useQuery(filterByAuthor || filterBySaved ? QUERY_ME : QUERY_COMPOSITIONS);
 
-    // Update displayed compositions
     useEffect(() => {
         if (!data) return;
 
-        const compositions = filterByAuthor
-            ? data.me?.compositions ?? []
-            : data.compositions ?? [];
+        let compositions = data.compositions ?? [];
+        if (filterByAuthor) {
+            compositions = data.me?.compositions ?? [];
+        } else if (filterBySaved) {
+            compositions = data.me?.library ?? [];
+        }
 
         setDisplayedCompositions(compositions.slice(startIndex, startIndex + compositionsPerPage));
-    }, [data, startIndex, filterByAuthor]);
+    }, [data, startIndex, filterByAuthor, filterBySaved]);
 
-    // Handle cycling compositions with arrow keys (only for non-filtered lists)
+    // Handle cycling compositions with arrow keys
     useEffect(() => {
-        if (!filterByAuthor) {
+        if (!filterByAuthor && !filterBySaved) {
             const handleKeyDown = (event: KeyboardEvent) => {
                 if (!data?.compositions) return;
 
@@ -57,7 +60,7 @@ const CompositionList: React.FC<CompositionListProps> = ({ filterByAuthor }) => 
                 window.removeEventListener('keydown', handleKeyDown);
             };
         }
-    }, [data, filterByAuthor]);
+    }, [data, filterByAuthor, filterBySaved]);
 
     if (loading) return <p>Loading compositions...</p>;
     if (error) return <p>Error loading compositions.</p>;

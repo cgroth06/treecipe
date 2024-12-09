@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import React from "react";
 import { SAVE_TO_LIBRARY } from "../utils/mutations";
 import { useMutation } from "@apollo/client";
@@ -36,17 +36,14 @@ const CompositionCard: React.FC<CompositionProps> = ({ compositionId, compositio
     };
 
     return (
-        // <div className="composition-card" style={{ border: '1px solid #ccc', padding: '1rem', margin: '1rem', borderRadius: '8px' }}>
-        //     <h3>{compositionAuthor}</h3>
-        //     <p>{compositionText}</p>
-        //     <small>Created on: {new Date(createdAt).toLocaleDateString()}</small>
-        // </div>
         <div className="card">
             <div className="card-content">
                 <div className="media">
                     <div className="media-content" style={{ height: "70px" }}>
                         <p className="title is-4">{compositionTitle}</p>
-                        <p className="subtitle is-6">by {compositionAuthor}</p>
+                        <p className="subtitle is-6">
+                            by <Link to={`/profile/${compositionAuthor}`}>{compositionAuthor}</Link>
+                            </p>
                     </div>
                     {/* Start of dropdown */}
                     <div className="media-right">
@@ -77,9 +74,7 @@ const CompositionCard: React.FC<CompositionProps> = ({ compositionId, compositio
                     {/* End of dropdown */}
                 </div>
                 <div className="content" style={{ height: "330px" }}>
-                    <textarea className="card-textarea textarea has-fixed-size" style={{ minHeight: '100%' }} readOnly>
-                        {compositionText}
-                    </textarea>
+                    <textarea value={compositionText || ''} className="card-textarea textarea has-fixed-size" style={{ minHeight: '100%' }} readOnly />
                 </div>
             </div>
             <footer className="card-footer has-background-primary-30">
