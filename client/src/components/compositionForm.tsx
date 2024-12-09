@@ -23,7 +23,7 @@ const CompositionForm: React.FC = () => {
         const tagsArray = tags.split(',').map((tag) => tag.trim()).filter((tag) => tag);
 
         try {
-            const { data } = await addComposition({
+            await addComposition({
                 variables: {
                     input: {
                         compositionTitle,
