@@ -3,7 +3,7 @@ import React from "react";
 import { SAVE_TO_LIBRARY } from "../utils/mutations";
 import { useMutation } from "@apollo/client";
 
-interface CompositionProps {
+export interface CompositionProps {
     compositionId: string;
     compositionTitle: string;
     compositionText: string;
