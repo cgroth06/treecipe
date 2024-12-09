@@ -41,7 +41,7 @@ const Header = () => {
                             <Link className="navbar-item" to="/library">
                                 Library
                             </Link>
-                            <Link className="navbar-item" to="/profile">
+                            <Link className="navbar-item" to="/myProfile">
                                 {/* Retrieving the logged-in user's profile to display the username */}
                                 {Auth.getProfile().data.email}
                             </Link>

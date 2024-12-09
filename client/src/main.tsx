@@ -3,16 +3,15 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 
 import App from './App.jsx';
-//import Home from './pages/Home';
 import Signup from './pages/signup.js';
 import Login from './pages/login.js';
-//import SingleThought from './pages/SingleThought';
-import Profile from './pages/profile.jsx';
+import MyProfile from './pages/myProfile.jsx';
 import ErrorPage from './components/error.jsx';
 import ExplorePage from './pages/explore.jsx';
 //import AboutArtVine from './pages/AboutArtVine.tsx';
-import Home from './pages/home.tsx';
-import Library from './pages/library.js';
+import Home from './pages/home.jsx';
+import Library from './pages/library.jsx';
+import Profile from './pages/profile.jsx';
 
 const router = createBrowserRouter([
   {
@@ -30,7 +29,10 @@ const router = createBrowserRouter([
         path: '/signup',
         element: <Signup />
       }, {
-        path: '/profile',
+        path: '/myprofile',
+        element: <MyProfile />
+      }, {
+        path: '/profile/:name',
         element: <Profile />
       }, {
         path: '/explore',
@@ -38,7 +40,7 @@ const router = createBrowserRouter([
       }, {
         path: '/library',
         element: <Library />
-      }
+      }, 
     ]
   },
 ]);

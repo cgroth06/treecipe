@@ -1,41 +1,32 @@
-import React, { useState } from 'react';
-import CompositionForm from '../components/compositionForm';
-import CompositionList from '../components/compositionList';
-import Auth from '../utils/auth';
+import { useParams } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+import { QUERY_USER } from '../utils/queries';
 
-const Profile: React.FC = () => {
-    const [showForm, setShowForm] = useState(false);
-    const userEmail = Auth.loggedIn() ? Auth.getProfile().data.email : '';
+const ProfilePage: React.FC = () => {
+    const { name } = useParams<{ name: string }>();
+    const { loading, error, data } = useQuery(QUERY_USER, {
+        variables: { name },
+    });
 
-    const toggleForm = () => {
-        setShowForm((prev) => !prev);
-    };
+    if (loading) return <p>Loading profile...</p>;
+    if (error) return <p>Error loading profile: {error.message}</p>;
 
-    if (!Auth.loggedIn()) {
-        return <p>You need to be logged in to view this page.</p>;
-    }
+    const user = data?.user;
 
     return (
-        <div className="profile-page" style={{ padding: '2rem' }}>
-            <h2>Welcome, {userEmail}</h2>
-            <button
-                onClick={toggleForm}
-                style={{
-                    margin: '1rem 0',
-                    padding: '0.5rem 1rem',
-                    backgroundColor: '#007bff',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '4px',
-                }}
-            >
-                {showForm ? 'Hide Form' : 'Add a Poem'}
-            </button>
-            {showForm && <CompositionForm />}
-            <h3>Your Poems</h3>
-            <CompositionList filterByAuthor={true}/>
+        <div>
+            <h1>{user.name}</h1>
+            <h2>Compositions</h2>
+            <ul>
+                {user.compositions.map((composition: any) => (
+                    <li key={composition._id}>
+                        <h3>{composition.compositionTitle}</h3>
+                        <p>{composition.compositionText}</p>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 };
 
-export default Profile;
+export default ProfilePage;

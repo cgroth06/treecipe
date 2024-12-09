@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import React from "react";
 import { SAVE_TO_LIBRARY } from "../utils/mutations";
 import { useMutation } from "@apollo/client";
@@ -41,7 +41,9 @@ const CompositionCard: React.FC<CompositionProps> = ({ compositionId, compositio
                 <div className="media">
                     <div className="media-content" style={{ height: "70px" }}>
                         <p className="title is-4">{compositionTitle}</p>
-                        <p className="subtitle is-6">by {compositionAuthor}</p>
+                        <p className="subtitle is-6">
+                            by <Link to={`/profile/${compositionAuthor}`}>{compositionAuthor}</Link>
+                            </p>
                     </div>
                     {/* Start of dropdown */}
                     <div className="media-right">
