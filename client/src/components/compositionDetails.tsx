@@ -88,7 +88,22 @@ const CompositionDetails: React.FC = () => {
             </div>
 
             {/* Filtered Compositions based on the search term */}
-            
+            <div className="filtered-compositions">
+                {data?.compositions
+                .filter((composition: any) => 
+                    composition.tags.some((tag: string) =>
+                        tag.toLowerCase().includes(searchTerm.toLowerCase())
+                        )
+                    )
+                    .map((filteredComposition: any) => (
+                        <div key={filteredComposition._id} className="composition-item">
+                        <h3>{filteredComposition.compositionTitle}</h3>
+                        <p>{filteredComposition.compositionText}</p>
+                    </div>
+                    ))}
+            </div>
+
+            {/* Buttons for saving and navigation */}
         </div>
     )
 
