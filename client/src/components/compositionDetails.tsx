@@ -1,17 +1,12 @@
 import React from 'react';
-import CompositionCard, { CompositionProps } from './compositionCard';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_COMPOSITIONS } from '../utils/queries';
 import { SAVE_TO_LIBRARY } from '../utils/mutations';
 
 
-interface CompositionDetailProps {
-    composition: CompositionProps;
-}
 
-
-const CompositionDetails: React.FC<CompositionDetailProps> = ({ composition }) => {
+const CompositionDetails: React.FC = () => {
     const navigate = useNavigate(); //Used to navigate between pages
     const { compositionId } = useParams<{ compositionId: string }>(); // Retrieve the composition ID from the URL
 
@@ -33,4 +28,12 @@ const CompositionDetails: React.FC<CompositionDetailProps> = ({ composition }) =
     //Handle the loading and error states
     if (loading) return <p>Loading composition details...</p>;
     if (error) return <p>Error loading composition: {error.message}</p>;
+
+    const fetchedComposition = data?.composition;
+
+    if (!fetchedComposition) {
+        return <p>Composition not found.</p>;
+    };
+
+    const { compositionTitle, compositionText, compositionAuthor, createdAt, tags} = fetchedComposition;
 }
