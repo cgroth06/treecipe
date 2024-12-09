@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_COMPOSITIONS } from '../utils/queries';
@@ -6,15 +6,16 @@ import { SAVE_TO_LIBRARY } from '../utils/mutations';
 import dayjs from 'dayjs';
 
 
-
 const CompositionDetails: React.FC = () => {
     const navigate = useNavigate(); //Used to navigate between pages
     const { compositionId } = useParams<{ compositionId: string }>(); // Retrieve the composition ID from the URL
 
+    //State for search term
+    const [searchTerm, setSearchTerm] = useState<string>('');
 
     // Fetch the composition data using the QUERY_COMPOSITION query
     const { loading, error, data } = useQuery(QUERY_COMPOSITIONS, {
-        variables: { id: compositionId },
+        variables: { id: compositionId, search: searchTerm },
     });
 
 
@@ -27,15 +28,18 @@ const CompositionDetails: React.FC = () => {
     });
 
     //Handle the loading and error states
-    if (loading) return <p>Loading composition details...</p>;
-    if (error) return <p>Error loading composition: {error.message}</p>;
+    if (loading) return <p className="loading-spinner">Loading composition details...</p>;
+    if (error) return <p>Oops! Something went wrong while loading the composition. Please try again later.</p>;
 
+    // Extract the fetched composition data
     const fetchedComposition = data?.composition;
 
+    // If no composition is found, show an error message
     if (!fetchedComposition) {
         return <p>Composition not found.</p>;
     };
 
+     // Destructuring composition data from the fetched composition object
     const { compositionTitle, compositionText, compositionAuthor, createdAt, tags } = fetchedComposition;
 
     //Handler to save a composition to library
@@ -49,12 +53,12 @@ const CompositionDetails: React.FC = () => {
 
     //Handler to handle filtering logic by tag
     const handleTagClick = (tag: string) => {
-        navigate(`/explore?search=${encodeURIComponent(tag)}`);
+        setSearchTerm(tag); // Update the search term based on the tag clicked
     };
 
     // Handle the back button functionality
     const handleBackButton = () => {
-        navigate(-1); // Go back to the previous page
+        navigate('/'); // Go back to the previous page
     };
 
     return (
@@ -75,7 +79,7 @@ const CompositionDetails: React.FC = () => {
 
             {/* Tags Section */}
             <div className="tags">
-                {tags && tags.map((tag, index) => (
+                {tags.map((tag: string, index: number) => (
                     <span
                         key={index}
                         className="tag is-primary is-light"
@@ -104,7 +108,16 @@ const CompositionDetails: React.FC = () => {
             </div>
 
             {/* Buttons for saving and navigation */}
+            <div className="buttons mt-4">
+                <button className="button is-primary" onClick={handleSaveToLibrary}>
+                    Add to Library
+                </button>
+                <button className="button is-light" onClick={handleBackButton}>
+                    Back to Homepage
+                </button>
+            </div>
         </div>
     )
+};
 
-}
+export default CompositionDetails
