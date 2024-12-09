@@ -6,6 +6,7 @@ import Auth from '../utils/auth.js';
 const CompositionForm: React.FC = () => {
     const [compositionTitle, setCompositionTitle] = useState('');
     const [compositionText, setCompositionText] = useState('');
+    const [compositionAuthor, setCompositionAuthor] = useState('');
     const [tags, setTags] = useState('');
     const [addComposition] = useMutation(ADD_COMPOSITION);
 
@@ -28,13 +29,14 @@ const CompositionForm: React.FC = () => {
                     input: {
                         compositionTitle,
                         compositionText,
-                        compositionAuthor: Auth.getProfile().data.email,
+                        compositionAuthor,
                         tags: tagsArray,
                     },
                 },
             });
             setCompositionTitle('');
             setCompositionText('');
+            setCompositionAuthor('');
             setTags('');
             alert('Poem added successfully!');
             
@@ -52,6 +54,15 @@ const CompositionForm: React.FC = () => {
                     type="text"
                     value={compositionTitle}
                     onChange={(e) => setCompositionTitle(e.target.value)}
+                    required
+                />
+            </label>
+            <label>
+                Author:
+                <input
+                    type="text"
+                    value={compositionAuthor}
+                    onChange={(e) => setCompositionAuthor(e.target.value)}
                     required
                 />
             </label>
