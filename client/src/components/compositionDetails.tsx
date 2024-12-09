@@ -28,5 +28,9 @@ const CompositionDetails: React.FC<CompositionDetailProps> = ({ composition }) =
             console.log('Composition saved to library:', data);
             alert('Composition added to your library!');
         },
-    })
+    });
+
+    //Handle the loading and error states
+    if (loading) return <p>Loading composition details...</p>;
+    if (error) return <p>Error loading composition: {error.message}</p>;
 }
