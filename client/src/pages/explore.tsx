@@ -73,7 +73,7 @@ const ExplorePage = () => {
 
             {displaySearchResults ? (
                 <div>
-                    <div className="block">
+                    {/* <div className="block">
                         <p className="title is-4">Users:</p>
                         {data?.searchCompositionsAndUsers?.users?.length > 0 ? (
                             data.searchCompositionsAndUsers.users.map((user: { _id: string; name: string; email: string }) => (
@@ -84,7 +84,7 @@ const ExplorePage = () => {
                         ) : (
                             <p className="tag is-warning">No users found.</p>
                         )}
-                    </div>
+                    </div> */}
                     <div className="block">
                         <p className="title is-4">Compositions:</p>
                         <div className="composition-grid grid is-col-min-16">
