@@ -36,4 +36,15 @@ const CompositionDetails: React.FC = () => {
     };
 
     const { compositionTitle, compositionText, compositionAuthor, createdAt, tags} = fetchedComposition;
+
+    //Handler to save a composition to library
+    const handlerSaveToLibrary = async () => {
+        try {
+            await saveToLibrary({ variables: { compositionId } });
+        } catch (err) {
+            console.error("Error saving composition", err);
+        }
+    };
+
+
 }
