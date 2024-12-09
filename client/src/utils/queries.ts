@@ -19,8 +19,8 @@ export const QUERY_USER = gql`
 `;
 
 export const QUERY_COMPOSITIONS = gql`
-  query getCompositions {
-    compositions {
+  query getCompositions($search: String) {
+    compositions(search: $search) {
       _id
       compositionTitle
       compositionText
