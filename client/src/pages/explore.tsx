@@ -73,63 +73,21 @@ const ExplorePage = () => {
 
             {displaySearchResults ? (
                 <div>
-                    <p className="title is-4">Users:</p>
-                    {data?.searchCompositionsAndUsers?.users?.length > 0 ? (
-                        data.searchCompositionsAndUsers.users.map((user: { _id: string; name: string; email: string }) => (
-                            <div key={user._id}>
-                                <p className="tag is-primary">{user.name} - {user.email}</p>
-                            </div>
-                        ))
-                    ) : (
-                        <p className="tag is-warning">No users found.</p>
-                    )}
-
-                    <p className="title is-4">Compositions:</p>
-                    <div
-                        className="composition-grid"
-                        style={{
-                            display: 'grid',
-                            gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
-                            gap: '1rem',
-                            margin: '2rem 0',
-                        }}
-                    >
-                        {compositions.length > 0 ? (
-                            compositions.map(
-                                (composition: {
-                                    _id: string;
-                                    compositionTitle: string;
-                                    compositionText: string;
-                                    createdAt: string;
-                                    compositionAuthor: string;
-                                    tags: string[];
-                                }) => (
-                                    <CompositionCard
-                                        key={composition._id}
-                                        compositionId={composition._id}
-                                        compositionTitle={composition.compositionTitle}
-                                        compositionText={composition.compositionText}
-                                        compositionAuthor={composition.compositionAuthor}
-                                        createdAt={composition.createdAt}
-                                        tags={composition.tags}
-                                    />
-                                )
-                            )
+                    <div className="block">
+                        <p className="title is-4">Users:</p>
+                        {data?.searchCompositionsAndUsers?.users?.length > 0 ? (
+                            data.searchCompositionsAndUsers.users.map((user: { _id: string; name: string; email: string }) => (
+                                <div key={user._id}>
+                                    <p className="tag is-dark is-medium mb-1">{user.name} - {user.email}s</p>
+                                </div>
+                            ))
                         ) : (
                             <p className="tag is-warning">No users found.</p>
                         )}
                     </div>
                     <div className="block">
                         <p className="title is-4">Compositions:</p>
-                        <div
-                            className="composition-grid"
-                            style={{
-                                display: 'grid',
-                                gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
-                                gap: '1rem',
-                                margin: '2rem 0',
-                            }}
-                        >
+                        <div className="composition-grid grid is-col-min-16">
                             {compositions.length > 0 ? (
                                 compositions.map(
                                     (composition: {
@@ -140,18 +98,20 @@ const ExplorePage = () => {
                                         compositionAuthor: string;
                                         tags: string[];
                                     }) => (
-                                        <CompositionCard
-                                            key={composition._id}
-                                            compositionTitle={composition.compositionTitle}
-                                            compositionText={composition.compositionText}
-                                            compositionAuthor={composition.compositionAuthor}
-                                            createdAt={composition.createdAt}
-                                            tags={composition.tags}
-                                        />
+                                            <CompositionCard
+                                                key={composition._id}
+                                                compositionTitle={composition.compositionTitle}
+                                                compositionText={composition.compositionText}
+                                                compositionAuthor={composition.compositionAuthor}
+                                                createdAt={composition.createdAt}
+                                                tags={composition.tags}
+                                            />
                                     )
                                 )
                             ) : (
-                                <p>No compositions found.</p>
+                                <div className="mb-2">
+                                    <p className="tag is-warning">No compositions found.</p>
+                                </div>
                             )}
                         </div>
                     </div>
@@ -161,7 +121,7 @@ const ExplorePage = () => {
                     <CompositionList />
                 </>
             )}
-            <p>
+            <p className="mt-2">
                 Use the left (<kbd>←</kbd>) and right (<kbd>→</kbd>) arrow keys to navigate through poems.
             </p>
         </div>

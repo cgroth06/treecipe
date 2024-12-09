@@ -66,15 +66,8 @@ const CompositionList: React.FC<CompositionListProps> = ({ filterByAuthor, filte
     if (error) return <p>Error loading compositions.</p>;
 
     return (
-        <div
-            className="composition-grid"
-            style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
-                gap: '1rem',
-                margin: '2rem 0',
-            }}
-        >
+        <div className="composition-grid mt-3">
+            <div className="grid is-col-min-16">
             {displayedCompositions.map((composition) => (
                 <Composition
                     key={composition._id}
@@ -86,6 +79,7 @@ const CompositionList: React.FC<CompositionListProps> = ({ filterByAuthor, filte
                     tags={composition.tags}
                 />
             ))}
+            </div>
         </div>
     );
 };
