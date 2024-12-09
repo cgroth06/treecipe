@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_COMPOSITIONS } from '../utils/queries';
 import { SAVE_TO_LIBRARY } from '../utils/mutations';
+import dayjs from 'dayjs';
 
 
 
@@ -38,7 +39,7 @@ const CompositionDetails: React.FC = () => {
     const { compositionTitle, compositionText, compositionAuthor, createdAt, tags} = fetchedComposition;
 
     //Handler to save a composition to library
-    const handlerSaveToLibrary = async () => {
+    const handleSaveToLibrary = async () => {
         try {
             await saveToLibrary({ variables: { compositionId } });
         } catch (err) {
@@ -46,5 +47,24 @@ const CompositionDetails: React.FC = () => {
         }
     };
 
+     // Handle the back button functionality
+    const handleBackButton =  () => {
+       navigate(-1); // Go back to the previous page
+    };
+
+    return (
+        <div className="composition-detail">
+            <h2 className="title">{compositionTitle}</h2>
+            <div className="content">
+                <p>By: {compositionAuthor}</p>
+                <p className="has-text-grey">
+                    Created on {dayjs(createdAt).format('MMMM D, YYYY')}
+                </p>
+            </div>
+            <div className="text-content">
+                <p>{compositionText}</p>
+            </div>
+        </div>
+    )
 
 }
