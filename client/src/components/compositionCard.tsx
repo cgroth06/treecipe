@@ -81,7 +81,7 @@ const CompositionCard: React.FC<CompositionProps> = ({ compositionId, compositio
                 <footer className="card-footer has-background-primary-30">
                     <a href="#" className="card-footer-item">Details</a>
                     <a href="#" className="card-footer-item">Author</a>
-                    <button onClick={handleSaveClick} className="card-footer-item has-text-primary-invert">Collect</button>
+                    <button onClick={handleSaveClick} className="card-footer-item">Collect</button>
                 </footer>
             </div>
         </div>
