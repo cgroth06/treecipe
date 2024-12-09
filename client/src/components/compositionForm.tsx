@@ -6,7 +6,7 @@ import Auth from '../utils/auth';
 const CompositionForm: React.FC = () => {
     const [compositionTitle, setCompositionTitle] = useState('');
     const [compositionText, setCompositionText] = useState('');
-    const [compositionAuthor, setCompositionAuthor] = useSate('');
+    const [compositionAuthor, setCompositionAuthor] = useState('');
     const [tags, setTags] = useState('');
     const [addComposition] = useMutation(ADD_COMPOSITION);
 
@@ -62,7 +62,7 @@ const CompositionForm: React.FC = () => {
                 <input
                     type="text"
                     value={compositionAuthor}
-                    onChange={(e) => setCompositionTitle(e.target.value)}
+                    onChange={(e) => setCompositionAuthor(e.target.value)}
                     required
                 />
             </label>

@@ -100,6 +100,7 @@ const ExplorePage = () => {
                                     }) => (
                                             <CompositionCard
                                                 key={composition._id}
+                                                compositionId={composition._id}
                                                 compositionTitle={composition.compositionTitle}
                                                 compositionText={composition.compositionText}
                                                 compositionAuthor={composition.compositionAuthor}
