@@ -36,11 +36,6 @@ const CompositionCard: React.FC<CompositionProps> = ({ compositionId, compositio
     };
 
     return (
-        // <div className="composition-card" style={{ border: '1px solid #ccc', padding: '1rem', margin: '1rem', borderRadius: '8px' }}>
-        //     <h3>{compositionAuthor}</h3>
-        //     <p>{compositionText}</p>
-        //     <small>Created on: {new Date(createdAt).toLocaleDateString()}</small>
-        // </div>
         <div className="card">
             <div className="card-content">
                 <div className="media">
@@ -77,9 +72,7 @@ const CompositionCard: React.FC<CompositionProps> = ({ compositionId, compositio
                     {/* End of dropdown */}
                 </div>
                 <div className="content" style={{ height: "330px" }}>
-                    <textarea className="card-textarea textarea has-fixed-size" style={{ minHeight: '100%' }} readOnly>
-                        {compositionText}
-                    </textarea>
+                    <textarea value={compositionText || ''} className="card-textarea textarea has-fixed-size" style={{ minHeight: '100%' }} readOnly />
                 </div>
             </div>
             <footer className="card-footer has-background-primary-30">

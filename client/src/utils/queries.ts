@@ -52,20 +52,28 @@ export const QUERY_SINGLE_COMPOSITION = gql`
 
 export const QUERY_ME = gql`
   query me {
-    me {
+  me {
+    _id
+    name
+    email
+    compositions {
       _id
-      name
-      email
-      compositions {
-        _id
-        compositionTitle
-        compositionText
-        compositionAuthor
-        createdAt
-        tags
-      }
+      compositionTitle
+      compositionText
+      compositionAuthor
+      createdAt
+      tags
+    }
+    library {
+      _id
+      compositionTitle
+      compositionText
+      compositionAuthor
+      createdAt
+      tags
     }
   }
+}
 `;
 
 export const SEARCH_COMPOSITIONS_AND_USERS = gql`

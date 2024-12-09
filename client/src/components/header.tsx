@@ -38,7 +38,9 @@ const Header = () => {
                     {/* Checking if the user is logged in to conditionally render profile link and logout button */}
                     {Auth.loggedIn() ? (
                         <>
-
+                            <Link className="navbar-item" to="/library">
+                                Library
+                            </Link>
                             <Link className="navbar-item" to="/profile">
                                 {/* Retrieving the logged-in user's profile to display the username */}
                                 {Auth.getProfile().data.email}
