@@ -11,7 +11,7 @@ interface CompositionDetailProps {
 }
 
 
-const CompositionDetails: React.FC<CompositionDetailProps> = () => {
+const CompositionDetails: React.FC<CompositionDetailProps> = ({ composition }) => {
     const navigate = useNavigate(); //Used to navigate between pages
     const { compositionId } = useParams<{ compositionId: string }>(); // Retrieve the composition ID from the URL
 
@@ -20,4 +20,13 @@ const CompositionDetails: React.FC<CompositionDetailProps> = () => {
     const { loading, error, data } = useQuery(QUERY_COMPOSITIONS, {
         variables: { id: compositionId },
     });
+
+
+    //Mutation for saving a composition to the library
+    const [saveToLibrary] = useMutation(SAVE_TO_LIBRARY, {
+        onCompleted: (data) => {
+            console.log('Composition saved to library:', data);
+            alert('Composition added to your library!');
+        },
+    })
 }
