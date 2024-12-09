@@ -36,52 +36,54 @@ const CompositionCard: React.FC<CompositionProps> = ({ compositionId, compositio
     };
 
     return (
-        <div className="card">
-            <div className="card-content">
-                <div className="media">
-                    <div className="media-content" style={{ height: "70px" }}>
-                        <p className="title is-4">{compositionTitle}</p>
-                        <p className="subtitle is-6">
-                            by <Link to={`/profile/${compositionAuthor}`}>{compositionAuthor}</Link>
-                            </p>
-                    </div>
-                    {/* Start of dropdown */}
-                    <div className="media-right">
-                        <div className="dropdown is-hoverable">
-                            <div className="dropdown-trigger">
-                                <button id="dropdown-button" className="button" aria-haspopup="true" aria-controls="dropdown-menu">
-                                    <span>#</span>
-                                </button>
-                            </div>
-                            <div className="dropdown-menu" id="dropdown-menu" role="menu" style={{ right: 0, left: 'auto', maxWidth: '300px', overflow: 'auto' }}>
-                                <div className="dropdown-content">
-                                    <div className="tags" style={{ marginTop: '1px', display: 'flex', flexDirection: 'column', }}>
-                                        {tags && tags.map((tag, index) => (
-                                            <span
-                                                key={index}
-                                                className="tag is-primary is-light"
-                                                style={{ margin: '0 5px', cursor: 'pointer' }}
-                                                onClick={() => handleTagClick(tag)}
-                                            >
-                                                #{tag}
-                                            </span>
-                                        ))}
+        <div className="cell">
+            <div className="card">
+                <div className="card-content">
+                    <div className="media">
+                        <div className="media-content" style={{ height: "70px" }}>
+                            <p className="title is-4">{compositionTitle}</p>
+                            <p className="subtitle is-6">by {compositionAuthor}</p>
+                        </div>
+                        {/* Start of dropdown */}
+                        <div className="media-right">
+                            <div className="dropdown is-hoverable">
+                                <div className="dropdown-trigger">
+                                    <button id="dropdown-button" className="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                                        <span>#</span>
+                                    </button>
+                                </div>
+                                <div className="dropdown-menu" id="dropdown-menu" role="menu" style={{ right: 0, left: 'auto', maxWidth: '300px', overflow: 'auto' }}>
+                                    <div className="dropdown-content">
+                                        <div className="tags" style={{ marginTop: '1px', display: 'flex', flexDirection: 'column', }}>
+                                            {tags && tags.map((tag, index) => (
+                                                <span
+                                                    key={index}
+                                                    className="tag is-primary is-light"
+                                                    style={{ margin: '0 5px', cursor: 'pointer' }}
+                                                    onClick={() => handleTagClick(tag)}
+                                                >
+                                                    #{tag}
+                                                </span>
+                                            ))}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        {/* End of dropdown */}
                     </div>
-                    {/* End of dropdown */}
+                    <div className="content" style={{ height: "330px" }}>
+                        <textarea className="card-textarea textarea has-fixed-size" style={{ minHeight: '100%' }} readOnly>
+                            {compositionText}
+                        </textarea>
+                    </div>
                 </div>
-                <div className="content" style={{ height: "330px" }}>
-                    <textarea value={compositionText || ''} className="card-textarea textarea has-fixed-size" style={{ minHeight: '100%' }} readOnly />
-                </div>
+                <footer className="card-footer has-background-primary-30">
+                    <a href="#" className="card-footer-item">Details</a>
+                    <a href="#" className="card-footer-item">Author</a>
+                    <a href="#" className="card-footer-item">Collect</a>
+                </footer>
             </div>
-            <footer className="card-footer has-background-primary-30">
-                <a href="#" className="card-footer-item has-text-primary-invert">Details</a>
-                <a href="#" className="card-footer-item has-text-primary-invert">Author</a>
-                <button onClick={handleSaveClick} className="card-footer-item has-text-primary-invert">Collect</button>
-            </footer>
         </div>
     );
 };

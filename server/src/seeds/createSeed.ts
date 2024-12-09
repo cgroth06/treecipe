@@ -21,7 +21,7 @@ both softly glow
 
 But it won't last forever - 
     "Never, never, never!"`,
-            "tags": [`short`,`winter`]
+            "tags": [`short`,`winter`, 'snow', 'has many tags', 'has a pretty long tag', 'one more tag']
         },
         {
             "_id": `000000000000000000000002`,
