@@ -4,13 +4,21 @@
         "name": "Ethan",
         "email": "ethan@artvine.com",
         "password": "12345678",
-        "library": "000000000000000000000010"
+        "compositions": [],
+        "library": "000000000000000000000010",
+        "follows": [
+            "222222222222222222222222",
+            "333333333333333333333333",
+            "444444444444444444444444",
+            "555555555555555555555555"
+        ]
     },
     {
         "_id": "222222222222222222222222",
         "name": "Chris",
         "email": "chris@artvine.com",
         "password": "12345678",
+        "compositions": [],
         "library": "000000000000000000000010"
     },
     {
@@ -33,12 +41,14 @@
         "_id": "444444444444444444444444",
         "name": "Yahye",
         "email": "yahye@artvine.com",
-        "password": "12345678"
+        "password": "12345678",
+        "compositions": []
     },
     {
         "_id": "555555555555555555555555",
         "name": "Dimintri",
         "email": "dimintri@artvine.com",
-        "password": "12345678"
+        "password": "12345678",
+        "compositions": []
     }
 ]

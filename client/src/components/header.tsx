@@ -32,6 +32,9 @@ const Header = () => {
                     <Link className="navbar-item" to="/explore">
                         Explore
                     </Link>
+                    <Link className="navbar-item" to="/about">
+                        About
+                    </Link>
                 </div>
 
                 <div className="navbar-end">

@@ -12,6 +12,7 @@ import ErrorPage from './components/error.jsx';
 import ExplorePage from './pages/explore.jsx';
 //import AboutArtVine from './pages/AboutArtVine.tsx';
 import Home from './pages/home.tsx';
+import AboutArtVine from './pages/AboutArtVine.tsx';
 
 const router = createBrowserRouter([
   {
@@ -34,7 +35,11 @@ const router = createBrowserRouter([
       }, {
         path: '/explore',
         element: <ExplorePage />
+      }, {
+        path: '/about',
+        element: <AboutArtVine />
       }
+
     ]
   },
 ]);

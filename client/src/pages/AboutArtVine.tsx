@@ -7,15 +7,20 @@ const AboutArtVine = () => {
   const navigate = useNavigate();
 
   const handleBack = () => {
-  navigate(-1);  
+    navigate(-1);
   };
 
   return (
-    
-    <button className="back-button2" onClick={handleBack}>Back</button>
+    <>
+      <section className="hero">
+        <div className="hero-body has-text-centered">
+      <p className="title">Hi, I'm the about page</p>
+      </div>
+      </section>
+      <button className="button is-primary" onClick={handleBack}>Back</button>
 
-
-    );
+    </>
+  );
 };
-  
+
 export default AboutArtVine;
