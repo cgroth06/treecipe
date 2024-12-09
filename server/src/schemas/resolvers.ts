@@ -61,7 +61,9 @@ const resolvers = {
     me: async (_parent: any, _args: any, context: any) => {
       // If the user is authenticated, find and return the user's information along with their compositions
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('compositions');
+        return User.findOne({ _id: context.user._id })
+        .populate('compositions')
+        .populate('library');
       }
       // If the user is not authenticated, throw an AuthenticationError
       throw new AuthenticationError('Could not authenticate user.');

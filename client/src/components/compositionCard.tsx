@@ -1,7 +1,10 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import React from "react";
+import { SAVE_TO_LIBRARY } from "../utils/mutations";
+import { useMutation } from "@apollo/client";
 
 interface CompositionProps {
+    compositionId: string;
     compositionTitle: string;
     compositionText: string;
     compositionAuthor: string;
@@ -9,8 +12,24 @@ interface CompositionProps {
     tags: string[];
 }
 
-const CompositionCard: React.FC<CompositionProps> = ({ compositionTitle, compositionText, compositionAuthor, tags }) => {
+const CompositionCard: React.FC<CompositionProps> = ({ compositionId, compositionTitle, compositionText, compositionAuthor, tags }) => {
     const navigate = useNavigate();
+
+    const [saveToLibrary] = useMutation(SAVE_TO_LIBRARY, {
+        onCompleted: (data) => {
+            console.log('Composition saved to library:', data);
+            alert('Composition added to your library!');
+        },
+    });
+
+    const handleSaveClick = async () => {
+        try {
+            await saveToLibrary({ variables: { compositionId } });
+        } catch (err) {
+            console.error('Error saving composition:', err);
+        }
+    };
+
 
     const handleTagClick = (tag: string) => {
         navigate(`/explore?search=${encodeURIComponent(tag)}`);
