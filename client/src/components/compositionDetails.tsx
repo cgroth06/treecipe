@@ -13,5 +13,11 @@ interface CompositionDetailProps {
 
 const CompositionDetails: React.FC<CompositionDetailProps> = () => {
     const navigate = useNavigate(); //Used to navigate between pages
-    const { compositionId } = useParams<{ compositionId: string }>();
+    const { compositionId } = useParams<{ compositionId: string }>(); // Retrieve the composition ID from the URL
+
+
+    // Fetch the composition data using the QUERY_COMPOSITION query
+    const { loading, error, data } = useQuery(QUERY_COMPOSITIONS, {
+        variables: { id: compositionId },
+    });
 }
