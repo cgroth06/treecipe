@@ -101,3 +101,16 @@ export const REMOVE_FROM_LIBRARY = gql`
 //     }
 //   }
 // `;
+
+export const FOLLOW_USER = gql`
+mutation followUser($followId: ID!) {
+  followUser(followId: $followId) {
+    _id
+    follows {
+      _id
+      name
+      email
+    }
+  }
+}
+`;

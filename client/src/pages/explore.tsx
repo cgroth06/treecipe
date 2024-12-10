@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { SEARCH_COMPOSITIONS_AND_USERS } from '../utils/queries';
-import SearchBar from '../components/searchBar';
-import CompositionCard from '../components/compositionCard';
-import CompositionList from '../components/compositionList';
+import { SEARCH_COMPOSITIONS_AND_USERS } from '../utils/queries.js';
+import SearchBar from '../components/searchBar.jsx';
+import CompositionCard from '../components/compositionCard.jsx';
+import CompositionList from '../components/compositionList.jsx';
 
 const ExplorePage = () => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -64,11 +64,13 @@ const ExplorePage = () => {
 
 
     return (
-        <div className="mt-3">
-            <div className="hero is-small">
-                <p className="title has-text-primary">Explore</p>
-                <p className="subtitle">Here you can explore all the work that has been submitted to ArtVine.</p>
-                <SearchBar onSearch={onSearch} />
+        <>
+            <div className="hero is-small has-background-primary-dark">
+                <div className="hero-body">
+                    <p className="title has-text-primary">Explore</p>
+                    <p className="subtitle">Here you can explore all the work that has been submitted to ArtVine.</p>
+                    <SearchBar onSearch={onSearch} />
+                </div>
             </div>
 
             {displaySearchResults ? (
@@ -126,7 +128,7 @@ const ExplorePage = () => {
             <p className="mt-2">
                 Use the left (<kbd>←</kbd>) and right (<kbd>→</kbd>) arrow keys to navigate through poems.
             </p>
-        </div>
+        </>
     );
 };
 
