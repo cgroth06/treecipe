@@ -9,7 +9,7 @@ import ExplorePage from './pages/explore.jsx';
 import Home from './pages/home.jsx';
 import Library from './pages/library.jsx';
 import Profile from './pages/profile.jsx';
-/* import AboutUs from './pages/AboutArtVine.js'; */
+import AboutUs from './pages/AboutArtVine.js';
 import CompositionDetails from './pages/compositionDetails.js';
 
 const router = createBrowserRouter([
@@ -42,10 +42,10 @@ const router = createBrowserRouter([
       }, {
         path: '/compositionDetails/:compositionId',
         element: <CompositionDetails />
-      }, /* {
+      }, {
         path: '/about',
         element: <AboutUs />
-      } */
+      }
     ]
   },
 ]);
