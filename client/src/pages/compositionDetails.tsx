@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_SINGLE_COMPOSITION } from '../utils/queries';
@@ -56,9 +56,9 @@ const CompositionDetails: React.FC = () => {
     };
 
     //Handler to handle filtering logic by tag
-    const handleTagClick = (tag: string) => {
-        setSearchTerm(tag); // Update the search term based on the tag clicked
-    };
+    // const handleTagClick = (tag: string) => {
+    //     setSearchTerm(tag); // Update the search term based on the tag clicked
+    // };
 
     // Handle the back button functionality
     const handleBackButton = () => {
@@ -89,7 +89,7 @@ const CompositionDetails: React.FC = () => {
                             key={index}
                             className="tag is-primary is-light"
                             style={{ margin: '0 5px', cursor: 'pointer' }}
-                            onClick={() => handleTagClick(tag)}
+                            //onClick={() => handleTagClick(tag)}
                         >
                             #{tag}
                         </span>
