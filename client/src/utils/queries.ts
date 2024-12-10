@@ -95,3 +95,11 @@ export const SEARCH_COMPOSITIONS_AND_USERS = gql`
     }
   }
 `;
+
+export const CHECK_LIBRARY_STATUS = gql`
+  query checkLibraryStatus($compositionId: String!) {
+    checkLibraryStatus(compositionId: $compositionId) {
+      inLibrary
+    }
+  }
+`;

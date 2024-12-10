@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_COMPOSITION } from '../utils/mutations';
-import Auth from '../utils/auth';
+import  authService  from '../utils/auth';
 
 const CompositionForm: React.FC = () => {
     const [compositionTitle, setCompositionTitle] = useState('');
@@ -12,7 +12,7 @@ const CompositionForm: React.FC = () => {
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-        if (!Auth.loggedIn()) {
+        if (!authService.loggedIn()) {
             return alert('You need to be logged in to submit a poem.');
         }
 
