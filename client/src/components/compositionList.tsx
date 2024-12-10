@@ -14,6 +14,7 @@ interface CompositionProps {
 }
 
 interface CompositionListProps {
+    compositions?: CompositionProps[];
     filterByAuthor?: boolean; // Determines if we filter by the logged-in user
     filterBySaved?: boolean;  // Determines if we filter by the user's saved compositions
 }
