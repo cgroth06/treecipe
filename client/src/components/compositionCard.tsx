@@ -79,7 +79,7 @@ const CompositionCard: React.FC<CompositionProps> = ({
         navigate(`/explore?search=${encodeURIComponent(tag)}`);
     };
 
-    const isOwnComposition = user?.compositions?.includes(_id) || false;
+    
 
 
     return (
@@ -164,7 +164,8 @@ const CompositionCard: React.FC<CompositionProps> = ({
                     </Link>
                     {user && (
                         <>
-                            {isOwnComposition ? (
+                            {console.log(user.compositions, _id)}{ user?.compositions?.includes(_id) ? (
+                            
                                 <button
                                     onClick={handleEditClick}
                                     className="card-footer-item has-text-primary-invert"

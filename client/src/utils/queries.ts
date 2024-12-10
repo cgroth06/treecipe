@@ -97,7 +97,7 @@ export const SEARCH_COMPOSITIONS_AND_USERS = gql`
 `;
 
 export const CHECK_LIBRARY_STATUS = gql`
-  query checkLibraryStatus($compositionId: String!) {
+  query checkLibraryStatus($compositionId: ID!) {
     checkLibraryStatus(compositionId: $compositionId) {
       inLibrary
     }
