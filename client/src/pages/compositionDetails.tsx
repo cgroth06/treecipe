@@ -43,8 +43,8 @@ const CompositionDetails: React.FC = () => {
         return <p>Composition not found. Please check the composition ID and try again later.</p>;
     };
 
-    // Destructuring composition data from the fetched composition object
-    const { compositionTitle, compositionText, compositionAuthor, createdAt, tags } = fetchedComposition;
+     // Destructuring composition data from the fetched composition object
+    const { compositionTitle, compositionText, compositionAuthor, /* createdAt, */ tags } = fetchedComposition;
 
     //Handler to save a composition to library
     const handleSaveToLibrary = async () => {
@@ -72,7 +72,7 @@ const CompositionDetails: React.FC = () => {
             <div className="content">
                 <p>By: {compositionAuthor}</p>
                 <p className="has-text-grey">
-                    Created on {createdAt}
+                    Created on {/* {createdAt} */}
                 </p>
             </div>
 

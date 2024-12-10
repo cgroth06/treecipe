@@ -71,7 +71,6 @@ const CompositionList: React.FC<CompositionListProps> = ({ filterByAuthor, filte
             {displayedCompositions.map((composition) => (
                 <Composition
                     key={composition._id}
-                    _id={composition._id}
                     compositionId={composition._id}
                     compositionTitle={composition.compositionTitle}
                     compositionText={composition.compositionText}
