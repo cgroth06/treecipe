@@ -164,7 +164,8 @@ const CompositionCard: React.FC<CompositionProps> = ({
                     </Link>
                     {user && (
                         <>
-                            {console.log(user.compositions, _id)}{ user?.compositions?.includes(_id) ? (
+                            {console.log(user.compositions, _id)}
+                            { user?.compositions?.includes(_id) ? (
                             
                                 <button
                                     onClick={handleEditClick}
