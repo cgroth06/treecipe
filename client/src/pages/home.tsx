@@ -19,7 +19,7 @@ const Home: React.FC = () => {
                 </div>
             </section>
             <CompositionList />
-            <p>
+            <p className="mt-2">
                 Use the left (<kbd>←</kbd>) and right (<kbd>→</kbd>) arrow keys to navigate through poems.
             </p>
         </div>
