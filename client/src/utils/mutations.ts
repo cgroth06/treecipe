@@ -57,6 +57,14 @@ export const SAVE_TO_LIBRARY = gql`
   }
 `;
 
+export const REMOVE_FROM_LIBRARY = gql`
+    mutation removeFromLibrary($compositionId: ID!) {
+    removeFromLibrary(compositionId: $compositionId) {
+      _id
+    }
+  }
+`
+
 // export const ADD_COMMENT = gql`
 //   mutation addComment($thoughtId: ID!, $commentText: String!) {
 //     addComment(thoughtId: $thoughtId, commentText: $commentText) {
@@ -72,3 +80,16 @@ export const SAVE_TO_LIBRARY = gql`
 //     }
 //   }
 // `;
+
+export const FOLLOW_USER = gql`
+mutation followUser($followId: ID!) {
+  followUser(followId: $followId) {
+    _id
+    follows {
+      _id
+      name
+      email
+    }
+  }
+}
+`;

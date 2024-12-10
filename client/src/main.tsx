@@ -1,17 +1,16 @@
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-
-
 import App from './App.jsx';
-import Signup from './pages/signup.js';
-import Login from './pages/login.js';
+import Signup from './pages/signup.jsx';
+import Login from './pages/login.jsx';
 import MyProfile from './pages/myProfile.jsx';
 import ErrorPage from './components/error.jsx';
 import ExplorePage from './pages/explore.jsx';
-//import AboutArtVine from './pages/AboutArtVine.tsx';
 import Home from './pages/home.jsx';
 import Library from './pages/library.jsx';
 import Profile from './pages/profile.jsx';
+import AboutUs from './pages/AboutArtVine.js';
+import CompositionDetails from './pages/compositionDetails.js';
 
 const router = createBrowserRouter([
   {
@@ -40,7 +39,13 @@ const router = createBrowserRouter([
       }, {
         path: '/library',
         element: <Library />
-      }, 
+      },{
+        path: '/compositionDetails',
+        element: <CompositionDetails />
+      },{
+        path: '/about',
+        element: <AboutUs />
+      }
     ]
   },
 ]);
