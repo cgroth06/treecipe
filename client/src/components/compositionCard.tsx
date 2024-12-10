@@ -44,7 +44,7 @@ const CompositionCard: React.FC<CompositionProps> = ({
     const [saveToLibrary] = useMutation(SAVE_TO_LIBRARY, {
         onCompleted: () => {
             setInLibrary(true); // Update local state
-            alert("Composition added to your library!");
+            // alert("Composition added to your library!");
             refetch(); // Refetch the library status after mutation
         },
         onError: (err) => console.error("Error adding composition:", err),
@@ -53,7 +53,7 @@ const CompositionCard: React.FC<CompositionProps> = ({
     const [removeFromLibrary] = useMutation(REMOVE_FROM_LIBRARY, {
         onCompleted: () => {
             setInLibrary(false); // Update local state
-            alert("Composition removed from your library!");
+            // alert("Composition removed from your library!");
             refetch(); // Refetch the library status after mutation
         },
         onError: (err) => console.error("Error removing composition:", err),
