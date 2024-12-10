@@ -71,15 +71,15 @@ const CompositionCard: React.FC<CompositionProps> = ({
         }
     };
 
-    const handleEditClick = () => {
-        navigate(`/editComposition/${compositionId}`);
-    };
+    // const handleEditClick = () => {
+    //     navigate(`/editComposition/${compositionId}`);
+    // };
 
     const handleTagClick = (tag: string) => {
         navigate(`/explore?search=${encodeURIComponent(tag)}`);
     };
 
-    
+
 
 
     return (
@@ -133,25 +133,25 @@ const CompositionCard: React.FC<CompositionProps> = ({
                 <footer className="card-footer has-background-primary-30">
                     <Link
                         to={`/compositionDetails/${compositionId}`}
-                        className="card-footer-item has-text-primary-invert"
+                        className="card-footer-item"
                     >
                         View Composition
                     </Link>
-                    {user && (
+                    {/* {user && (
                         <>
                             {console.log(user.compositions, _id)}
                             { user?.compositions?.includes(_id) ? (
                             
                                 <button
                                     onClick={handleEditClick}
-                                    className="card-footer-item has-text-primary-invert"
+                                    className="card-footer-item"
                                 >
                                     Edit Composition
                                 </button>
                             ) : (
                                 <button
                                     onClick={handleLibraryAction}
-                                    className="card-footer-item has-text-primary-invert"
+                                    className="card-footer-item"
                                     disabled={libraryLoading}
                                 >
                                     {libraryLoading
@@ -162,7 +162,18 @@ const CompositionCard: React.FC<CompositionProps> = ({
                                 </button>
                             )}
                         </>
-                    )}
+                    )} */}
+                    <button
+                        onClick={handleLibraryAction}
+                        className="card-footer-item"
+                        disabled={libraryLoading}
+                    >
+                        {libraryLoading
+                            ? "Loading..."
+                            : inLibrary
+                                ? "Remove from Library"
+                                : "Add to Library"}
+                    </button>
                 </footer>
             </div>
         </div>
