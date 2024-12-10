@@ -39,7 +39,7 @@ const CompositionForm: React.FC = () => {
             setCompositionAuthor('');
             setTags('');
             alert('Poem added successfully!');
-            
+
         } catch (err) {
             console.error(err);
             alert('An error occurred while submitting your poem.');
@@ -48,41 +48,48 @@ const CompositionForm: React.FC = () => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <label>
-                Title:
+            <div className="field">
+                <label className="label">Title:</label>
                 <input
+                    className="input"
                     type="text"
                     value={compositionTitle}
                     onChange={(e) => setCompositionTitle(e.target.value)}
                     required
                 />
-            </label>
-            <label>
-                Author:
+            </div>
+            <div className="field">
+                <label className="label">Author:</label>
                 <input
+                    className="input"
                     type="text"
                     value={compositionAuthor}
                     onChange={(e) => setCompositionAuthor(e.target.value)}
                     required
                 />
-            </label>
-            <label>
-                Poem:
+            </div>
+            <div className="field">
+            <label className="label">Poem:</label>
                 <textarea
+                    className="textarea textarea-input"
+                    wrap="off"
+                    rows={10}
                     value={compositionText}
                     onChange={(e) => setCompositionText(e.target.value)}
                     required
                 ></textarea>
-            </label>
-            <label>
-                Tags (separate with commas):
+            </div>
+            <div className="field">
+            <label className="label">Tags (separate with commas):
                 <textarea
+                    className="input"
                     value={tags}
                     onChange={(e) => setTags(e.target.value)}
                     required
                 ></textarea>
             </label>
-            <button type="submit">Submit Poem</button>
+            </div>
+            <button className="button is-primary mb-2" type="submit">Submit Poem</button>
         </form>
     );
 };
