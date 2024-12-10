@@ -14,7 +14,7 @@ const CompositionDetails: React.FC = () => {
 
     // Fetch the composition data using the QUERY_COMPOSITION query
     const { loading, error, data } = useQuery(QUERY_SINGLE_COMPOSITION, {
-        variables: { id: compositionId },
+        variables: { compositionId },
     });
 
 
