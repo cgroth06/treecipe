@@ -14,7 +14,7 @@ const CompositionDetails: React.FC = () => {
 
     // Fetch the composition data using the QUERY_COMPOSITION query
     const { loading, error, data } = useQuery(QUERY_SINGLE_COMPOSITION, {
-        variables: { id: compositionId, search: searchTerm },
+        variables: { id: compositionId },
     });
 
 
@@ -78,19 +78,23 @@ const CompositionDetails: React.FC = () => {
 
             {/* Tags Section */}
             <div className="tags">
-                {tags.map((tag: string, index: number) => (
-                    <span
-                        key={index}
-                        className="tag is-primary is-light"
-                        style={{ margin: '0 5px', cursor: 'pointer' }}
-                        onClick={() => handleTagClick(tag)}
-                    >
-                        #{tag}
-                    </span>
-                ))}
+                {tags?.length > 0 ? (
+                    tags.map((tag: string, index: number) => (
+                        <span
+                            key={index}
+                            className="tag is-primary is-light"
+                            style={{ margin: '0 5px', cursor: 'pointer' }}
+                            onClick={() => handleTagClick(tag)}
+                        >
+                            #{tag}
+                        </span>
+                    ))
+                ) : (
+                    <p>No tags available</p>
+                )}
             </div>
 
-            {/* Filtered Compositions based on the search term */}
+            {/* Filtered Compositions based on the search term 
             <div className="filtered-compositions">
                 {data?.compositions
                 .filter((composition: any) => 
@@ -104,7 +108,7 @@ const CompositionDetails: React.FC = () => {
                         <p>{filteredComposition.compositionText}</p>
                     </div>
                     ))}
-            </div>
+            </div> */}
 
             {/* Buttons for saving and navigation */}
             <div className="buttons mt-4">
