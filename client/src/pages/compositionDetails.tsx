@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
-import { QUERY_COMPOSITIONS } from '../utils/queries';
+import { QUERY_COMPOSITIONS, QUERY_SINGLE_COMPOSITION } from '../utils/queries';
 import { SAVE_TO_LIBRARY } from '../utils/mutations';
 
 
@@ -13,7 +13,7 @@ const CompositionDetails: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState<string>('');
 
     // Fetch the composition data using the QUERY_COMPOSITION query
-    const { loading, error, data } = useQuery(QUERY_COMPOSITIONS, {
+    const { loading, error, data } = useQuery(QUERY_SINGLE_COMPOSITION, {
         variables: { id: compositionId, search: searchTerm },
     });
 

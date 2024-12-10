@@ -40,7 +40,7 @@ const router = createBrowserRouter([
         path: '/library',
         element: <Library />
       },{
-        path: '/compositionDetails',
+        path: '/compositionDetails/:compositionId',
         element: <CompositionDetails />
       },{
         path: '/about',
