@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import CompositionForm from '../components/compositionForm.jsx';
 import CompositionList from '../components/compositionList.jsx';
 import Auth from '../utils/auth.js';
+import ManageCompositions from '../components/manageCompositions.js';
 
 const MyProfile: React.FC = () => {
     const [showForm, setShowForm] = useState(false);
@@ -25,6 +26,8 @@ const MyProfile: React.FC = () => {
                 {showForm ? 'Hide Form' : 'Add a Poem'}
             </button>
             {showForm && <CompositionForm />}
+            <p className="title is-4">Manage Your Compositions</p>
+            <ManageCompositions />
             <p className="title is-4">Your Poems</p>
             <CompositionList filterByAuthor={true}/>
         </div>

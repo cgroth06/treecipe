@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useQuery, useMutation } from '@apollo/client';
-import { QUERY_COMPOSITIONS, QUERY_ME } from '../utils/queries.js';
+import { QUERY_ME } from '../utils/queries.js';
 import { REMOVE_COMPOSITION } from '../utils/mutations.js';
 
 const ManageCompositions: React.FC = () => {
-    const {loading, error, data, refetch} = useQuery(QUERY_COMPOSITIONS);
-    const compositions = data?.compositions || [];
+    const {loading, error, data, refetch} = useQuery(QUERY_ME);
     const [removeComposition] = useMutation(REMOVE_COMPOSITION, {
         onCompleted: () => {
             refetch();
         },
         onError: (err) => {
-        console.error('Error removing Composition:', err);
+            console.error('Error removing Composition:', err);
     },
 });
 
@@ -27,6 +26,8 @@ const handleRemove = async (compositionId: string) => {
 
 if (loading) return <p>Loading Compositions...</p>;
 if (error) return <p>Error: {error.message}</p>;
+
+const compositions = data?.me?.compositions ?? [];
 
 return (
     <div className="manage-compositions">
