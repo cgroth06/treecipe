@@ -1,5 +1,6 @@
 import { useNavigate, Link } from "react-router-dom";
 import React from "react";
+import { useState } from "react";
 import { SAVE_TO_LIBRARY } from "../utils/mutations";
 import { useMutation } from "@apollo/client";
 
@@ -14,11 +15,13 @@ interface CompositionProps {
 
 const CompositionCard: React.FC<CompositionProps> = ({ compositionId, compositionTitle, compositionText, compositionAuthor, tags }) => {
     const navigate = useNavigate();
+    const [libraryButton, setLibraryButton] = useState('Add to Library');
 
     const [saveToLibrary] = useMutation(SAVE_TO_LIBRARY, {
         onCompleted: (data) => {
             console.log('Composition saved to library:', data);
-            alert('Composition added to your library!');
+            setLibraryButton('Remove From Library')
+            // alert('Composition added to your library!');
         },
     });
 
@@ -78,7 +81,7 @@ const CompositionCard: React.FC<CompositionProps> = ({ compositionId, compositio
                 </div>
                 <footer className="card-footer has-background-primary-30">
                     <Link to={`/compositionDetails/${compositionId}`} className="card-footer-item">View Composition</Link>
-                    <button onClick={handleSaveClick} className="card-footer-item">Add To Library</button>
+                    <button onClick={handleSaveClick} className="card-footer-item">{libraryButton}</button>
                 </footer>
             </div>
         </div>
