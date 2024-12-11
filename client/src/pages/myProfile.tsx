@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import CompositionForm from '../components/compositionForm.jsx';
 // import CompositionList from '../components/compositionList.jsx';
 import Auth from '../utils/auth.js';
