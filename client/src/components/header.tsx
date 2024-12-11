@@ -58,7 +58,7 @@ const Header = () => {
                                 {/* Retrieving the logged-in user's profile to display the username */}
                                 {Auth.getProfile()?.data.email}
                             </Link>
-                            <a className="navbar-item">
+                            <a className="navbar-item has-text-white">
                                 <button onClick={logout}>
                                     Logout
                                 </button>
