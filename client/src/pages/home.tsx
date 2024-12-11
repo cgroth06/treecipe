@@ -7,11 +7,11 @@ const Home: React.FC = () => {
         <div className="home-container">
             <section className="hero is-small has-background-primary-dark">
                 <div className="hero-body">
-                    <div className="columns">
+                    <div className="columns is-flex-direction-row">
                         <div className="column is-one-fifth">
-                            <img className="is-pulled-right" src={LogoImage} height="120px" width="120px"></img>
+                            <img className="is-pulled-right" src={LogoImage}></img>
                         </div>
-                        <div className="column">
+                        <div className="column is-four-fifths">
                             <p className="title has-text-primary">Welcome to ArtVine</p>
                             <p className="subtitle">Create and connect.</p>
                         </div>

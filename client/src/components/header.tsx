@@ -15,7 +15,7 @@ const Header = () => {
     const unselectedStyle = 'navbar-item has-text-white';
 
     return (
-        <header className="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+        <header className="navbar is-fixed-top has-background-black" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
                 <Link key={1} to="/"
                     className={currentPage === "/" ? selectedStyle : unselectedStyle}>

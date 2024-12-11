@@ -19,7 +19,7 @@ const Library = () => {
     return (
         <div>
             <section className="hero is-small has-background-primary-dark">
-                <div className="hero-body">
+                <div className="hero-body is-flex-direction-column">
                     <p className="title has-text-primary">Your Library</p>
                     <p className="subtitle">{quote.quote}<br />- {quote.author}</p>
                 </div>
