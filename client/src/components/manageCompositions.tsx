@@ -182,7 +182,24 @@ const ManageCompositions: React.FC = () => {
                                     ></textarea>
                                 </div>
                             </div>
-                            <button className="button is-success" onClick={handleSave}>
+                            <div className="field">
+                                <label className="label">Tags</label>
+                                <div className="control">
+                                    <input
+                                        className="input"
+                                        type="text"
+                                        value={editingComposition.tags}
+                                        onChange={(e) =>
+                                            setEditingComposition({
+                                                ...editingComposition,
+                                                tags: e.target.value,
+                                            })
+                                        }
+                                    />
+                                    <p className="help">Separate tags with commas</p>
+                                </div>
+                            </div>
+                            <button className="button is-success mr-3" onClick={handleSave}>
                                 Save
                             </button>
                             <button
