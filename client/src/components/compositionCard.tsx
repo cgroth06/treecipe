@@ -77,9 +77,6 @@ const CompositionCard: React.FC<CompositionProps> = ({
         navigate(`/explore?search=${encodeURIComponent(tag)}`);
     };
 
-
-
-
     return (
         <div className="cell">
             <div className="card">
@@ -123,9 +120,9 @@ const CompositionCard: React.FC<CompositionProps> = ({
                             className="card-textarea textarea has-fixed-size"
                             style={{ minHeight: "100%" }}
                             readOnly
-                        >
-                            {compositionText}
-                        </textarea>
+                            value={compositionText}
+                        />
+
                     </div>
                 </div>
                 <footer className="card-footer has-background-primary-30">
