@@ -125,34 +125,34 @@ const CompositionForm: React.FC<CompositionFormProps> = ({ refetch }) => {
                         <p className={areTermsVisible ? '' : 'is-hidden'}>
                             By submitting your work to ArtVine, you agree to the following terms:
                             <ul>
-                                <li>Originality of Work:
+                                <li className="ml-5">Originality of Work:
                                     <ul>
-                                        <li>You affirm that the work you submit is your original work and does not infringe upon any copyright, trademark, or other intellectual property rights of any third party.</li>
+                                        <li className="ml-5, has-text-weight-light">You affirm that the work you submit is your original work and does not infringe upon any copyright, trademark, or other intellectual property rights of any third party.</li>
                                     </ul>
                                 </li>
-                                <li>Copyright Compliance:
+                                <li className="ml-5">Copyright Compliance:
                                     <ul>
-                                        <li>You confirm that your submission does not contain material that violates any copyright laws, including but not limited to:
+                                        <li className="ml-5, has-text-weight-light">You confirm that your submission does not contain material that violates any copyright laws, including but not limited to:
                                             <ul>
-                                                <li>Work created by someone else without proper authorization.</li>
-                                                <li>Material taken from copyrighted works without the necessary permissions.</li>
+                                                <li className="ml-5, has-text-weight-light">Work created by someone else without proper authorization.</li>
+                                                <li className="ml-5, has-text-weight-light">Material taken from copyrighted works without the necessary permissions.</li>
                                             </ul>
                                         </li>
                                     </ul>
                                 </li>
-                                <li>License to Display:
+                                <li className="ml-5">License to Display:
                                     <ul>
-                                        <li>By submitting your work, you grant ArtVine a non-exclusive, royalty-free license to publish and display your work on our platform. You retain full ownership of your work and may withdraw your submission at any time.</li>
+                                        <li className="ml-5, has-text-weight-light">By submitting your work, you grant ArtVine a non-exclusive, royalty-free license to publish and display your work on our platform. You retain full ownership of your work and may withdraw your submission at any time.</li>
                                     </ul>
                                 </li>
-                                <li>Responsibility for Submissions:
+                                <li className="ml-5">Responsibility for Submissions:
                                     <ul>
-                                        <li>You agree to take full responsibility for the content of your submission, including any legal consequences arising from copyright disputes.</li>
+                                        <li className="ml-5, has-text-weight-light">You agree to take full responsibility for the content of your submission, including any legal consequences arising from copyright disputes.</li>
                                     </ul>
                                 </li>
-                                <li>Indemnification:
+                                <li className="ml-5">Indemnification:
                                     <ul>
-                                        <li>You agree to indemnify and hold ArtVine harmless from any claims, damages, or liabilities arising from your submission, including disputes over copyright ownership.</li>
+                                        <li className="ml-5, has-text-weight-light">You agree to indemnify and hold ArtVine harmless from any claims, damages, or liabilities arising from your submission, including disputes over copyright ownership.</li>
                                     </ul>
                                 </li>
                             </ul>
@@ -182,28 +182,3 @@ const CompositionForm: React.FC<CompositionFormProps> = ({ refetch }) => {
 
 export default CompositionForm;
 
-{/* <div>  
-    <h2>Submission Terms and Conditions</h2>
-    <p>By submitting your work to ArtVine, you agree to the following:
-        Originality of Work
-        You affirm that the work you submit is your original work and does not infringe upon any copyright, trademark, or other intellectual property rights of any third party.
-        Copyright Compliance
-        You confirm that your submission does not contain material that violates any copyright laws, including but not limited to:
-        Work created by someone else without proper authorization.
-        Material taken from copyrighted works without the necessary permissions.
-        License to Display
-        By submitting your work, you grant ArtVine a non-exclusive, royalty-free license to publish and display your work on our platform. You retain full ownership of your work and may withdraw your submission at any time.
-        Responsibility for Submissions
-        You agree to take full responsibility for the content of your submission, including any legal consequences arising from copyright disputes.
-        Indemnification
-        You agree to indemnify and hold ArtVine harmless from any claims, damages, or liabilities arising from your submission, including disputes over copyright ownership.
-    </p>
-
-    <h3>Submission Agreement</h3>
-    <form action="/submit" method="post">
-        <input type="checkbox" id="agreement" name="agreement" value="agree">
-        <label htmlFor="agreement"> I confirm that the work I am submitting is my original work, and I agree to the submission terms and conditions.</label>
-        </input>
-    </form>
-    
-</div> */}
