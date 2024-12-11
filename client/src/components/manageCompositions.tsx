@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries.js';
@@ -63,6 +64,14 @@ const ManageCompositions: React.FC = () => {
                             <td>{composition.compositionTitle}</td>
                             <td>{composition.compositionAuthor}</td>
                             <td>
+                                <button className="button is-primary is-small mr-2">
+                                    <Link
+                                        className="has-text-black"
+                                        to={`/compositionDetails/${composition._id}`}
+                                    >
+                                        View
+                                    </Link>
+                                </button>
                                 <button
                                     className="button is-danger is-small"
                                     onClick={() => handleRemove(composition._id)}

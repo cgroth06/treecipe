@@ -35,8 +35,8 @@ const MyProfile: React.FC = () => {
             {showForm && <CompositionForm refetch={refetch}/>}
             <p className="title is-4">Manage Your Compositions</p>
             <ManageCompositions />
-            <p className="title is-4">Your Poems</p>
-            <CompositionList compositions={compositions} filterByAuthor={true}/>
+            {/* <p className="title is-4">Your Poems</p>
+            <CompositionList compositions={compositions} filterByAuthor={true}/> */}
         </div>
     );
 };
