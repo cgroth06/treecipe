@@ -13,7 +13,6 @@ const CompositionForm: React.FC<CompositionFormProps> = ({ refetch }) => {
     const [compositionAuthor, setCompositionAuthor] = useState('');
     const [tags, setTags] = useState('');
     const [agreeToTerms, setAgreeToTerms] = useState(false);
-    const [showTerms, setShowTerms] = useState(false);
     const [areTermsVisible, setAreTermsVisible] = useState(false);
     const [addComposition] = useMutation(ADD_COMPOSITION);
 
