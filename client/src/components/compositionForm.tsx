@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
+import { useMutation, OperationVariables, ApolloQueryResult } from '@apollo/client';
 import { ADD_COMPOSITION } from '../utils/mutations';
 import  authService  from '../utils/auth';
 
-const CompositionForm: React.FC = () => {
+interface CompositionFormProps {
+    refetch: (variables?: Partial<OperationVariables>) => Promise<ApolloQueryResult<any>>;
+}
+
+const CompositionForm: React.FC<CompositionFormProps> = ({ refetch }) => {
     const [compositionTitle, setCompositionTitle] = useState('');
     const [compositionText, setCompositionText] = useState('');
     const [compositionAuthor, setCompositionAuthor] = useState('');
@@ -39,6 +43,7 @@ const CompositionForm: React.FC = () => {
                     },
                 },
             });
+            refetch();
             setCompositionTitle('');
             setCompositionText('');
             setCompositionAuthor('');
