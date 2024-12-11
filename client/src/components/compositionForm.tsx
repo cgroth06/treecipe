@@ -127,32 +127,32 @@ const CompositionForm: React.FC<CompositionFormProps> = ({ refetch }) => {
                             <ul>
                                 <li className="ml-5">Originality of Work:
                                     <ul>
-                                        <li className="ml-5, has-text-weight-light">You affirm that the work you submit is your original work and does not infringe upon any copyright, trademark, or other intellectual property rights of any third party.</li>
+                                        <li className="ml-5 has-text-weight-light">You affirm that the work you submit is your original work and does not infringe upon any copyright, trademark, or other intellectual property rights of any third party.</li>
                                     </ul>
                                 </li>
                                 <li className="ml-5">Copyright Compliance:
                                     <ul>
-                                        <li className="ml-5, has-text-weight-light">You confirm that your submission does not contain material that violates any copyright laws, including but not limited to:
+                                        <li className="ml-5 has-text-weight-light">You confirm that your submission does not contain material that violates any copyright laws, including but not limited to:
                                             <ul>
-                                                <li className="ml-5, has-text-weight-light">Work created by someone else without proper authorization.</li>
-                                                <li className="ml-5, has-text-weight-light">Material taken from copyrighted works without the necessary permissions.</li>
+                                                <li className="ml-5 has-text-weight-light">Work created by someone else without proper authorization.</li>
+                                                <li className="ml-5 has-text-weight-light">Material taken from copyrighted works without the necessary permissions.</li>
                                             </ul>
                                         </li>
                                     </ul>
                                 </li>
                                 <li className="ml-5">License to Display:
                                     <ul>
-                                        <li className="ml-5, has-text-weight-light">By submitting your work, you grant ArtVine a non-exclusive, royalty-free license to publish and display your work on our platform. You retain full ownership of your work and may withdraw your submission at any time.</li>
+                                        <li className="ml-5 has-text-weight-light">By submitting your work, you grant ArtVine a non-exclusive, royalty-free license to publish and display your work on our platform. You retain full ownership of your work and may withdraw your submission at any time.</li>
                                     </ul>
                                 </li>
                                 <li className="ml-5">Responsibility for Submissions:
                                     <ul>
-                                        <li className="ml-5, has-text-weight-light">You agree to take full responsibility for the content of your submission, including any legal consequences arising from copyright disputes.</li>
+                                        <li className="ml-5 has-text-weight-light">You agree to take full responsibility for the content of your submission, including any legal consequences arising from copyright disputes.</li>
                                     </ul>
                                 </li>
                                 <li className="ml-5">Indemnification:
                                     <ul>
-                                        <li className="ml-5, has-text-weight-light">You agree to indemnify and hold ArtVine harmless from any claims, damages, or liabilities arising from your submission, including disputes over copyright ownership.</li>
+                                        <li className="ml-5 has-text-weight-light">You agree to indemnify and hold ArtVine harmless from any claims, damages, or liabilities arising from your submission, including disputes over copyright ownership.</li>
                                     </ul>
                                 </li>
                             </ul>
