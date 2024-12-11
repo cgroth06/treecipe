@@ -103,7 +103,7 @@
 .navbar {
     border: 1px solid hsl(var(--av-primary-h), var(--av-primary-s), var(--av-primary-l-darker));
     border-width: 0 0 3px 0;
-    background-color: hsl(var(--av-primary-h), var(--av-primary-s), var(--av-primary-l-darkest));
+    /* background-color: hsl(var(--av-primary-h), var(--av-primary-s), var(--av-primary-l-darkest)); */
 }
 
 .footer {
