@@ -173,10 +173,14 @@ const resolvers = {
       throw AuthenticationError;
     }, */
     removeComposition: async (_parent: any, { compositionId }: CompositionArgs, context: any) => {
+      if (!context.user) {
+        console.error('User not authenticated:', context);
+        throw new AuthenticationError('You need to be logged in!');
+      }
       if (context.user) {
         const composition = await Composition.findOneAndDelete({
           _id: compositionId,
-          compositionAuthor: context.user.name,
+          compositionAuthor: context.user._id,
         });
 
         if (!composition) {
