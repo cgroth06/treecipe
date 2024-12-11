@@ -98,6 +98,9 @@ const ManageCompositions: React.FC = () => {
 
     return (
         <div className="manage-compositions">
+            {/* DAT P TAG STARTS HERE NOW */}
+            <p className={helperTextStyle}>{helperText}</p>
+            {/* DAT P TAG ENDS HERE NOW */}
             <table className="table is-striped is-fullwidth">
                 <thead>
                     <tr>
@@ -128,7 +131,7 @@ const ManageCompositions: React.FC = () => {
                         </tr>
                     ))}
                 </tbody>
-                <p className={helperTextStyle}>{helperText}</p>
+                {/* the p tag was here before */}
             </table>
 
             {editingComposition && (
