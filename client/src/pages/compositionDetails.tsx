@@ -74,7 +74,7 @@ const CompositionDetails: React.FC = () => {
 
     // Handle the back button functionality
     const handleBackButton = () => {
-        navigate('/'); // Go back to the previous page
+        navigate(-1); // Go back to the previous page
     };
 
     return (
@@ -122,7 +122,7 @@ const CompositionDetails: React.FC = () => {
                     Add to Library
                 </button>
                 <button className="button is-light" onClick={handleBackButton}>
-                    Back to Homepage
+                    Go Back
                 </button>
                 <button className="button is-danger" onClick={handleRemoveFromLibrary}>
                     Remove from Library

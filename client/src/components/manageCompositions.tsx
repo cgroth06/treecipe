@@ -1,7 +1,8 @@
+import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries.js';
-import { REMOVE_COMPOSITION } from '../utils/mutations.js';
+import { REMOVE_COMPOSITION, UPDATE_COMPOSITION } from '../utils/mutations.js';
 import authService from '../utils/auth.js';
 
 const ManageCompositions: React.FC = () => {
@@ -15,8 +16,18 @@ const ManageCompositions: React.FC = () => {
         },
     });
 
+    const [updateComposition] = useMutation(UPDATE_COMPOSITION, {
+        onCompleted: () => {
+            refetch();
+        },
+        onError: (err) => {
+            console.error('Error updating Composition:', err);
+        },
+    });
+
     const [helperTextStyle, setHelperTextStyle] = useState('help is-hidden');
     const [helperText, setHelperText] = useState('');
+    const [editingComposition, setEditingComposition] = useState<any>(null);
 
     const handleRemove = async (compositionId: string) => {
         if (!authService.loggedIn()) {
@@ -41,6 +52,45 @@ const ManageCompositions: React.FC = () => {
         }
     };
 
+    const handleEdit = (composition: any) => {
+        setEditingComposition(composition);
+    };
+
+    const handleSave = async () => {
+        if (!authService.loggedIn()) {
+            return alert('You need to be logged in to edit a poem.');
+        }
+
+        try {
+            setHelperText('Saving...');
+            setHelperTextStyle('help is-warning');
+
+            const variables = {
+                compositionId: editingComposition._id,
+                input: {
+                    compositionTitle: editingComposition.compositionTitle,
+                    compositionText: editingComposition.compositionText,
+                    compositionAuthor: editingComposition.compositionAuthor,
+                    tags: editingComposition.tags,
+                },
+            };
+
+            console.log('Updating composition with variables:', variables);
+
+            // Call UPDATE_COMPOSITION mutation
+            const response = await updateComposition({ variables });
+
+            console.log('Update response:', response);
+
+            setHelperText('Poem has been updated successfully!');
+            setHelperTextStyle('help is-success');
+            setEditingComposition(null);
+        } catch (err) {
+            console.error('Error updating Composition:', err);
+            setHelperText('An error occurred while updating the poem.');
+            setHelperTextStyle('help is-danger');
+        }
+    };
 
     if (loading) return <p>Loading Compositions...</p>;
     if (error) return <p>Error: {error.message}</p>;
@@ -49,6 +99,9 @@ const ManageCompositions: React.FC = () => {
 
     return (
         <div className="manage-compositions">
+            {/* DAT P TAG STARTS HERE NOW */}
+            <p className={helperTextStyle}>{helperText}</p>
+            {/* DAT P TAG ENDS HERE NOW */}
             <table className="table is-striped is-fullwidth">
                 <thead>
                     <tr>
@@ -63,18 +116,92 @@ const ManageCompositions: React.FC = () => {
                             <td>{composition.compositionTitle}</td>
                             <td>{composition.compositionAuthor}</td>
                             <td>
+                                <button className="button is-primary is-small mr-2">
+                                    <Link
+                                        className="has-text-black"
+                                        to={`/compositionDetails/${composition._id}`}
+                                    >
+                                        View
+                                    </Link>
+                                </button>
+                                <dialog>
+                                    <button autoFocus>No</button>
+                                    <p>Are you sure?</p>
+                                </dialog>
                                 <button
-                                    className="button is-danger is-small"
-                                    onClick={() => handleRemove(composition._id)}
+                                    className="button is-small is-danger"
+                                    // onClick={() => handleRemove(composition._id)}
                                 >
                                     Remove
+                                </button>
+                                <button
+                                    className="button is-info is-small"
+                                    onClick={() => handleEdit(composition)}
+                                >
+                                    Edit
                                 </button>
                             </td>
                         </tr>
                     ))}
                 </tbody>
-                <p className={helperTextStyle}>{helperText}</p>
+                {/* the p tag was here before */}
             </table>
+
+            {editingComposition && (
+                <div className="modal is-active">
+                    <div className="modal-background"></div>
+                    <div className="modal-content">
+                        <div className="box">
+                            <h2 className="title">Edit Composition</h2>
+                            <div className="field">
+                                <label className="label">Title</label>
+                                <div className="control">
+                                    <input
+                                        className="input"
+                                        type="text"
+                                        value={editingComposition.compositionTitle}
+                                        onChange={(e) =>
+                                            setEditingComposition({
+                                                ...editingComposition,
+                                                compositionTitle: e.target.value,
+                                            })
+                                        }
+                                    />
+                                </div>
+                            </div>
+                            <div className="field">
+                                <label className="label">Text</label>
+                                <div className="control">
+                                    <textarea
+                                        className="textarea"
+                                        value={editingComposition.compositionText}
+                                        onChange={(e) =>
+                                            setEditingComposition({
+                                                ...editingComposition,
+                                                compositionText: e.target.value,
+                                            })
+                                        }
+                                    ></textarea>
+                                </div>
+                            </div>
+                            <button className="button is-success" onClick={handleSave}>
+                                Save
+                            </button>
+                            <button
+                                className="button"
+                                onClick={() => setEditingComposition(null)}
+                            >
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                    <button
+                        className="modal-close is-large"
+                        aria-label="close"
+                        onClick={() => setEditingComposition(null)}
+                    ></button>
+                </div>
+            )}
         </div>
     );
 };

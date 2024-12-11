@@ -39,9 +39,6 @@ const randomQuotes = [
         "author": 'Dr. Seuss',
         "quote": '“You\'re off to Great Places! Today is your day! Your mountain is waiting, So... get on your way!”'
     }, {
-        "author": 'Brad Shurts',
-        "quote": '"It always just be a seed until you plant it."'
-    }, {
         "author": 'Roald Dahl',
         "quote": '"There is no place I know that compares to pure imagination."'
     }, {
