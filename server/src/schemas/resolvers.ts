@@ -279,8 +279,6 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
 
-
-
     /* removeComment: async (_parent: any, { compositionId, commentId }: RemoveCommentArgs, context: any) => {
       if (context.user) {
         return Composition.findOneAndUpdate(

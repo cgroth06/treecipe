@@ -63,23 +63,40 @@ const CompositionList: React.FC<CompositionListProps> = ({ filterByAuthor, filte
         }
     }, [data, filterByAuthor, filterBySaved]);
 
+    const handleNext = () => {
+        if (!data?.compositions) return;
+        const totalCompositions = data.compositions.length;
+        setStartIndex((prev) => Math.min(prev + compositionsPerPage, totalCompositions - compositionsPerPage));
+    };
+
+    const handlePrevious = () => {
+        if (!data?.compositions) return;
+        setStartIndex((prev) => Math.max(prev - compositionsPerPage, 0));
+    };
+
     if (loading) return <p>Loading compositions...</p>;
     if (error) return <p>Error loading compositions.</p>;
 
     return (
-        <div className="composition-grid mt-3">
-            <div className="grid is-col-min-16">
-            {displayedCompositions.map((composition) => (
-                <Composition
-                    key={composition._id}
-                    compositionId={composition._id}
-                    compositionTitle={composition.compositionTitle}
-                    compositionText={composition.compositionText}
-                    compositionAuthor={composition.compositionAuthor}
-                    createdAt={composition.createdAt}
-                    tags={composition.tags}
-                />
-            ))}
+        <div>
+            <div className="button-group">
+                <button onClick={handlePrevious} disabled={startIndex === 0}>Previous</button>
+                <button onClick={handleNext} disabled={startIndex + compositionsPerPage >= (data?.compositions?.length || 0)}>Next</button>
+            </div>
+            <div className="composition-grid mt-3">
+                <div className="grid is-col-min-16">
+                {displayedCompositions.map((composition) => (
+                    <Composition
+                        key={composition._id}
+                        compositionId={composition._id}
+                        compositionTitle={composition.compositionTitle}
+                        compositionText={composition.compositionText}
+                        compositionAuthor={composition.compositionAuthor}
+                        createdAt={composition.createdAt}
+                        tags={composition.tags}
+                    />
+                ))}
+                </div>
             </div>
         </div>
     );
