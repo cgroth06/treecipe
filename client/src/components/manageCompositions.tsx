@@ -124,21 +124,17 @@ const ManageCompositions: React.FC = () => {
                                         View
                                     </Link>
                                 </button>
-                                <dialog>
-                                    <button autoFocus>No</button>
-                                    <p>Are you sure?</p>
-                                </dialog>
+                                <button
+                                    className="button is-info is-small mr-2"
+                                    onClick={() => handleEdit(composition)}
+                                >
+                                    Edit
+                                </button>
                                 <button
                                     className="button is-small is-danger"
                                     // onClick={() => handleRemove(composition._id)}
                                 >
                                     Remove
-                                </button>
-                                <button
-                                    className="button is-info is-small"
-                                    onClick={() => handleEdit(composition)}
-                                >
-                                    Edit
                                 </button>
                             </td>
                         </tr>
