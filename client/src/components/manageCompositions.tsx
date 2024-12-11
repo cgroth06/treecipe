@@ -132,7 +132,7 @@ const ManageCompositions: React.FC = () => {
                                 </button>
                                 <button
                                     className="button is-small is-danger"
-                                    // onClick={() => handleRemove(composition._id)}
+                                    onClick={() => handleRemove(composition._id)}
                                 >
                                     Remove
                                 </button>
