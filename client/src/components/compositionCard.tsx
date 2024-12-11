@@ -132,31 +132,6 @@ const CompositionCard: React.FC<CompositionProps> = ({
                     >
                         View Composition
                     </Link>
-                    {/* {user && (
-                        <>
-                            { false ? (
-                            
-                                <button
-                                    onClick={handleEditClick}
-                                    className="card-footer-item"
-                                >
-                                    Edit Composition
-                                </button>
-                            ) : (
-                                <button
-                                    onClick={handleLibraryAction}
-                                    className="card-footer-item"
-                                    disabled={libraryLoading}
-                                >
-                                    {libraryLoading
-                                        ? "Loading..."
-                                        : inLibrary
-                                        ? "Remove from Library"
-                                        : "Add to Library"}
-                                </button>
-                            )}
-                        </>
-                    )} */}
                     <button
                         onClick={handleLibraryAction}
                         className="card-footer-item"
