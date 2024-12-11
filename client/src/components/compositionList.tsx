@@ -79,11 +79,23 @@ const CompositionList: React.FC<CompositionListProps> = ({ filterByAuthor, filte
 
     return (
         <div>
-            <div className="button-group">
-                <button onClick={handlePrevious} disabled={startIndex === 0}>Previous</button>
-                <button onClick={handleNext} disabled={startIndex + compositionsPerPage >= (data?.compositions?.length || 0)}>Next</button>
+            <div className="buttons has-addons block mt-4">
+                <button
+                    onClick={handlePrevious}
+                    disabled={startIndex === 0}
+                    className="button is-primary"
+                    >
+                        Previous
+                    </button>
+                <button
+                    onClick={handleNext}
+                    disabled={startIndex + compositionsPerPage >= (data?.compositions?.length || 0)}
+                    className="button is-primary"
+                    >
+                        Next
+                    </button>
             </div>
-            <div className="composition-grid mt-3">
+            <div className="composition-grid">
                 <div className="grid is-col-min-16">
                 {displayedCompositions.map((composition) => (
                     <Composition
@@ -97,6 +109,22 @@ const CompositionList: React.FC<CompositionListProps> = ({ filterByAuthor, filte
                     />
                 ))}
                 </div>
+            </div>
+            <div className="buttons has-addons block mt-4">
+                <button
+                    onClick={handlePrevious}
+                    disabled={startIndex === 0}
+                    className="button is-primary"
+                    >
+                        Previous
+                    </button>
+                <button
+                    onClick={handleNext}
+                    disabled={startIndex + compositionsPerPage >= (data?.compositions?.length || 0)}
+                    className="button is-primary"
+                    >
+                        Next
+                    </button>
             </div>
         </div>
     );
