@@ -28,6 +28,7 @@ const ManageCompositions: React.FC = () => {
     const [helperTextStyle, setHelperTextStyle] = useState('help is-hidden');
     const [helperText, setHelperText] = useState('');
     const [editingComposition, setEditingComposition] = useState<any>(null);
+    const [removingComposition, setRemovingComposition] = useState<any>(null);
 
     const handleRemove = async (compositionId: string) => {
         if (!authService.loggedIn()) {
@@ -45,6 +46,7 @@ const ManageCompositions: React.FC = () => {
 
             setHelperText('Poem has been removed successfully!');
             setHelperTextStyle('help is-success');
+            setRemovingComposition(null);
         } catch (err) {
             console.error(err);
             setHelperText('An error occurred while removing the poem.');
@@ -132,7 +134,7 @@ const ManageCompositions: React.FC = () => {
                                 </button>
                                 <button
                                     className="button is-small is-danger"
-                                    onClick={() => handleRemove(composition._id)}
+                                    onClick={() => setRemovingComposition(composition)}
                                 >
                                     Remove
                                 </button>
@@ -180,7 +182,24 @@ const ManageCompositions: React.FC = () => {
                                     ></textarea>
                                 </div>
                             </div>
-                            <button className="button is-success" onClick={handleSave}>
+                            <div className="field">
+                                <label className="label">Tags</label>
+                                <div className="control">
+                                    <input
+                                        className="input"
+                                        type="text"
+                                        value={editingComposition.tags}
+                                        onChange={(e) =>
+                                            setEditingComposition({
+                                                ...editingComposition,
+                                                tags: e.target.value,
+                                            })
+                                        }
+                                    />
+                                    <p className="help">Separate tags with commas</p>
+                                </div>
+                            </div>
+                            <button className="button is-success mr-3" onClick={handleSave}>
                                 Save
                             </button>
                             <button
@@ -195,6 +214,35 @@ const ManageCompositions: React.FC = () => {
                         className="modal-close is-large"
                         aria-label="close"
                         onClick={() => setEditingComposition(null)}
+                    ></button>
+                </div>
+            )}
+            {removingComposition && (
+                <div className="modal is-active">
+                    <div className="modal-background"></div>
+                    <div className="modal-content">
+                        <div className="box">
+                            <h2 className="title">Remove Composition</h2>
+                            <p>Are you sure you want to permanently delete the following composition?</p>
+                            <p className="has-text-weight-bold m-4">Composition Title: {removingComposition.compositionTitle}</p>
+                            <button
+                                className="button is-danger mr-3"
+                                onClick={() => handleRemove(removingComposition._id)}
+                            >
+                                Confirm
+                            </button>
+                            <button
+                                className="button"
+                                onClick={() => setRemovingComposition(null)}
+                            >
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                    <button
+                        className="modal-close is-large"
+                        aria-label="close"
+                        onClick={() => setRemovingComposition(null)}
                     ></button>
                 </div>
             )}

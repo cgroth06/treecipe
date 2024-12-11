@@ -59,7 +59,7 @@ const Header = () => {
                                 {Auth.getProfile()?.data.email}
                             </Link>
                             <a className="navbar-item">
-                                <button className="navbar-item" onClick={logout}>
+                                <button onClick={logout}>
                                     Logout
                                 </button>
                             </a>
