@@ -1,5 +1,5 @@
 import './AboutArtVine.css';
-import LogoImage from '../assets/ArtVine_transparent.png';
+import LogoImage from '../assets/stool.png';
 
 const AboutArtVine = () => {
 

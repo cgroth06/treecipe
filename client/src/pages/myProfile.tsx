@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import CompositionForm from '../components/compositionForm.jsx';
+import CompositionForm from '../components/recipeForm.js';
 // import CompositionList from '../components/compositionList.jsx';
 import Auth from '../utils/auth.js';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries.js';
-import ManageCompositions from '../components/manageCompositions.js';
+import ManageCompositions from '../components/manageRecipes.js';
 
 const MyProfile: React.FC = () => {
     const [showForm, setShowForm] = useState(false);

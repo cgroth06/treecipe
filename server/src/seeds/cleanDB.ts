@@ -1,18 +1,18 @@
-import { Composition, User } from '../models/index.js';
+import { Recipe, User } from '../models/index.js';
 import process from 'process';
 
 const cleanDB = async (): Promise<void> => {
   try {
-    // Delete documents from Composition Library
-    await Composition.collection.drop();
-    console.log('Composition library cleaned.');
+    // Delete documents from Recipe Box
+    await Recipe.collection.drop();
+    console.log('Recipe Box cleaned.');
 
-    // Delete documents from User library
+    // Delete documents from User recipe box
     await User.collection.drop();
-    console.log('User library cleaned.');
+    console.log('User recipe box cleaned.');
 
   } catch (err) {
-    console.error('Error cleaning library:', err);
+    console.error('Error cleaning recipe box:', err);
     process.exit(1);
   }
 };

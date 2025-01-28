@@ -7,10 +7,12 @@ import MyProfile from './pages/myProfile.jsx';
 import ErrorPage from './components/error.jsx';
 import ExplorePage from './pages/explore.jsx';
 import Home from './pages/home.jsx';
-import Library from './pages/library.jsx';
+import RecipeBox from './pages/recipeBox.jsx';
 import Profile from './pages/profile.jsx';
 import AboutUs from './pages/AboutArtVine.js';
-import CompositionDetails from './pages/compositionDetails.js';
+import RecipeDetails from './pages/recipeDetails.js';
+
+
 
 const router = createBrowserRouter([
   {
@@ -38,10 +40,10 @@ const router = createBrowserRouter([
         element: <ExplorePage />
       }, {
         path: '/library',
-        element: <Library />
+        element: <RecipeBox />
       }, {
-        path: '/compositionDetails/:compositionId',
-        element: <CompositionDetails />
+        path: '/recipeDetails/:recipeId',
+        element: <RecipeDetails />
       }, {
         path: '/about',
         element: <AboutUs />

@@ -1,4 +1,4 @@
-import Composition from './Composition.js';
+import Recipe from './Recipe.js';
 import User from './User.js';
 
-export { Composition, User };
+export { Recipe, User };

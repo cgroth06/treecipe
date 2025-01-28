@@ -25,40 +25,40 @@ export const ADD_USER = gql`
 }
 `;
 
-export const ADD_COMPOSITION = gql`
-  mutation AddComposition($input: CompositionInput!) {
-    addComposition(input: $input) {
+export const ADD_RECIPE = gql`
+  mutation AddRecipe($input: RecipeInput!) {
+    addRecipe(input: $input) {
       _id
-      compositionTitle
-      compositionText
-      compositionAuthor
+      recipeTitle
+      recipeText
+      recipeAuthor
       createdAt
     }
   }
 `;
 
-export const REMOVE_COMPOSITION = gql`
-  mutation removeComposition($compositionId: ID!) {
-    removeComposition(compositionId: $compositionId) {
+export const REMOVE_RECIPE = gql`
+  mutation removeRecipe($recipeId: ID!) {
+    removeRecipe(recipeId: $recipeId) {
       _id
-      compositionTitle
-      compositionText
-      compositionAuthor
+      recipeTitle
+      recipeText
+      recipeAuthor
       createdAt
       tags
     }
   }
 `;
 
-export const SAVE_TO_LIBRARY = gql`
-  mutation saveToLibrary($compositionId: ID!) {
-    saveToLibrary(compositionId: $compositionId) {
+export const SAVE_TO_RECIPEBOX = gql`
+  mutation saveToRecipeBox($recipeId: ID!) {
+    saveToRecipeBox(recipeId: $recipeId) {
       _id
-      library {
+      recipeBox {
         _id
-        compositionTitle
-        compositionText
-        compositionAuthor
+        recipeTitle
+        recipeText
+        recipeAuthor
         createdAt
         tags
       }
@@ -66,15 +66,15 @@ export const SAVE_TO_LIBRARY = gql`
   }
 `;
 
-export const REMOVE_FROM_LIBRARY = gql`
-  mutation removeFromLibrary($compositionId: ID!) {
-    removeFromLibrary(compositionId: $compositionId) {
+export const REMOVE_FROM_RECIPEBOX = gql`
+  mutation removeFromRecipeBox($recipeId: ID!) {
+    removeFromRecipeBox(recipeId: $recipeId) {
       _id
-      library {
+      recipeBox {
         _id
-        compositionTitle
-        compositionText
-        compositionAuthor
+        recipeTitle
+        recipeText
+        recipeAuthor
         createdAt
         tags
       }
@@ -111,13 +111,13 @@ mutation followUser($followId: ID!) {
 }
 `;
 
-export const UPDATE_COMPOSITION = gql`
-  mutation updateComposition($compositionId: ID!, $input: CompositionInput!) {
-    updateComposition(compositionId: $compositionId, input: $input) {
+export const UPDATE_RECIPE = gql`
+  mutation updateRecipe($recipeId: ID!, $input: RecipeInput!) {
+    updateRecipe(recipeId: $recipeId, input: $input) {
       _id
-      compositionTitle
-      compositionText
-      compositionAuthor
+      recipeTitle
+      recipeText
+      recipeAuthor
       createdAt
       tags
     }

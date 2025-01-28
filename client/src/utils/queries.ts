@@ -6,11 +6,11 @@ export const QUERY_USER = gql`
       _id
       name
       email
-      compositions {
+      recipes {
         _id
-        compositionTitle
-        compositionText
-        compositionAuthor
+        recipeTitle
+        reipeText
+        reipeAuthor
         createdAt
         tags
       }
@@ -18,8 +18,8 @@ export const QUERY_USER = gql`
   }
 `;
 
-export const QUERY_COMPOSITIONS = gql`
-  query getCompositions {
+export const QUERY_RECIPES = gql`
+  query getRecipes {
     compositions {
       _id
       compositionTitle
@@ -31,13 +31,13 @@ export const QUERY_COMPOSITIONS = gql`
   }
 `;
 
-export const QUERY_SINGLE_COMPOSITION = gql`
-  query getSingleComposition($compositionId: ID!) {
-    composition(compositionId: $compositionId) {
+export const QUERY_SINGLE_RECIPE = gql`
+  query getSingleRecipe($recipeId: ID!) {
+    recipe(recipeId: $recipeId) {
       _id
-      compositionTitle
-      compositionText
-      compositionAuthor
+      recipeTitle
+      recipeText
+      recipeAuthor
       createdAt
       tags
       # comments {
@@ -56,19 +56,19 @@ export const QUERY_ME = gql`
     _id
     name
     email
-    compositions {
+    recipes {
       _id
-      compositionTitle
-      compositionText
-      compositionAuthor
+      recipeTitle
+      recipeText
+      recipeAuthor
       createdAt
       tags
     }
-    library {
+    recipeBox {
       _id
-      compositionTitle
-      compositionText
-      compositionAuthor
+      recipeTitle
+      recipeText
+      recipeAuthor
       createdAt
       tags
     }
@@ -76,19 +76,19 @@ export const QUERY_ME = gql`
 }
 `;
 
-export const SEARCH_COMPOSITIONS_AND_USERS = gql`
-  query SearchCompositionsAndUsers($query: String!) {
-    searchCompositionsAndUsers(query: $query) {
+export const SEARCH_RECIPES_AND_USERS = gql`
+  query SearchRecipesAndUsers($query: String!) {
+    searchRecipesAndUsers(query: $query) {
       users {
         _id
         name
         email
       }
-      compositions {
+      recipes {
         _id
-        compositionTitle
-        compositionText
-        compositionAuthor
+        recipeTitle
+        recipeText
+        recipeAuthor
         createdAt
         tags
       }
@@ -96,9 +96,9 @@ export const SEARCH_COMPOSITIONS_AND_USERS = gql`
   }
 `;
 
-export const CHECK_LIBRARY_STATUS = gql`
-  query checkLibraryStatus($compositionId: ID!) {
-    checkLibraryStatus(compositionId: $compositionId) {
+export const CHECK_RECIPEBOX_STATUS = gql`
+  query checkRecipeBoxStatus($recipeId: ID!) {
+    checkRecipeBoxStatus(recipeId: $recipeId) {
       inLibrary
     }
   }

@@ -5,14 +5,14 @@
 
 /* import mongoose from "mongoose"; */
 
-export const seedCompositions = async () => {
+export const seedRecipes = async () => {
 
     const jsonData = [
         {
             "_id": `000000000000000000000001`,
-            "compositionTitle": `Snowy`,
-            "compositionAuthor": `Brad Shurts`,
-            "compositionText":
+            "recipeTitle": `Snowy`,
+            "recipeAuthor": `Brad Shurts`,
+            "recipeText":
 `A hill
 and a landfill,
     after it snows,
@@ -25,9 +25,9 @@ But it won't last forever -
         },
         {
             "_id": `000000000000000000000002`,
-            "compositionTitle": `Little Light`,
-            "compositionAuthor": `Brad Shurts`,
-            "compositionText": `I see a shimmer,
+            "recipeTitle": `Little Light`,
+            "recipeAuthor": `Brad Shurts`,
+            "recipeText": `I see a shimmer,
 A little bright light
 Behind her eyes
 I capture with mine.
@@ -59,9 +59,9 @@ It beckons I stop.`,
         },
         {
             "_id": `000000000000000000000003`,
-            "compositionTitle": `I Am King, My Queen`,
-            "compositionAuthor": `Brad Shurts`,
-            "compositionText": `I am king of the clouds,
+            "recipeTitle": `I Am King, My Queen`,
+            "recipeAuthor": `Brad Shurts`,
+            "recipeText": `I am king of the clouds,
 I puff and billow
 I roll and rumble
 I cry and I fly,
@@ -88,9 +88,9 @@ My queen of fire.`,
         },
         {
             "_id": `000000000000000000000004`,
-            "compositionTitle": `What's Wrong With My Closet?`,
-            "compositionAuthor": `Brad Shurts`,
-            "compositionText": `Here's a tale of a tail
+            "recipeTitle": `What's Wrong With My Closet?`,
+            "recipeAuthor": `Brad Shurts`,
+            "recipeText": `Here's a tale of a tail
 That I saw in my closet.
 It was green, it was mean,
 It was dirty and it knows it.
@@ -142,16 +142,16 @@ Her hands made fists!
         },
         {
             "_id": `000000000000000000000005`,
-            "compositionTitle": `A Short Long Story`,
-            "compositionAuthor": `Brad Shurts`,
-            "compositionText": `An old monk wearing nothing but his clothes climbed down from a mountain.  As he walked away, he stopped and looked over his shoulder, paused, then continued walking. Once again he stopped and looked back. The mountain looked smaller than before and he frowned.  If only problems were mountains.`,
+            "recipeTitle": `A Short Long Story`,
+            "recipeAuthor": `Brad Shurts`,
+            "recipeText": `An old monk wearing nothing but his clothes climbed down from a mountain.  As he walked away, he stopped and looked over his shoulder, paused, then continued walking. Once again he stopped and looked back. The mountain looked smaller than before and he frowned.  If only problems were mountains.`,
             "tags": [`short story`]
         },
         {
             "_id": `000000000000000000000006`,
-            "compositionTitle": `Father's Song`,
-            "compositionAuthor": `Brad Shurts`,
-            "compositionText": `I've walked across mountains and valleys
+            "recipeTitle": `Father's Song`,
+            "recipeAuthor": `Brad Shurts`,
+            "recipeText": `I've walked across mountains and valleys
 Seen starlit oceans and the darkest alleys
 But I've traveled alone so long
 I falter now, to sing the song
@@ -165,9 +165,9 @@ I looked around but don't know where to start`,
         },
         {
             "_id": `000000000000000000000007`,
-            "compositionTitle": `The Nose Hair`,
-            "compositionAuthor": `Brad Shurts`,
-            "compositionText": `Why, little one, must you stray?
+            "recipeTitle": `The Nose Hair`,
+            "recipeAuthor": `Brad Shurts`,
+            "recipeText": `Why, little one, must you stray?
 You have a warm place to lay
 I knew not your plot until I got home
 When the bathroom mirror revealed thy form
@@ -191,9 +191,9 @@ Stray too far and you will pay`,
         },
         {
             "_id": `000000000000000000000008`,
-            "compositionTitle": `More On Writing`,
-            "compositionAuthor": `Brad Shurts`,
-            "compositionText": `Some days its Angel Falls in my head
+            "recipeTitle": `More On Writing`,
+            "recipeAuthor": `Brad Shurts`,
+            "recipeText": `Some days its Angel Falls in my head
 The sun hits the mist and I begin at red
 Then explore the morning of orange and yellow
 In fields of green the scene starts to mellow
@@ -205,9 +205,9 @@ And with the sum of it all a blank page becomes splendid`,
         },
         {
             "_id": `000000000000000000000010`,
-            "compositionTitle": `Where The Sidewalk Ends`,
-            "compositionAuthor": `Shel Silverstein`,
-            "compositionText": `There is a place where the sidewalk ends
+            "recipeTitle": `Where The Sidewalk Ends`,
+            "recipeAuthor": `Shel Silverstein`,
+            "recipeText": `There is a place where the sidewalk ends
 and before the street begins,
 and there the grass grows soft and white,
 and there the sun burns crimson bright,
@@ -229,9 +229,9 @@ the place where the sidewalk ends. `,
         }
         // {
         //     "_id": `000000000000000000000001`,
-        //     "compositionTitle": ``,
-        //     "compositionAuthor": ``,
-        //     "compositionText": ``,
+        //     "recipeTitle": ``,
+        //     "recipeAuthor": ``,
+        //     "recipeText": ``,
         //     "tags": [``]
         // }
     ]

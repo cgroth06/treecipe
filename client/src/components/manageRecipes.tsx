@@ -2,35 +2,35 @@ import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries.js';
-import { REMOVE_COMPOSITION, UPDATE_COMPOSITION } from '../utils/mutations.js';
+import { REMOVE_RECIPE, UPDATE_RECIPE } from '../utils/mutations.js';
 import authService from '../utils/auth.js';
 
-const ManageCompositions: React.FC = () => {
+const ManageRecipes: React.FC = () => {
     const { loading, error, data, refetch } = useQuery(QUERY_ME);
-    const [removeComposition] = useMutation(REMOVE_COMPOSITION, {
+    const [removeRecipe] = useMutation(REMOVE_RECIPE, {
         onCompleted: () => {
             refetch();
         },
         onError: (err) => {
-            console.error('Error removing Composition:', err);
+            console.error('Error removing Recipe:', err);
         },
     });
 
-    const [updateComposition] = useMutation(UPDATE_COMPOSITION, {
+    const [updateRecipe] = useMutation(UPDATE_RECIPE, {
         onCompleted: () => {
             refetch();
         },
         onError: (err) => {
-            console.error('Error updating Composition:', err);
+            console.error('Error updating Recipe:', err);
         },
     });
 
     const [helperTextStyle, setHelperTextStyle] = useState('help is-hidden');
     const [helperText, setHelperText] = useState('');
-    const [editingComposition, setEditingComposition] = useState<any>(null);
-    const [removingComposition, setRemovingComposition] = useState<any>(null);
+    const [editingRecipe, setEditingRecipe] = useState<any>(null);
+    const [removingRecipe, setRemovingRecipe] = useState<any>(null);
 
-    const handleRemove = async (compositionId: string) => {
+    const handleRemove = async (recipeId: string) => {
         if (!authService.loggedIn()) {
             return alert('You need to be logged in to remove a poem.');
         }
@@ -39,28 +39,28 @@ const ManageCompositions: React.FC = () => {
             setHelperText('Removing...');
             setHelperTextStyle('help is-warning');
 
-            // Call REMOVE_COMPOSITION mutation
-            await removeComposition({
-                variables: { compositionId }, // Pass the composition ID to the mutation
+            // Call REMOVE_RECIPE mutation
+            await removeRecipe({
+                variables: { recipeId }, // Pass the recipe ID to the mutation
             });
 
             setHelperText('Poem has been removed successfully!');
             setHelperTextStyle('help is-success');
-            setRemovingComposition(null);
+            setRemovingRecipe(null);
         } catch (err) {
             console.error(err);
-            setHelperText('An error occurred while removing the poem.');
+            setHelperText('An error occurred while removing the recipe.');
             setHelperTextStyle('help is-danger');
         }
     };
 
-    const handleEdit = (composition: any) => {
-        setEditingComposition(composition);
+    const handleEdit = (recipe: any) => {
+        setEditingRecipe(recipe);
     };
 
     const handleSave = async () => {
         if (!authService.loggedIn()) {
-            return alert('You need to be logged in to edit a poem.');
+            return alert('You need to be logged in to edit a recipe.');
         }
 
         try {
@@ -68,39 +68,39 @@ const ManageCompositions: React.FC = () => {
             setHelperTextStyle('help is-warning');
 
             const variables = {
-                compositionId: editingComposition._id,
+                recipeId: editingRecipe._id,
                 input: {
-                    compositionTitle: editingComposition.compositionTitle,
-                    compositionText: editingComposition.compositionText,
-                    compositionAuthor: editingComposition.compositionAuthor,
-                    tags: editingComposition.tags,
+                    recipeTitle: editingRecipe.recipeTitle,
+                    recipeText: editingRecipe.recipeText,
+                    recipeAuthor: editingRecipe.recipeAuthor,
+                    tags: editingRecipe.tags,
                 },
             };
 
-            console.log('Updating composition with variables:', variables);
+            console.log('Updating Recipe with variables:', variables);
 
-            // Call UPDATE_COMPOSITION mutation
-            const response = await updateComposition({ variables });
+            // Call UPDATE_RECIPE mutation
+            const response = await updateRecipe({ variables });
 
             console.log('Update response:', response);
 
-            setHelperText('Poem has been updated successfully!');
+            setHelperText('Recipe has been updated successfully!');
             setHelperTextStyle('help is-success');
-            setEditingComposition(null);
+            setEditingRecipe(null);
         } catch (err) {
-            console.error('Error updating Composition:', err);
-            setHelperText('An error occurred while updating the poem.');
+            console.error('Error updating Recipe:', err);
+            setHelperText('An error occurred while updating the recipe.');
             setHelperTextStyle('help is-danger');
         }
     };
 
-    if (loading) return <p>Loading Compositions...</p>;
+    if (loading) return <p>Loading Recipe...</p>;
     if (error) return <p>Error: {error.message}</p>;
 
-    const compositions = data?.me?.compositions ?? [];
+    const recipes = data?.me?.recipes ?? [];
 
     return (
-        <div className="manage-compositions">
+        <div className="manage-recipes">
             {/* DAT P TAG STARTS HERE NOW */}
             <p className={helperTextStyle}>{helperText}</p>
             {/* DAT P TAG ENDS HERE NOW */}
@@ -113,28 +113,28 @@ const ManageCompositions: React.FC = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {compositions.map((composition: any) => (
-                        <tr key={composition._id}>
-                            <td>{composition.compositionTitle}</td>
-                            <td>{composition.compositionAuthor}</td>
+                    {recipes.map((recipe: any) => (
+                        <tr key={recipe._id}>
+                            <td>{recipe.recipeTitle}</td>
+                            <td>{recipe.recipeAuthor}</td>
                             <td>
                                 <button className="button is-primary is-small mr-2">
                                     <Link
                                         className="has-text-black"
-                                        to={`/compositionDetails/${composition._id}`}
+                                        to={`/recipeDetails/${recipe._id}`}
                                     >
                                         View
                                     </Link>
                                 </button>
                                 <button
                                     className="button is-info is-small mr-2"
-                                    onClick={() => handleEdit(composition)}
+                                    onClick={() => handleEdit(recipe)}
                                 >
                                     Edit
                                 </button>
                                 <button
                                     className="button is-small is-danger"
-                                    onClick={() => setRemovingComposition(composition)}
+                                    onClick={() => setRemovingRecipe(recipe)}
                                 >
                                     Remove
                                 </button>
@@ -145,23 +145,23 @@ const ManageCompositions: React.FC = () => {
                 {/* the p tag was here before */}
             </table>
 
-            {editingComposition && (
+            {editingRecipe && (
                 <div className="modal is-active">
                     <div className="modal-background"></div>
                     <div className="modal-content">
                         <div className="box">
-                            <h2 className="title">Edit Composition</h2>
+                            <h2 className="title">Edit Recipe</h2>
                             <div className="field">
                                 <label className="label">Title</label>
                                 <div className="control">
                                     <input
                                         className="input"
                                         type="text"
-                                        value={editingComposition.compositionTitle}
+                                        value={editingRecipe.recipeTitle}
                                         onChange={(e) =>
-                                            setEditingComposition({
-                                                ...editingComposition,
-                                                compositionTitle: e.target.value,
+                                            setEditingRecipe({
+                                                ...editingRecipe,
+                                                recipeTitle: e.target.value,
                                             })
                                         }
                                     />
@@ -172,11 +172,11 @@ const ManageCompositions: React.FC = () => {
                                 <div className="control">
                                     <textarea
                                         className="textarea"
-                                        value={editingComposition.compositionText}
+                                        value={editingRecipe.recipeText}
                                         onChange={(e) =>
-                                            setEditingComposition({
-                                                ...editingComposition,
-                                                compositionText: e.target.value,
+                                            setEditingRecipe({
+                                                ...editingRecipe,
+                                                recipeText: e.target.value,
                                             })
                                         }
                                     ></textarea>
@@ -188,10 +188,10 @@ const ManageCompositions: React.FC = () => {
                                     <input
                                         className="input"
                                         type="text"
-                                        value={editingComposition.tags}
+                                        value={editingRecipe.tags}
                                         onChange={(e) =>
-                                            setEditingComposition({
-                                                ...editingComposition,
+                                            setEditingRecipe({
+                                                ...editingRecipe,
                                                 tags: e.target.value,
                                             })
                                         }
@@ -204,7 +204,7 @@ const ManageCompositions: React.FC = () => {
                             </button>
                             <button
                                 className="button"
-                                onClick={() => setEditingComposition(null)}
+                                onClick={() => setEditingRecipe(null)}
                             >
                                 Cancel
                             </button>
@@ -213,27 +213,27 @@ const ManageCompositions: React.FC = () => {
                     <button
                         className="modal-close is-large"
                         aria-label="close"
-                        onClick={() => setEditingComposition(null)}
+                        onClick={() => setEditingRecipe(null)}
                     ></button>
                 </div>
             )}
-            {removingComposition && (
+            {removingRecipe && (
                 <div className="modal is-active">
                     <div className="modal-background"></div>
                     <div className="modal-content">
                         <div className="box">
-                            <h2 className="title">Remove Composition</h2>
-                            <p>Are you sure you want to permanently delete the following composition?</p>
-                            <p className="has-text-weight-bold m-4">Composition Title: {removingComposition.compositionTitle}</p>
+                            <h2 className="title">Remove Recipe</h2>
+                            <p>Are you sure you want to permanently delete the following recipe?</p>
+                            <p className="has-text-weight-bold m-4">Recipe Title: {removingRecipe.recipeTitle}</p>
                             <button
                                 className="button is-danger mr-3"
-                                onClick={() => handleRemove(removingComposition._id)}
+                                onClick={() => handleRemove(removingRecipe._id)}
                             >
                                 Confirm
                             </button>
                             <button
                                 className="button"
-                                onClick={() => setRemovingComposition(null)}
+                                onClick={() => setRemovingRecipe(null)}
                             >
                                 Cancel
                             </button>
@@ -242,7 +242,7 @@ const ManageCompositions: React.FC = () => {
                     <button
                         className="modal-close is-large"
                         aria-label="close"
-                        onClick={() => setRemovingComposition(null)}
+                        onClick={() => setRemovingRecipe(null)}
                     ></button>
                 </div>
             )}
@@ -250,4 +250,4 @@ const ManageCompositions: React.FC = () => {
     );
 };
 
-export default ManageCompositions;
+export default ManageRecipes;

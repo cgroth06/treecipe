@@ -14,4 +14,7 @@ export default defineConfig({
       },
     },
   },
+  css: {
+    devSourcemap: false, // Disable CSS source maps during development
+  },  
 });

@@ -1,4 +1,4 @@
-import { Composition, User } from '../models/index.js';
+import { Recipe, User } from '../models/index.js';
 import { signToken, AuthenticationError } from '../utils/auth.js';
 import mongoose from 'mongoose';
 
@@ -20,25 +20,25 @@ interface UserArgs {
   name: string;
 }
 
-interface CompositionArgs {
-  compositionId: string;
+interface RecipeArgs {
+  recipeId: string;
 }
 
-interface AddCompositionArgs {
+interface AddRecipeArgs {
   input: {
-    compositionTitle: string;
-    compositionText: string;
-    compositionAuthor: string;
+    recipeTitle: string;
+    recipeText: string;
+    recipeAuthor: string;
     tags: string[];
   }
 }
 
-interface UpdateCompositionArgs {
-  compositionId: string;
+interface UpdateRecipeArgs {
+  recipeId: string;
   input: {
-    compositionTitle: string;
-    compositionText: string;
-    compositionAuthor: string;
+    recipeTitle: string;
+    recipeText: string;
+    recipeAuthor: string;
     tags: string[];
   };
 }
@@ -56,30 +56,30 @@ interface UpdateCompositionArgs {
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find().populate('compositions');
+      return User.find().populate('recipes');
     },
     user: async (_parent: any, { name }: UserArgs) => {
-      return User.findOne({ name }).populate('compositions');
+      return User.findOne({ name }).populate('recipes');
     },
-    compositions: async () => {
-      return await Composition.find().sort({ createdAt: -1 });
+    recipes: async () => {
+      return await Recipe.find().sort({ createdAt: -1 });
     },
-    composition: async (_parent: any, { compositionId }: CompositionArgs) => {
-      return await Composition.findOne({ _id: compositionId });
+    recipe: async (_parent: any, { recipeId }: RecipeArgs) => {
+      return await Recipe.findOne({ _id: recipeId });
     },
     // Query to get the authenticated user's information
     // The 'me' query relies on the context to check if the user is authenticated
     me: async (_parent: any, _args: any, context: any) => {
-      // If the user is authenticated, find and return the user's information along with their compositions
+      // If the user is authenticated, find and return the user's information along with their recipes
       if (context.user) {
         return User.findOne({ _id: context.user._id })
-        .populate('compositions')
-        .populate('library');
+        .populate('recipes')
+        .populate('recipeBox');
       }
       // If the user is not authenticated, throw an AuthenticationError
       throw new AuthenticationError('Could not authenticate user.');
     },
-    searchCompositionsAndUsers: async (_parent: unknown, { query }: {query: string}) => {
+    searchRecipesAndUsers: async (_parent: unknown, { query }: {query: string}) => {
       const searchRegex = new RegExp(query, 'i'); // Case-insensitive search
 
       const users = await User.find({
@@ -88,31 +88,31 @@ const resolvers = {
         ],
       });
 
-      const compositions = await Composition.find({
+      const recipes = await Recipe.find({
         $or: [
-          { compositionAuthor: searchRegex },
-          { compositionTitle: searchRegex },
-          { compositionText: searchRegex },
+          { recipeAuthor: searchRegex },
+          { recipeTitle: searchRegex },
+          { recipeText: searchRegex },
           { tags: { $in: [searchRegex] } }, // Search tags array
         ],
       });
 
-      return { users, compositions };
+      return { users, recipes };
     },
-    checkLibraryStatus: async (_: any, { compositionId }: { compositionId: string }, { user }: any) => {
+    checkRecipeBoxStatus: async (_: any, { recipeId }: { recipeId: string }, { user }: any) => {
       if (!user) {
         throw new AuthenticationError('You need to be logged in!');
       }
     
-      // Query the User model directly to check if the compositionId is in the library
-      const userData = await User.findById(user._id).populate('library');
+      // Query the User model directly to check if the recipeId is in the recipe box
+      const userData = await User.findById(user._id).populate('recipeBox');
       if (!userData) {
         throw new AuthenticationError('User not found.');
       }
     
-      // Check if the composition is in the user's library
-      const isInLibrary = userData.library.some((composition: any) => composition._id.toString() === compositionId);
-      return { inLibrary: isInLibrary };
+      // Check if the recipe is in the user's recipe box
+      const isInRecipeBox = userData.recipeBox.some((recipe: any) => recipe._id.toString() === recipeId);
+      return { inRecipeBox: isInRecipeBox };
     }
     
 
@@ -152,56 +152,56 @@ const resolvers = {
       // Return the token and the user
       return { token, user };
     },
-    addComposition: async (_parent: any, { input }: AddCompositionArgs, context: any) => {
+    addRecipe: async (_parent: any, { input }: AddRecipeArgs, context: any) => {
       if (context.user) {
-        const composition = await Composition.create({ ...input });
+        const recipe = await Recipe.create({ ...input });
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { compositions: composition._id } }
+          { $addToSet: { recipes: recipe._id } }
         );
 
-        return composition;
+        return recipe;
       }
       throw AuthenticationError;
       ('You need to be logged in!');
     },
-    updateComposition: async (_parent: any, { compositionId, input }: UpdateCompositionArgs, context: any) => {
+    updateRecipe: async (_parent: any, { recipeId, input }: UpdateRecipeArgs, context: any) => {
       if (context.user) {
-        // Find the user and check if the compositionId exists in the user's compositions array
+        // Find the user and check if the recipeId exists in the user's recipes array
         const user = await User.findById(context.user._id);
         if (!user) {
           throw new AuthenticationError('User not found.');
         }
     
-        // Check if the compositionId is in the user's compositions
-        if (!user.compositions.includes(new mongoose.Types.ObjectId(compositionId))) {
-          throw new Error('You are not the author of this composition.');
+        // Check if the recipeId is in the user's recipes
+        if (!user.recipes.includes(new mongoose.Types.ObjectId(recipeId))) {
+          throw new Error('You are not the author of this recipe.');
         }
     
-        console.log('Updating composition with ID:', compositionId);
+        console.log('Updating recipe with ID:', recipeId);
         console.log('Input data:', input);
     
-        // Now, safely update the composition using $set
-        const composition = await Composition.findOneAndUpdate(
-          { _id: compositionId },
+        // Now, safely update the recipe using $set
+        const recipe = await Recipe.findOneAndUpdate(
+          { _id: recipeId },
           { $set: input },
           { new: true, runValidators: true }
         );
     
-        if (!composition) {
-          throw new Error('Composition not found.');
+        if (!recipe) {
+          throw new Error('recipe not found.');
         }
     
-        return composition;
+        return recipe;
       }
     
       throw new AuthenticationError('You need to be logged in!');
     },
-    /* addComment: async (_parent: any, { compositionId, commentText }: AddCommentArgs, context: any) => {
+    /* addComment: async (_parent: any, { recipeId, commentText }: AddCommentArgs, context: any) => {
       if (context.user) {
-        return Composition.findOneAndUpdate(
-          { _id: compositionId },
+        return recipe.findOneAndUpdate(
+          { _id: recipeId },
           {
             $addToSet: {
               comments: { commentText, commentAuthor: context.user.name },
@@ -215,35 +215,35 @@ const resolvers = {
       }
       throw AuthenticationError;
     }, */
-    removeComposition: async (_parent: any, { compositionId }: CompositionArgs, context: any) => {
+    removeRecipe: async (_parent: any, { recipeId }: RecipeArgs, context: any) => {
       if (context.user) {
-        // Find the user and check if the compositionId exists in the user's compositions array
+        // Find the user and check if the RecipeId exists in the user's Recipes array
         const user = await User.findById(context.user._id);
         if (!user) {
           throw new AuthenticationError('User not found.');
         }
     
-        // Check if the compositionId is in the user's compositions
-        if (!user.compositions.includes(new mongoose.Types.ObjectId(compositionId))) {
-          throw new Error('You are not the author of this composition.');
+        // Check if the RecipeId is in the user's Recipes
+        if (!user.recipes.includes(new mongoose.Types.ObjectId(recipeId))) {
+          throw new Error('You are not the author of this recipe.');
         }
     
-        // Now, safely delete the composition
-        const composition = await Composition.findOneAndDelete({
-          _id: compositionId
+        // Now, safely delete the recipe
+        const recipe = await Recipe.findOneAndDelete({
+          _id: recipeId
         });
     
-        if (!composition) {
-          throw new Error('Composition not found.');
+        if (!recipe) {
+          throw new Error('recipe not found.');
         }
     
-        // Remove the composition from the user's compositions array
+        // Remove the recipe from the user's recipes array
         await User.findByIdAndUpdate(
           context.user._id,
-          { $pull: { compositions: compositionId } }
+          { $pull: { recipes: recipeId } }
         );
     
-        return composition;
+        return recipe;
       }
     
       throw new AuthenticationError('You need to be logged in!');
@@ -284,23 +284,23 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
 
-    saveToLibrary: async (_parent: any, { compositionId }: { compositionId: string }, context: any) => {
+    saveToRecipeBox: async (_parent: any, { recipeId }: { recipeId: string }, context: any) => {
       if (context.user) {
-        // Check if the composition exists
-        const composition = await Composition.findById(compositionId);
-        if (!composition) {
-          throw new Error('Composition not found.');
+        // Check if the recipe exists
+        const recipe = await Recipe.findById(recipeId);
+        if (!recipe) {
+          throw new Error('recipe not found.');
         }
 
-        // user cannot save their own composition
-        if (composition.compositionAuthor === context.user.name) {
-          throw new Error('You cannot save your own composition.');
+        // user cannot save their own recipe
+        if (recipe.recipeAuthor === context.user.name) {
+          throw new Error('You cannot save your own recipe.');
         }
 
-        // no duplicate compositions in the library
+        // no duplicate recipes in the library
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { library: compositionId } }, // ensures unique compositions
+          { $addToSet: { library: recipeId } }, // ensures unique recipes
           { new: true }
         ).populate('library'); //update library
 
@@ -308,11 +308,11 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    removeFromLibrary: async (_parent: any, { compositionId }: { compositionId: string }, context: any) => {
+    removeFromLibrary: async (_parent: any, { recipeId }: { recipeId: string }, context: any) => {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { library: compositionId } }, // compositionId from the library
+          { $pull: { library: recipeId } }, // recipeId from the library
           { new: true }
         ).populate('library'); // update library
 
@@ -321,10 +321,10 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
 
-    /* removeComment: async (_parent: any, { compositionId, commentId }: RemoveCommentArgs, context: any) => {
+    /* removeComment: async (_parent: any, { recipeId, commentId }: RemoveCommentArgs, context: any) => {
       if (context.user) {
-        return Composition.findOneAndUpdate(
-          { _id: compositionId },
+        return Recipe.findOneAndUpdate(
+          { _id: recipeId },
           {
             $pull: {
               comments: {

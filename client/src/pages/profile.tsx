@@ -34,12 +34,12 @@ const ProfilePage: React.FC = () => {
             <button onClick={() => handleFollow(user._id)} disabled={isFollowing}>
                 {isFollowing ? 'Following' : 'Follow'}
             </button>
-            <h2>Compositions</h2>
+            <h2>Recipes</h2>
             <ul>
-                {user.compositions.map((composition: any) => (
-                    <li key={composition._id}>
-                        <h3>{composition.compositionTitle}</h3>
-                        <p>{composition.compositionText}</p>
+                {user.recipes.map((recipe: any) => (
+                    <li key={recipe._id}>
+                        <h3>{recipe.recipeTitle}</h3>
+                        <p>{recipe.recipeText}</p>
                     </li>
                 ))}
             </ul>

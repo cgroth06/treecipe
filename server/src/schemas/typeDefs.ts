@@ -4,16 +4,16 @@ const typeDefs = `
     name: String
     email: String
     password: String
-    compositions: [Composition]!
-    library: [Composition]!
+    recipes: [Recipe]!
+    recipeBox: [Recipe]!
     follows: [User]!
   }
 
-  type Composition {
+  type Recipe {
     _id: ID
-    compositionTitle: String
-    compositionText: String
-    compositionAuthor: String
+    recipeTitle: String
+    recipeText: String
+    recipeAuthor: String
     tags: [String]
     createdAt: String
   }
@@ -25,13 +25,13 @@ const typeDefs = `
 
   type SearchResults {
     users: [User]
-    compositions: [Composition]
+    recipes: [Recipe]
   }
 
-  input CompositionInput {
-    compositionTitle: String
-    compositionText: String!
-    compositionAuthor: String!
+  input RecipeInput {
+    recipeTitle: String
+    recipeText: String!
+    recipeAuthor: String!
     tags: [String]
   }
 
@@ -45,32 +45,32 @@ const typeDefs = `
     followId: ID!
   }
 
-  input LibraryInput {
-    compositionId: ID!
+  input RecipeBoxInput {
+    recipeId: ID!
   }
 
-  type LibraryStatus {
-    inLibrary: Boolean
+  type RecipeBoxStatus {
+    inRecipeBox: Boolean
   }
 
   type Query {
     users: [User]
     user(name: String!): User
-    compositions: [Composition]!
-    composition(compositionId: ID!): Composition
+    recipes: [Recipe]!
+    recipe(recipeId: ID!): Recipe
     me: User
-    searchCompositionsAndUsers(query: String): SearchResults
-    checkLibraryStatus(compositionId: ID!): LibraryStatus
+    searchrecipesAndUsers(query: String): SearchResults
+    checkRecipeBoxStatus(recipeId: ID!): RecipeBoxStatus
   }
 
   type Mutation {
     addUser(input: UserInput!): Auth
     login(email: String!, password: String!): Auth
-    addComposition(input: CompositionInput!): Composition
-    removeComposition(compositionId: ID!): Composition
-    updateComposition(compositionId: ID!, input: CompositionInput!): Composition
-    saveToLibrary(compositionId: ID!): User
-    removeFromLibrary(compositionId: ID!): User
+    addRecipe(input: RecipeInput!): Recipe
+    removeRecipe(recipeId: ID!): Recipe
+    updateRecipe(recipeId: ID!, input: RecipeInput!): Recipe
+    saveToRecipeBox(recipeId: ID!): User
+    removeFromRecipeBox(recipeId: ID!): User
     followUser(input: FollowInput!): User
     unfollowUser(followId: ID!): User
   }

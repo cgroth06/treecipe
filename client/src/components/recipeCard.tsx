@@ -1,76 +1,76 @@
 import { useNavigate, Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import { SAVE_TO_LIBRARY, REMOVE_FROM_LIBRARY } from "../utils/mutations";
+import { SAVE_TO_RECIPEBOX, REMOVE_FROM_RECIPEBOX } from "../utils/mutations";
 import { useMutation, useQuery } from "@apollo/client";
 import { useAuth } from "../utils/auth"; // Custom hook to get user info
-import { CHECK_LIBRARY_STATUS } from "../utils/queries"; // Query to check if composition is in the library
+import { CHECK_RECIPEBOX_STATUS } from "../utils/queries"; // Query to check if recipe is in the RecipeBox
 
-interface CompositionProps {
-    compositionId: string;
-    compositionTitle: string;
-    compositionText: string;
-    compositionAuthor: string;
+interface RecipeProps {
+    recipeId: string;
+    recipeTitle: string;
+    recipeText: string;
+    recipeAuthor: string;
     createdAt: string;
     tags: string[];
 }
 
-const CompositionCard: React.FC<CompositionProps> = ({
-    compositionId,
-    compositionTitle,
-    compositionText,
-    compositionAuthor,
+const RecipeCard: React.FC<RecipeProps> = ({
+    recipeId,
+    recipeTitle,
+    recipeText,
+    recipeAuthor,
     tags,
 }) => {
     const navigate = useNavigate();
-    const { profile: user } = useAuth() as { profile: { compositions: string[] } | null }; // Get logged-in user info
-    const [inLibrary, setInLibrary] = useState(false); // Local state for library status
+    const { profile: user } = useAuth() as { profile: { recipes: string[] } | null }; // Get logged-in user info
+    const [inRecipeBox, setInRecipeBox] = useState(false); // Local state for recipe box status
 
-    // Fetch initial library status
-    const { data, loading: libraryLoading, refetch } = useQuery(CHECK_LIBRARY_STATUS, {
-        variables: { compositionId },
+    // Fetch initial Recipe Box status
+    const { data, loading: recipeBoxLoading, refetch } = useQuery(CHECK_RECIPEBOX_STATUS, {
+        variables: { recipeId },
         skip: !user, // Skip query if the user is not logged in
         fetchPolicy: "network-only", // Always fetch fresh data from the server
     });
 
     useEffect(() => {
-        if (data?.checkLibraryStatus) {
-            setInLibrary(data.checkLibraryStatus.inLibrary);
+        if (data?.checkRecipeBoxStatus) {
+            setInRecipeBox(data.checkRecipeBoxStatus.inRecipeBox);
         }
     }, [data]);
 
     // Mutations for adding and removing compositions
-    const [saveToLibrary] = useMutation(SAVE_TO_LIBRARY, {
+    const [saveToRecipeBox] = useMutation(SAVE_TO_RECIPEBOX, {
         onCompleted: () => {
-            setInLibrary(true); // Update local state
-            // alert("Composition added to your library!");
-            refetch(); // Refetch the library status after mutation
+            setInRecipeBox(true); // Update local state
+            // alert("Recipe added to your Recipe Box!");
+            refetch(); // Refetch the Recipe Box status after mutation
         },
-        onError: (err) => console.error("Error adding composition:", err),
+        onError: (err) => console.error("Error adding recipe:", err),
     });
 
-    const [removeFromLibrary] = useMutation(REMOVE_FROM_LIBRARY, {
+    const [removeFromRecipeBox] = useMutation(REMOVE_FROM_RECIPEBOX, {
         onCompleted: () => {
-            setInLibrary(false); // Update local state
-            // alert("Composition removed from your library!");
-            refetch(); // Refetch the library status after mutation
+            setInRecipeBox(false); // Update local state
+            // alert("Recipe removed from your Recipe Box!");
+            refetch(); // Refetch the Recipe Box status after mutation
         },
-        onError: (err) => console.error("Error removing composition:", err),
+        onError: (err) => console.error("Error removing recipe:", err),
     });
 
-    const handleLibraryAction = async () => {
+    const handleRecipeBoxAction = async () => {
         try {
-            if (inLibrary) {
-                await removeFromLibrary({ variables: { compositionId } });
+            if (inRecipeBox) {
+                await removeFromRecipeBox({ variables: { recipeId } });
             } else {
-                await saveToLibrary({ variables: { compositionId } });
+                await saveToRecipeBox({ variables: { recipeId } });
             }
         } catch (err) {
-            console.error("Error updating library status:", err);
+            console.error("Error updating Recipe Box status:", err);
         }
     };
 
     // const handleEditClick = () => {
-    //     navigate(`/editComposition/${compositionId}`);
+    //     navigate(`/editRecipe/${RecipeId}`);
     // };
 
     const handleTagClick = (tag: string) => {
@@ -83,8 +83,8 @@ const CompositionCard: React.FC<CompositionProps> = ({
                 <div className="card-content">
                     <div className="media">
                         <div className="media-content" style={{ height: "70px" }}>
-                            <p className="title is-4">{compositionTitle}</p>
-                            <p className="subtitle is-6">by {compositionAuthor}</p>
+                            <p className="title is-4">{recipeTitle}</p>
+                            <p className="subtitle is-6">by {recipeAuthor}</p>
                         </div>
                         <div className="media-right">
                             <div className="dropdown is-hoverable is-right">
@@ -120,28 +120,28 @@ const CompositionCard: React.FC<CompositionProps> = ({
                             className="card-textarea textarea has-fixed-size"
                             style={{ minHeight: "100%" }}
                             readOnly
-                            value={compositionText}
+                            value={recipeText}
                         />
 
                     </div>
                 </div>
                 <footer className="card-footer has-background-primary-30">
                     <Link
-                        to={`/compositionDetails/${compositionId}`}
+                        to={`/recipeDetails/${recipeId}`}
                         className="card-footer-item"
                     >
-                        View Composition
+                        View Recipe
                     </Link>
                     <button
-                        onClick={handleLibraryAction}
+                        onClick={handleRecipeBoxAction}
                         className="card-footer-item"
-                        disabled={libraryLoading}
+                        disabled={recipeBoxLoading}
                     >
-                        {libraryLoading
+                        {recipeBoxLoading
                             ? "Loading..."
-                            : inLibrary
-                                ? "Remove from Library"
-                                : "Add to Library"}
+                            : inRecipeBox
+                                ? "Remove from RecipeBox"
+                                : "Add to RecipeBox"}
                     </button>
                 </footer>
             </div>
@@ -149,4 +149,4 @@ const CompositionCard: React.FC<CompositionProps> = ({
     );
 };
 
-export default CompositionCard;
+export default RecipeCard;

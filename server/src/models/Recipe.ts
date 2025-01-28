@@ -7,12 +7,12 @@ import { ObjectId } from 'mongoose';
     createdAt: Date;
 } */
 
-interface IComposition extends Document {
-    compositionTitle: string;
-    compositionText: string;
-    compositionAuthor: string;
-    compositions: ObjectId[];
-    library: ObjectId[];
+interface IRecipe extends Document {
+    recipeTitle: string;
+    recipeText: string;
+    recipeAuthor: string;
+    recipes: ObjectId[];
+    recipeBox: ObjectId[];
     createdAt: Date;
     tags: string[];
     /* comments: IComment[]; */
@@ -36,22 +36,22 @@ interface IComposition extends Document {
     }
 ); */
 
-// Define the schema for the Composition document
-const compositionSchema = new Schema<IComposition>(
+// Define the schema for the recipe document
+const recipeSchema = new Schema<IRecipe>(
     {
-        compositionTitle: {
+        recipeTitle: {
             type: String,
             required: true,
             minlength: 1,
         },
-        compositionText: {
+        recipeText: {
             type: String,
             required: true,
             minlength: 1,
             // maxlength: 280,
             trim: true,
         },
-        compositionAuthor: {
+        recipeAuthor: {
             type: String,
             required: true,
             trim: true,
@@ -68,6 +68,6 @@ const compositionSchema = new Schema<IComposition>(
     }
 );
 
-const Composition = model<IComposition>('Composition', compositionSchema);
+const Recipe = model<IRecipe>('Recipe', recipeSchema);
 
-export default Composition;
+export default Recipe;

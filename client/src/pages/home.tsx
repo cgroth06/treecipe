@@ -1,6 +1,6 @@
 import React from 'react';
-import CompositionList from '../components/compositionList.jsx';
-import LogoImage from '../assets/ArtVine_transparent.png';
+import RecipeList from '../components/recipeList.js';
+import LogoImage from '../assets/stool.png';
 
 const Home: React.FC = () => {
     return (
@@ -12,15 +12,15 @@ const Home: React.FC = () => {
                             <img className="is-pulled-right" src={LogoImage}></img>
                         </div>
                         <div className="column is-four-fifths">
-                            <p className="title has-text-primary">Welcome to ArtVine</p>
-                            <p className="subtitle">Create and connect.</p>
+                            <p className="title has-text-primary">Welcome to Treecipe</p>
+                            <p className="subtitle">Connect, Share, Create, Repeat.</p>
                         </div>
                     </div>
                 </div>
             </section>
-            <CompositionList />
+            <RecipeList />
             <p className="mt-2">
-                Use the left (<kbd>←</kbd>) and right (<kbd>→</kbd>) arrow keys to navigate through poems.
+                Use the left (<kbd>←</kbd>) and right (<kbd>→</kbd>) arrow keys to navigate through recipes.
             </p>
         </div>
     );

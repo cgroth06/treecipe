@@ -1,53 +1,53 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
-import { QUERY_SINGLE_COMPOSITION } from '../utils/queries';
-import { SAVE_TO_LIBRARY, REMOVE_FROM_LIBRARY } from '../utils/mutations';
+import { QUERY_SINGLE_RECIPE } from '../utils/queries';
+import { SAVE_TO_RECIPEBOX, REMOVE_FROM_RECIPEBOX } from '../utils/mutations';
 
 
-const CompositionDetails: React.FC = () => {
+const RecipeDetails: React.FC = () => {
 
     const [helperText, setHelperText] = useState('');
     const [helperFormat, setHelperFormat] = useState('help is-hidden');
 
     const navigate = useNavigate(); //Used to navigate between pages
-    const { compositionId } = useParams<{ compositionId: string }>(); // Retrieve the composition ID from the URL
+    const { recipeId } = useParams<{ recipeId: string }>(); // Retrieve the recipe ID from the URL
 
-    // Fetch the composition data using the QUERY_COMPOSITION query
-    const { loading, error, data } = useQuery(QUERY_SINGLE_COMPOSITION, {
-        variables: { compositionId },
+    // Fetch the recipe data using the QUERY_RECIPE query
+    const { loading, error, data } = useQuery(QUERY_SINGLE_RECIPE, {
+        variables: { recipeId },
     });
 
-    // Mutations for adding and removing compositions
-    const [saveToLibrary] = useMutation(SAVE_TO_LIBRARY, {
+    // Mutations for adding and removing recipes
+    const [saveToRecipeBox] = useMutation(SAVE_TO_RECIPEBOX, {
         onCompleted: () => {
         },
-        onError: (err) => console.error("Error adding composition:", err),
+        onError: (err) => console.error("Error adding recipe:", err),
     });
 
-    const [removeFromLibrary] = useMutation(REMOVE_FROM_LIBRARY, {
+    const [removeFromRecipeBox] = useMutation(REMOVE_FROM_RECIPEBOX, {
         onCompleted: () => {
         },
-        onError: (err) => console.error("Error removing composition:", err),
+        onError: (err) => console.error("Error removing recipe:", err),
     });
 
-    const handleAddToLibrary = async () => {
+    const handleAddToRecipeBox = async () => {
         try {
-            await saveToLibrary({ variables: { compositionId } });
-            setHelperText("Added to your library!")
+            await saveToRecipeBox({ variables: { recipeId } });
+            setHelperText("Added to your Recipe Box!")
             setHelperFormat("has-text-success has-text-centered");
         } catch (err) {
-            console.error("Error updating library status:", err);
+            console.error("Error updating Recipe Box status:", err);
         }
     };
 
-    const handleRemoveFromLibrary = async () => {
+    const handleRemoveFromRecipeBox = async () => {
         try {
-            await removeFromLibrary({ variables: { compositionId } });
-            setHelperText("Removed from your library.");
+            await removeFromRecipeBox({ variables: { recipeId } });
+            setHelperText("Removed from your Recipe Box.");
             setHelperFormat("has-text-danger has-text-centered");
         } catch (err) {
-            console.error("Error updating library status:", err);
+            console.error("Error updating Recipe Box status:", err);
         }
     };
 
@@ -56,21 +56,21 @@ const CompositionDetails: React.FC = () => {
     };
 
     //Handle the loading and error states
-    if (loading) return <p className="loading-spinner">Loading composition details...</p>;
+    if (loading) return <p className="loading-spinner">Loading recipe details...</p>;
     if (error) {
-        console.error('Error fetching composition:', error);
-        return <p>Oops! Something went wrong while loading the composition. Please try again later.</p>;
+        console.error('Error fetching recipe:', error);
+        return <p>Oops! Something went wrong while loading the recipe. Please try again later.</p>;
     }
-    // Extract the fetched composition data
-    const fetchedComposition = data?.composition;
+    // Extract the fetched recipe data
+    const fetchedRecipe = data?.recipe;
 
-    // If no composition is found, show an error message
-    if (!fetchedComposition) {
-        return <p>Composition not found. Please check the composition ID and try again later.</p>;
+    // If no recipe is found, show an error message
+    if (!fetchedRecipe) {
+        return <p>Recipe not found. Please check the recipe ID and try again later.</p>;
     };
 
-    // Destructuring composition data from the fetched composition object
-    const { compositionTitle, compositionText, compositionAuthor, /* createdAt, */ tags } = fetchedComposition;
+    // Destructuring recipe data from the fetched recipe object
+    const { recipeTitle, recipeText, recipeAuthor, /* createdAt, */ tags } = fetchedRecipe;
 
     // Handle the back button functionality
     const handleBackButton = () => {
@@ -82,17 +82,17 @@ const CompositionDetails: React.FC = () => {
         <div>
             <div className="hero is-small has-background-primary-dark">
                 <div className="hero-body">
-                    <h2 className="title has-text-primary">{compositionTitle}</h2>
+                    <h2 className="title has-text-primary">{recipeTitle}</h2>
                     <div className="subtitle">
-                        <p>By: {compositionAuthor}</p>
+                        <p>By: {recipeAuthor}</p>
                     </div>
                 </div>
             </div>
 
-            {/* Displays composition content  */}
+            {/* Displays recipe content  */}
             <div className="content" style={{ whiteSpace: 'pre-line' }}>
 
-                <p className="details-text">{compositionText}</p>
+                <p className="details-text">{recipeText}</p>
             </div>
 
 
@@ -118,14 +118,14 @@ const CompositionDetails: React.FC = () => {
 
             {/* Buttons for saving and navigation */}
             <div className="buttons has-addons is-centered">
-                <button className="button is-primary" onClick={handleAddToLibrary}>
-                    Add to Library
+                <button className="button is-primary" onClick={handleAddToRecipeBox}>
+                    Add to Recipe Box
                 </button>
                 <button className="button is-light" onClick={handleBackButton}>
                     Go Back
                 </button>
-                <button className="button is-danger" onClick={handleRemoveFromLibrary}>
-                    Remove from Library
+                <button className="button is-danger" onClick={handleRemoveFromRecipeBox}>
+                    Remove from Recipe Box
                 </button>
             </div>
             <div>
@@ -136,4 +136,4 @@ const CompositionDetails: React.FC = () => {
     )
 };
 
-export default CompositionDetails
+export default RecipeDetails

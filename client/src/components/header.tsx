@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { type MouseEvent } from 'react';
 import Auth from '../utils/auth.js';
-import LogoImage from '../assets/ArtVine_transparent.png';
+import LogoImage from '../assets/stool.png';
 
 const Header = () => {
     const logout = (event: MouseEvent<HTMLButtonElement>) => {
@@ -20,7 +20,7 @@ const Header = () => {
                 <Link key={1} to="/"
                     className={currentPage === "/" ? selectedStyle : unselectedStyle}>
                     <img src={LogoImage} height="100px"></img>
-                    ArtVine
+                    Treecipe
                 </Link>
 
 
@@ -49,9 +49,9 @@ const Header = () => {
                     {/* Checking if the user is logged in to conditionally render profile link and logout button */}
                     {Auth.loggedIn() ? (
                         <>
-                            <Link key={4} to="/library"
-                                className={currentPage === "/library" ? selectedStyle : unselectedStyle}>
-                                Library
+                            <Link key={4} to="/recipeBox"
+                                className={currentPage === "/recipeBox" ? selectedStyle : unselectedStyle}>
+                                Recipe Box
                             </Link>
                             <Link key={5} to="/myProfile"
                                 className={currentPage === "/myProfile" ? selectedStyle : unselectedStyle}>
