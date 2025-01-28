@@ -1,6 +1,6 @@
 import React from 'react';
 import RecipeList from '../components/recipeList.js';
-import LogoImage from '../assets/stool.png';
+import LogoImage from '../assets/treecipe.png';
 
 const Home: React.FC = () => {
     return (
@@ -12,7 +12,7 @@ const Home: React.FC = () => {
                             <img className="is-pulled-right" src={LogoImage}></img>
                         </div>
                         <div className="column is-four-fifths">
-                            <p className="title has-text-primary">Welcome to Treecipe</p>
+                            <p className="title has-text-primary">Welcome to Tree-cipe</p>
                             <p className="subtitle">Connect, Share, Create, Repeat.</p>
                         </div>
                     </div>

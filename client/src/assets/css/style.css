@@ -5,14 +5,14 @@
 /* lightest: var(--av-primary-h), var(--av-primary-s), var(--av-primary-l-lightest) */
 
 :root {
-    --av-primary-h: 151;
-    --av-primary-s: 100%;
-    --av-primary-l: 37%;
-    --av-primary-l-lighter: 60%;
-    --av-primary-l-lightest: 90%;
-    --av-primary-l-darker: 10%;
+    --av-primary-h: 260deg;
+    --av-primary-s: 20%;
+    --av-primary-l: 10%;
+    --av-primary-l-lighter: 50%;
+    --av-primary-l-lightest: 80%;
+    --av-primary-l-darker: 20%;
     --av-primary-l-darkest: 3%;
-    --av-secondary-h: 46;
+    --av-secondary-h: 200deg;
     --av-secondary-s: 100%;
     --av-secondary-l: 5%;
     --av-secondary-l-darker: 2%;

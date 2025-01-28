@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { type MouseEvent } from 'react';
 import Auth from '../utils/auth.js';
-import LogoImage from '../assets/stool.png';
+import LogoImage from '../assets/treecipe.png';
 
 const Header = () => {
     const logout = (event: MouseEvent<HTMLButtonElement>) => {
@@ -20,7 +20,7 @@ const Header = () => {
                 <Link key={1} to="/"
                     className={currentPage === "/" ? selectedStyle : unselectedStyle}>
                     <img src={LogoImage} height="100px"></img>
-                    Treecipe
+                    Tree-cipe
                 </Link>
 
 

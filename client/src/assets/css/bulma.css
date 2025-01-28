@@ -1,5 +1,6 @@
 @charset "UTF-8";
 /*! bulma.io v1.0.2 | MIT License | github.com/jgthms/bulma */
+/* see primary color setting */
 /* Bulma Utilities */
 :root {
   --bulma-control-radius: var(--bulma-radius);
@@ -226,10 +227,11 @@
   --bulma-text-on-scheme: hsla(var(--bulma-text-h), var(--bulma-text-s), var(--bulma-text-on-scheme-l), 1);
   --bulma-primary: hsla(var(--bulma-primary-h), var(--bulma-primary-s), var(--bulma-primary-l), 1);
   --bulma-primary-base: hsla(var(--bulma-primary-h), var(--bulma-primary-s), var(--bulma-primary-l), 1);
-  --bulma-primary-rgb: 0, 209, 178;
-  --bulma-primary-h: 151deg;
+  --bulma-primary-rgb: 5, 220, 100;
+  /* see primary color setting */
+  --bulma-primary-h: 37deg;
   --bulma-primary-s: 100%;
-  --bulma-primary-l: 37%;
+  --bulma-primary-l: 32%;
   --bulma-primary-00-l: 1%;
   --bulma-primary-05-l: 6%;
   --bulma-primary-10-l: 11%;
