@@ -60,7 +60,7 @@ npm run start:dev
 Or check out the [deployed application] on Render.
 
 - Create your account, upload recipes, and manage your family recipe box.
-![Signup page screenshot](client/src/assets/screenshots/signup.png)
+![Signup page screenshot]()
 
 ## Future Development
 1. image uploading
