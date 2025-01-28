@@ -70,6 +70,7 @@ Or check out the [deployed application] on Render.
 ## Contributing
 [cgroth06](https://github.com/cgroth06)
 
+This project is a major rework of [ArtVine](https://github.com/EthanForrestCarr/ArtVine).
 
 Contributions are welcome! Feel free to open issues or submit pull requests to improve this project.
 
