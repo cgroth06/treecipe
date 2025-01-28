@@ -59,7 +59,7 @@ const typeDefs = `
     recipes: [Recipe]!
     recipe(recipeId: ID!): Recipe
     me: User
-    searchrecipesAndUsers(query: String): SearchResults
+    searchRecipesAndUsers(query: String): SearchResults
     checkRecipeBoxStatus(recipeId: ID!): RecipeBoxStatus
   }
 

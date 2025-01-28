@@ -297,24 +297,24 @@ const resolvers = {
           throw new Error('You cannot save your own recipe.');
         }
 
-        // no duplicate recipes in the library
+        // no duplicate recipes in the recipeBox
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { library: recipeId } }, // ensures unique recipes
+          { $addToSet: { recipeBox: recipeId } }, // ensures unique recipes
           { new: true }
-        ).populate('library'); //update library
+        ).populate('recipeBox'); //update recipeBox
 
         return updatedUser;
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    removeFromLibrary: async (_parent: any, { recipeId }: { recipeId: string }, context: any) => {
+    removeFromRecipeBox: async (_parent: any, { recipeId }: { recipeId: string }, context: any) => {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { library: recipeId } }, // recipeId from the library
+          { $pull: { recipeBox: recipeId } }, // recipeId from the recipeBox
           { new: true }
-        ).populate('library'); // update library
+        ).populate('recipeBox'); // update recipeBox
 
         return updatedUser;
       }

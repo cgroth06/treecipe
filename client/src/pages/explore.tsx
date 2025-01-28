@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { SEARCH_COMPOSITIONS_AND_USERS } from '../utils/queries.js';
+import { SEARCH_RECIPES_AND_USERS } from '../utils/queries.js';
 import SearchBar from '../components/searchBar.jsx';
-import CompositionCard from '../components/recipeCard.js';
-import CompositionList from '../components/recipeList.js';
+import RecipeCard from '../components/recipeCard.js';
+import RecipeList from '../components/recipeList.js';
 
 const ExplorePage = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const location = useLocation();
     const [displaySearchResults, setDisplaySearchResults] = useState(false);
     const [startIndex, setStartIndex] = useState(0);
-    const compositionsPerPage = 6;
+    const recipesPerPage = 6;
 
     useEffect(() => {
         const params = new URLSearchParams(location.search);
@@ -23,7 +23,7 @@ const ExplorePage = () => {
     }, [location]);
 
     // Use the search query in a GraphQL query via Apollo Client's useQuery hook
-    const { data, loading, error } = useQuery(SEARCH_COMPOSITIONS_AND_USERS, {
+    const { data, loading, error } = useQuery(SEARCH_RECIPES_AND_USERS, {
         variables: { query: searchQuery },
         skip: !searchQuery,  // Skip the query if searchQuery is empty
     });
@@ -36,15 +36,15 @@ const ExplorePage = () => {
 
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
-            if (!data?.searchCompositionsAndUsers.compositions) return;
+            if (!data?.searchRecipesAndUsers.recipes) return;
 
-            const totalCompositions = data.searchCompositionsAndUsers.compositions.length;
+            const totalRecipes = data.searchRecipesAndUsers.recipes.length;
             if (event.key === 'ArrowRight') {
                 setStartIndex((prev) =>
-                    Math.min(prev + compositionsPerPage, totalCompositions - compositionsPerPage)
+                    Math.min(prev + recipesPerPage, totalRecipes - recipesPerPage)
                 );
             } else if (event.key === 'ArrowLeft') {
-                setStartIndex((prev) => Math.max(prev - compositionsPerPage, 0));
+                setStartIndex((prev) => Math.max(prev - recipesPerPage, 0));
             }
         };
 
@@ -57,9 +57,9 @@ const ExplorePage = () => {
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
 
-    const compositions = data?.searchCompositionsAndUsers?.compositions?.slice(
+    const recipes = data?.searchRecipesAndUsers?.recipes?.slice(
         startIndex,
-        startIndex + compositionsPerPage
+        startIndex + recipesPerPage
     ) || [];
 
 
@@ -68,7 +68,7 @@ const ExplorePage = () => {
             <div className="hero is-small has-background-primary-dark">
                 <div className="hero-body is-flex-direction-column">
                     <p className="title has-text-primary">Explore</p>
-                    <p className="subtitle">Here you can explore all the work that has been submitted to ArtVine.</p>
+                    <p className="subtitle">Here you can explore all of the recipes submitted to Treecipe.</p>
                     <SearchBar onSearch={onSearch} />
                 </div>
             </div>
@@ -88,32 +88,32 @@ const ExplorePage = () => {
                         )}
                     </div> */}
                     <div className="block">
-                        <p className="title is-4">Compositions:</p>
+                        <p className="title is-4">Recipes:</p>
                         <div className="composition-grid grid is-col-min-16">
-                            {compositions.length > 0 ? (
-                                compositions.map(
-                                    (composition: {
+                            {recipes.length > 0 ? (
+                                recipes.map(
+                                    (recipe: {
                                         _id: string;
-                                        compositionTitle: string;
-                                        compositionText: string;
+                                        recipeTitle: string;
+                                        recipeText: string;
                                         createdAt: string;
-                                        compositionAuthor: string;
+                                        recipeAuthor: string;
                                         tags: string[];
                                     }) => (
-                                            <CompositionCard
-                                                key={composition._id}
-                                                compositionId={composition._id}
-                                                compositionTitle={composition.compositionTitle}
-                                                compositionText={composition.compositionText}
-                                                compositionAuthor={composition.compositionAuthor}
-                                                createdAt={composition.createdAt}
-                                                tags={composition.tags}
+                                            <RecipeCard
+                                                key={recipe._id}
+                                                recipeId={recipe._id}
+                                                recipeTitle={recipe.recipeTitle}
+                                                recipeText={recipe.recipeText}
+                                                recipeAuthor={recipe.recipeAuthor}
+                                                createdAt={recipe.createdAt}
+                                                tags={recipe.tags}
                                             />
                                     )
                                 )
                             ) : (
                                 <div className="mb-2">
-                                    <p className="tag is-warning">No compositions found.</p>
+                                    <p className="tag is-warning">No recipes found.</p>
                                 </div>
                             )}
                         </div>
@@ -121,11 +121,11 @@ const ExplorePage = () => {
                 </div>
             ) : (
                 <>
-                    <CompositionList />
+                    <RecipeList />
                 </>
             )}
             <p className="mt-2">
-                Use the left (<kbd>←</kbd>) and right (<kbd>→</kbd>) arrow keys to navigate through poems.
+                Use the left (<kbd>←</kbd>) and right (<kbd>→</kbd>) arrow keys to navigate through recipes.
             </p>
         </>
     );
