@@ -1,13 +1,13 @@
-# ArtVine
+# Treecipe
 
 [![License Badge](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-ArtVine is a platform designed to connect artists with art enthusiasts. It enables artists to showcase their portfolios and build a following. Users can browse collections and save to their own library, fostering a community that supports creative talent.
+Treecipe is an application designed to share your family recipes. Want to expand your culinary horizons? Connect with other families, and whip up one of their tried and true family favorites!
 
 ## Description
-ArtVine bridges the gap between artists and enthusiasts by providing an intuitive platform for:
-- Showcasing and managing artist portfolios.
-- Engaging with a community of art enthusiasts through a personal library.  
+Treecipe is like the cloud for your family recipes:
+- Safely secure your coveted family recipes for future generations.
+- Engage with a community of food enthusiasts, share your family recipes, and try someone else's family favorite.  
 The platform is designed with scalability in mind and provides an optimized user experience on both desktop and mobile devices.
 
 ## Table of Contents
@@ -22,13 +22,10 @@ The platform is designed with scalability in mind and provides an optimized user
 - [Questions?](#questions)
 
 ## Features
-1. Artist Portfolios
-- Upload and manage artwork galleries.
-- Add descriptions and tags to pieces for better discoverability.
-2. Library
-- See something cool? Put it your library so you always know where to find it.
+1. User Profile
+2. Recipe Box
 3. Explore
-- Search the database by author, tag, or user.
+- Search the database by profile, recipe name, process, or ingredient.
 4. Responsive Design
 - Mobile-friendly and accessible UI for all users.
 
@@ -60,29 +57,19 @@ After installation, run the development servers:
 npm run start:dev
 ```
 
-Or check out the [deployed application](https://artvine.onrender.com) on Render.
+Or check out the [deployed application] on Render.
 
-- Artists can create accounts, upload artwork, and manage their portfolios.
-![Signup page screenshot](client/src/assets/screenshots/signup.png)
+- Create your account, upload recipes, and manage your family recipe box.
+![Signup page screenshot]()
 
 ## Future Development
-1. More Art
-- Visual art mediums coming soon!
-2. Art Marketplace
-- Secure transactions for purchasing artwork.
-- Wishlist feature for saving favorite pieces.
-3. Social Features
-- Follow favorite artists and receive updates.
-- Comment and like artworks to engage with the community.
-4. Admin Dashboard
-- Verify artist profiles.
-- Monitor and manage flagged content.
+1. image uploading
+2. family discussion thread filter
+3. like and follow
 
 ## Contributing
 [cgroth06](https://github.com/cgroth06)
-[DimintriLo](https://github.com/DimintriLo)
-[modifiedyoke](https://github.com/modifiedyoke)
-[yahye-mohamed101](https://github.com/yahye-mohamed101)
+
 
 Contributions are welcome! Feel free to open issues or submit pull requests to improve this project.
 
@@ -94,5 +81,5 @@ For more details, visit the [MIT License page](https://opensource.org/licenses/M
 This section will include details of the tests we plan to implement in future iterations of this project.
 
 ## Questions?
-Find me on GitHub: [EthanForrestCarr](https://github.com/EthanForrestCarr)  
-For any additional questions: ethan@ethancarr.com
+Find me on GitHub: [cgroth06](https://github.com/cgroth06)  
+For any additional questions: cgrothwd@gmail.com
