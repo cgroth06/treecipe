@@ -16,12 +16,12 @@
 
 /* Bulma Themes */
 :root {
-  --bulma-scheme-h: 200;
-  --bulma-scheme-s: 14%;
-  --bulma-light-l: 90%;
+  --bulma-scheme-h: 171;
+  --bulma-scheme-s: 0%;
+  --bulma-light-l: 20%;
   --bulma-light-invert-l: 20%;
   --bulma-dark-l: 20%;
-  --bulma-dark-invert-l: 90%;
+  --bulma-dark-invert-l: 10%;
   --bulma-soft-l: 90%;
   --bulma-bold-l: 20%;
   --bulma-soft-invert-l: 20%;
@@ -229,8 +229,8 @@
   --bulma-primary-base: hsla(var(--bulma-primary-h), var(--bulma-primary-s), var(--bulma-primary-l), 1);
   --bulma-primary-rgb: 5, 220, 100;
   /* see primary color setting */
-  --bulma-primary-h: 37deg;
-  --bulma-primary-s: 100%;
+  --bulma-primary-h: 171deg;
+  --bulma-primary-s: 0%;
   --bulma-primary-l: 32%;
   --bulma-primary-00-l: 1%;
   --bulma-primary-05-l: 6%;
@@ -918,7 +918,7 @@
 
 @media (prefers-color-scheme: light) {
   :root {
-    --bulma-scheme-h: 221;
+    --bulma-scheme-h: 10;
     --bulma-scheme-s: 14%;
     --bulma-light-l: 90%;
     --bulma-light-invert-l: 20%;
@@ -1808,7 +1808,7 @@
     --bulma-warning-on-scheme: hsla(var(--bulma-warning-h), var(--bulma-warning-s), var(--bulma-warning-on-scheme-l), 1);
     --bulma-danger-on-scheme-l: 70%;
     --bulma-danger-on-scheme: hsla(var(--bulma-danger-h), var(--bulma-danger-s), var(--bulma-danger-on-scheme-l), 1);
-    --bulma-scheme-brightness: dark;
+    --bulma-scheme-brightness: light;
     --bulma-scheme-main-l: 9%;
     --bulma-scheme-main-bis-l: 11%;
     --bulma-scheme-main-ter-l: 13%;
@@ -2681,11 +2681,11 @@
   --bulma-danger-bold-invert: hsla(var(--bulma-danger-h), var(--bulma-danger-s), var(--bulma-bold-invert-l), 1);
   --bulma-danger-on-scheme-l: 40%;
   --bulma-danger-on-scheme: hsla(var(--bulma-danger-h), var(--bulma-danger-s), var(--bulma-danger-on-scheme-l), 1);
-  --bulma-black-bis: hsl(221, 14%, 9%);
-  --bulma-black-ter: hsl(221, 14%, 14%);
+  --bulma-black-bis: hsl(210, 2%, 54%);
+  --bulma-black-ter: hsl(220, 1%, 43%);
   --bulma-grey-darker: hsl(221, 14%, 21%);
   --bulma-grey-dark: hsl(221, 14%, 29%);
-  --bulma-grey: hsl(221, 14%, 48%);
+  --bulma-grey: hsl(240, 0%, 48%);
   --bulma-grey-light: hsl(221, 14%, 71%);
   --bulma-grey-lighter: hsl(221, 14%, 86%);
   --bulma-white-ter: hsl(221, 14%, 96%);
@@ -2760,9 +2760,9 @@
   --bulma-danger-on-scheme-l: 70%;
   --bulma-danger-on-scheme: hsla(var(--bulma-danger-h), var(--bulma-danger-s), var(--bulma-danger-on-scheme-l), 1);
   --bulma-scheme-brightness: dark;
-  --bulma-scheme-main-l: 9%;
-  --bulma-scheme-main-bis-l: 11%;
-  --bulma-scheme-main-ter-l: 13%;
+  --bulma-scheme-main-l: 99%;
+  --bulma-scheme-main-bis-l: 91%;
+  --bulma-scheme-main-ter-l: 93%;
   --bulma-soft-l: 20%;
   --bulma-bold-l: 90%;
   --bulma-soft-invert-l: 90%;
@@ -5320,7 +5320,7 @@ button.tag:active,
 
 .title,
 .subtitle {
-  --bulma-title-color: var(--bulma-text-strong);
+  --bulma-title-color: var(--bulma-text-00-invert);
   --bulma-title-family: false;
   --bulma-title-size: var(--bulma-size-3);
   --bulma-title-weight: var(--bulma-weight-extrabold);

@@ -42,7 +42,7 @@ const userSchema = new Schema<IUser>(
     recipeBox: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'RecipeBox', // is this correct?
+        ref: 'Recipe',
       },
     ],
     follows: [

@@ -1,7 +1,7 @@
-import './AboutArtVine.css';
-import LogoImage from '../assets/stool.png';
+import './AboutTreecipe.css';
+import LogoImage from '../assets/treecipe.png';
 
-const AboutArtVine = () => {
+const AboutTreecipe = () => {
 
   return (
     <>
@@ -13,7 +13,7 @@ const AboutArtVine = () => {
                             <img className="is-pulled-right" src={LogoImage}></img>
                         </div>
                         <div className="column is-four-fifths">
-                            <p className="title has-text-primary">ArtVine</p>
+                            <p className="title has-text-primary">Treecipe</p>
                             <p className="subtitle">Create and connect.</p>
                         </div>
                     </div>
@@ -62,28 +62,13 @@ const AboutArtVine = () => {
       <h3 className="collaboration-title">Development Team</h3>
       <div className="collaboration">
 
-        <div className="collaboration-member">
-          <a href="https://github.com/modifiedyoke" className="contact-link">Brad Shurts</a>
-        </div>
 
         <div className="collaboration-member">
           <a href="https://github.com/cgroth06" className="contact-link">Chris Groth</a>
-        </div>
-
-        <div className="collaboration-member">
-          <a href="https://github.com/DimintriLo" className="contact-link">Dimintri Lo</a>
-        </div>
-
-        <div className="collaboration-member">
-          <a href="https://github.com/EthanForrestCarr" className="contact-link">Ethan Carr</a>
-        </div>
-
-        <div className="collaboration-member">
-          <a href="https://github.com/yahye-mohamed101" className="contact-link">Yahye Mohamed</a>
         </div>
       </div>
     </>
   );
 }
 
-export default AboutArtVine;
+export default AboutTreecipe;

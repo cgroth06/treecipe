@@ -4,8 +4,8 @@
         "name": "Ethan",
         "email": "ethan@artvine.com",
         "password": "12345678",
-        "compositions": [],
-        "library": "000000000000000000000010",
+        "recipes": [],
+        "recipeBox": "000000000000000000000010",
         "follows": [
             "222222222222222222222222",
             "333333333333333333333333",
@@ -18,15 +18,15 @@
         "name": "Chris",
         "email": "chris@artvine.com",
         "password": "12345678",
-        "compositions": [],
-        "library": "000000000000000000000010"
+        "recipes": [],
+        "recipeBox": "000000000000000000000010"
     },
     {
         "_id": "333333333333333333333333",
         "name": "Brad",
         "email": "brad@artvine.com",
         "password": "12345678",
-        "compositions": [
+        "recipes": [
             "000000000000000000000001",
             "000000000000000000000002",
             "000000000000000000000003",
@@ -42,13 +42,13 @@
         "name": "Yahye",
         "email": "yahye@artvine.com",
         "password": "12345678",
-        "compositions": []
+        "recipes": []
     },
     {
         "_id": "555555555555555555555555",
         "name": "Dimintri",
         "email": "dimintri@artvine.com",
         "password": "12345678",
-        "compositions": []
+        "recipes": []
     }
 ]

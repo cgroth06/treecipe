@@ -38,7 +38,7 @@ const RecipeCard: React.FC<RecipeProps> = ({
         }
     }, [data]);
 
-    // Mutations for adding and removing compositions
+    // Mutations for adding and removing recipes
     const [saveToRecipeBox] = useMutation(SAVE_TO_RECIPEBOX, {
         onCompleted: () => {
             setInRecipeBox(true); // Update local state

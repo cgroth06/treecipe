@@ -65,7 +65,7 @@ const ExplorePage = () => {
 
     return (
         <>
-            <div className="hero is-small has-background-primary-dark">
+            <div className="hero is-small has-background-primary-lightest">
                 <div className="hero-body is-flex-direction-column">
                     <p className="title has-text-primary">Explore</p>
                     <p className="subtitle">Here you can explore all of the recipes submitted to Treecipe.</p>
@@ -77,8 +77,8 @@ const ExplorePage = () => {
                 <div>
                     {/* <div className="block">
                         <p className="title is-4">Users:</p>
-                        {data?.searchCompositionsAndUsers?.users?.length > 0 ? (
-                            data.searchCompositionsAndUsers.users.map((user: { _id: string; name: string; email: string }) => (
+                        {data?.searchRecipesAndUsers?.users?.length > 0 ? (
+                            data.searchRecipesAndUsers.users.map((user: { _id: string; name: string; email: string }) => (
                                 <div key={user._id}>
                                     <p className="tag is-dark is-medium mb-1">{user.name} - {user.email}s</p>
                                 </div>

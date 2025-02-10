@@ -5,7 +5,7 @@ import LogoImage from '../assets/treecipe.png';
 const Home: React.FC = () => {
     return (
         <div className="home-container">
-            <section className="hero is-small has-background-primary-dark">
+            <section className="hero is-small has-background-primary">
                 <div className="hero-body">
                     <div className="columns is-flex-direction-row">
                         <div className="column is-one-fifth">

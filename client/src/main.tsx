@@ -9,7 +9,7 @@ import ExplorePage from './pages/explore.jsx';
 import Home from './pages/home.jsx';
 import RecipeBox from './pages/recipeBox.jsx';
 import Profile from './pages/profile.jsx';
-import AboutUs from './pages/AboutArtVine.js';
+import AboutUs from './pages/AboutTreecipe.js';
 import RecipeDetails from './pages/recipeDetails.js';
 
 
@@ -39,7 +39,7 @@ const router = createBrowserRouter([
         path: '/explore',
         element: <ExplorePage />
       }, {
-        path: '/library',
+        path: '/recipeBox',
         element: <RecipeBox />
       }, {
         path: '/recipeDetails/:recipeId',

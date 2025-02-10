@@ -34,7 +34,7 @@ const RecipeList: React.FC<RecipeListProps> = ({ filterByAuthor, filterBySaved }
         if (filterByAuthor) {
             recipes = data.me?.recipes ?? [];
         } else if (filterBySaved) {
-            recipes = data.me?.library ?? [];
+            recipes = data.me?.recipeBox ?? [];
         }
 
         setDisplayedRecipes(recipes.slice(startIndex, startIndex + recipesPerPage));

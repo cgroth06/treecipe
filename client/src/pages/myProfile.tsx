@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import CompositionForm from '../components/recipeForm.js';
+import RecipeForm from '../components/recipeForm.js';
 // import CompositionList from '../components/compositionList.jsx';
 import Auth from '../utils/auth.js';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries.js';
-import ManageCompositions from '../components/manageRecipes.js';
+import ManageRecipes from '../components/manageRecipes.js';
 
 const MyProfile: React.FC = () => {
     const [showForm, setShowForm] = useState(false);
@@ -31,11 +31,11 @@ const MyProfile: React.FC = () => {
                 className="button is-primary mb-2"
                 onClick={toggleForm}
             >
-                {showForm ? 'Hide Form' : 'Add a Poem'}
+                {showForm ? 'Hide Form' : 'Add a Recipe'}
             </button>
-            {showForm && <CompositionForm refetch={refetch}/>}
-            <p className="title is-4">Manage Your Compositions</p>
-            <ManageCompositions />
+            {showForm && <RecipeForm refetch={refetch}/>}
+            <p className="title is-4">Manage Your Recipes</p>
+            <ManageRecipes />
             {/* <p className="title is-4">Your Poems</p>
             <CompositionList compositions={compositions} filterByAuthor={true}/> */}
         </div>

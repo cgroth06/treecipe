@@ -5,31 +5,31 @@
 /* lightest: var(--av-primary-h), var(--av-primary-s), var(--av-primary-l-lightest) */
 
 :root {
-    --av-primary-h: 260deg;
-    --av-primary-s: 20%;
-    --av-primary-l: 10%;
-    --av-primary-l-lighter: 50%;
+    --av-primary-h: 171deg;
+    --av-primary-s: 0%;
+    --av-primary-l: 30%;
+    --av-primary-l-lighter: 70%;
     --av-primary-l-lightest: 80%;
     --av-primary-l-darker: 20%;
     --av-primary-l-darkest: 3%;
-    --av-secondary-h: 200deg;
-    --av-secondary-s: 100%;
-    --av-secondary-l: 5%;
-    --av-secondary-l-darker: 2%;
-    --av-secondary-l-lighter: 10%;
-    --av-secondary-l-lightest: 30%;
+    --av-secondary-h: 130deg;
+    --av-secondary-s: 28%;
+    --av-secondary-l: 51%;
+    --av-secondary-l-darker: 20%;
+    --av-secondary-l-lighter: 40%;
+    --av-secondary-l-lightest: 60%;
 }
 
 .card {
-    border: 1px solid hsl(var(--av-primary-h), var(--av-primary-s), var(--av-primary-l-darker));
+    border: 1px solid hsl(var(--av-primary-h), var(--av-primary-s), var(--av-primary-l-light));
     box-shadow: none;
-    background-color: hsl(var(--av-primary-h), var(--av-primary-s), var(--av-primary-l-darkest));
+    background-color: hsl(var(--av-primary-h), var(--av-primary-s), var(--av-primary-l-lightest));
     transition: transform 0.3s ease;
 }
 
 .card-textarea {
-    border: 1px solid hsl(var(--av-secondary-h), var(--av-secondary-s), var(--av-secondary-l-lighter));
-    background-color: hsl(var(--av-secondary-h), var(--av-secondary-s), var(--av-secondary-l-darker));
+    border: 1px solid hsl(var(--av-secondary-h), var(--av-secondary-s), var(--av-secondary-l-darker));
+    background-color: hsl(var(--av-secondary-h), var(--av-secondary-s), var(--av-secondary-l-darkest));
 }
 
 .card:hover {
@@ -38,7 +38,7 @@
 }
 
 .card:hover .card-textarea {
-    border-color: hsl(var(--av-secondary-h), var(--av-secondary-s), var(--av-secondary-l-lightest));
+    border-color: hsl(var(--av-secondary-h), var(--av-secondary-s), var(--av-secondary-l-lighter));
 }
 
 .dropdown-content {

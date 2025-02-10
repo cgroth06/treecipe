@@ -20,11 +20,11 @@ export const QUERY_USER = gql`
 
 export const QUERY_RECIPES = gql`
   query getRecipes {
-    compositions {
+    recipes {
       _id
-      compositionTitle
-      compositionText
-      compositionAuthor
+      recipeTitle
+      recipeText
+      recipeAuthor
       createdAt
       tags
     }
@@ -99,7 +99,7 @@ export const SEARCH_RECIPES_AND_USERS = gql`
 export const CHECK_RECIPEBOX_STATUS = gql`
   query checkRecipeBoxStatus($recipeId: ID!) {
     checkRecipeBoxStatus(recipeId: $recipeId) {
-      inLibrary
+      inRecipeBox
     }
   }
 `;
