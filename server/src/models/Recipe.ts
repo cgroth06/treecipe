@@ -15,6 +15,7 @@ interface IRecipe extends Document {
     recipeBox: ObjectId[];
     createdAt: Date;
     tags: string[];
+    photoUrl: string;
     /* comments: IComment[]; */
 }
 
@@ -58,6 +59,10 @@ const recipeSchema = new Schema<IRecipe>(
         },
         tags: {
             type: [String],
+        },
+        photoUrl: {
+            type: String,
+            required: false,
         },
         /* comments: [commentSchema], */
     },

@@ -7,6 +7,8 @@ import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import { typeDefs, resolvers } from './schemas/index.js';
 import { authenticateToken } from './utils/auth.js';
+import { getPresignedUrl } from './controllers/uploadImageController.js';
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const server = new ApolloServer({
   typeDefs,
@@ -22,6 +24,8 @@ const startApolloServer = async () => {
 
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
+
+  app.post('api/upload-image', getPresignedUrl);
 
   app.use('/graphql', expressMiddleware(server as any,
     {

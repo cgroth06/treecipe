@@ -15,6 +15,7 @@ const typeDefs = `
     recipeText: String
     recipeAuthor: String
     tags: [String]
+    photoUrl: String
     createdAt: String
   }
   
@@ -33,6 +34,7 @@ const typeDefs = `
     recipeText: String!
     recipeAuthor: String!
     tags: [String]
+    photoUrl: String
   }
 
   input UserInput {

@@ -33,6 +33,7 @@ export const ADD_RECIPE = gql`
       recipeText
       recipeAuthor
       createdAt
+      photoUrl
     }
   }
 `;
@@ -46,6 +47,7 @@ export const REMOVE_RECIPE = gql`
       recipeAuthor
       createdAt
       tags
+      photoUrl
     }
   }
 `;
@@ -61,6 +63,7 @@ export const SAVE_TO_RECIPEBOX = gql`
         recipeAuthor
         createdAt
         tags
+        photoUrl
       }
     }
   }
@@ -77,6 +80,7 @@ export const REMOVE_FROM_RECIPEBOX = gql`
         recipeAuthor
         createdAt
         tags
+        photoUrl
       }
     }
   }
@@ -120,6 +124,7 @@ export const UPDATE_RECIPE = gql`
       recipeAuthor
       createdAt
       tags
+      photoUrl
     }
   }
 `;

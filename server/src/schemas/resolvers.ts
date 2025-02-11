@@ -30,6 +30,7 @@ interface AddRecipeArgs {
     recipeText: string;
     recipeAuthor: string;
     tags: string[];
+    photoUrl: string;
   }
 }
 
@@ -40,6 +41,7 @@ interface UpdateRecipeArgs {
     recipeText: string;
     recipeAuthor: string;
     tags: string[];
+    photoUrl: string;
   };
 }
 

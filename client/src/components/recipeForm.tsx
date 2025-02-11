@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useMutation, OperationVariables, ApolloQueryResult } from '@apollo/client';
 import { ADD_RECIPE } from '../utils/mutations';
 import authService from '../utils/auth';
+import { uploadImageToS3 } from '../utils/uploadImage.ts';
 
 interface RecipeFormProps {
     refetch: (variables?: Partial<OperationVariables>) => Promise<ApolloQueryResult<any>>;
@@ -18,6 +19,8 @@ const RecipeForm: React.FC<RecipeFormProps> = ({ refetch }) => {
 
     const [helperTextStyle, setHelperTextStyle] = useState('help is-hidden');
     const [helperText, setHelperText] = useState('');
+
+    const [imageFile, setImageFile] = useState<File | null>(null);
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
@@ -39,6 +42,12 @@ const RecipeForm: React.FC<RecipeFormProps> = ({ refetch }) => {
         try {
             setHelperText('Submitting...');
             setHelperTextStyle('help is-warning');
+
+            let imageUrl = '';
+            if (imageFile) {
+                imageUrl = await uploadImageToS3(imageFile);
+            }
+
             await addRecipe({
                 variables: {
                     input: {
@@ -46,6 +55,7 @@ const RecipeForm: React.FC<RecipeFormProps> = ({ refetch }) => {
                         recipeText,
                         recipeAuthor,
                         tags: tagsArray,
+                        photoUrl: imageUrl,
                     },
                 },
             });
@@ -54,7 +64,8 @@ const RecipeForm: React.FC<RecipeFormProps> = ({ refetch }) => {
             setRecipeText('');
             setRecipeAuthor('');
             setTags('');
-            setHelperText('You recipe has been added successfully!')
+            setImageFile(null);
+            setHelperText('Your recipe has been added successfully!')
             setHelperTextStyle('help is-success');
             // alert('recipe added successfully!');
 
@@ -80,6 +91,18 @@ const RecipeForm: React.FC<RecipeFormProps> = ({ refetch }) => {
                     />
                 </div>
                 <div className="field">
+                    <label className="label">Image</label>
+                    <input
+                        type="file"
+                        accept="image/*"
+                        id="file"
+                        style={{ display: 'none' }}
+                    />
+                    <button className="button is-success mr-3" onClick={() => document.getElementById('file')?.click()}>
+                        Upload
+                    </button>
+                </div>
+                <div className="field">
                     <label className="label">Author:</label>
                     <input
                         className="input"
@@ -89,6 +112,17 @@ const RecipeForm: React.FC<RecipeFormProps> = ({ refetch }) => {
                         required
                     />
                 </div>
+                {/* <div className="field">
+                    <label className="label">Ingredients:</label>
+                    <textarea
+                        className="textarea textarea-input"
+                        wrap="off"
+                        rows={10}
+                        value={recipeText}
+                        onChange={(e) => setRecipeIngredients(e.target.value)}
+                        required
+                    ></textarea>
+                </div> */}
                 <div className="field">
                     <label className="label">Recipe:</label>
                     <textarea

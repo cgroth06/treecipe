@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom';
+// import axios from 'axios';
 import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries.js';
 import { REMOVE_RECIPE, UPDATE_RECIPE } from '../utils/mutations.js';
 import authService from '../utils/auth.js';
+import { uploadImageToS3 } from '../utils/uploadImage.js';
+// import { set } from 'mongoose';
 
 const ManageRecipes: React.FC = () => {
     const { loading, error, data, refetch } = useQuery(QUERY_ME);
@@ -30,9 +33,12 @@ const ManageRecipes: React.FC = () => {
     const [editingRecipe, setEditingRecipe] = useState<any>(null);
     const [removingRecipe, setRemovingRecipe] = useState<any>(null);
 
+    const [uploadError, setUploadError] = useState('');
+    const [imagePreview, setImagePreview] = useState<string | null>(null);
+
     const handleRemove = async (recipeId: string) => {
         if (!authService.loggedIn()) {
-            return alert('You need to be logged in to remove a poem.');
+            return alert('You need to be logged in to remove a recipe.');
         }
 
         try {
@@ -44,7 +50,7 @@ const ManageRecipes: React.FC = () => {
                 variables: { recipeId }, // Pass the recipe ID to the mutation
             });
 
-            setHelperText('Poem has been removed successfully!');
+            setHelperText('Recipe has been removed successfully!');
             setHelperTextStyle('help is-success');
             setRemovingRecipe(null);
         } catch (err) {
@@ -67,6 +73,24 @@ const ManageRecipes: React.FC = () => {
             setHelperText('Saving...');
             setHelperTextStyle('help is-warning');
 
+            let photoUrl = editingRecipe.photoUrl; // Preserve the existing photo URL if not uploading a new image.
+
+            // If a new image was selected, handle the upload
+            if (editingRecipe.newImage) {
+                const uploadResult = await uploadImageToS3(editingRecipe.newImage);
+                if (uploadResult) {
+                    photoUrl = uploadResult; // Extract the URL without query params
+                    console.log('Uploaded photo URL:', photoUrl);
+                } else {
+                    console.error('Error uploading image');
+                    setHelperText('An error occurred while uploading the image.');
+                    setHelperTextStyle('help is-danger');
+                    return;
+                }
+            }
+
+            console.log('Editing Recipe before save:', editingRecipe);
+
             const variables = {
                 recipeId: editingRecipe._id,
                 input: {
@@ -74,6 +98,7 @@ const ManageRecipes: React.FC = () => {
                     recipeText: editingRecipe.recipeText,
                     recipeAuthor: editingRecipe.recipeAuthor,
                     tags: editingRecipe.tags,
+                    photoUrl, // Use the updated photoUrl
                 },
             };
 
@@ -94,6 +119,35 @@ const ManageRecipes: React.FC = () => {
         }
     };
 
+    const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const validFileTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+
+        if (!authService.loggedIn()) {
+            return alert('You need to be logged in to upload an image.');
+        }
+        const files = e.target.files;
+        if (!files) {
+            setUploadError('No file selected');
+            return;
+        }
+        const file = files[0];
+
+        if (!validFileTypes.find(type => type === file.type)) {
+            setUploadError('File must be in JPG/PNG format');
+            return;
+        }
+
+        setUploadError(''); // Clear previous errors
+
+        const previewUrl = URL.createObjectURL(file);
+        setImagePreview(previewUrl);
+
+        setEditingRecipe({
+            ...editingRecipe,
+            newImage: file, // Save the selected file to be uploaded later
+        });
+    };
+
     if (loading) return <p>Loading Recipe...</p>;
     if (error) return <p>Error: {error.message}</p>;
 
@@ -101,9 +155,9 @@ const ManageRecipes: React.FC = () => {
 
     return (
         <div className="manage-recipes">
-            {/* DAT P TAG STARTS HERE NOW */}
+            {/* Display helper text */}
             <p className={helperTextStyle}>{helperText}</p>
-            {/* DAT P TAG ENDS HERE NOW */}
+
             <table className="table is-striped is-fullwidth">
                 <thead>
                     <tr>
@@ -142,7 +196,6 @@ const ManageRecipes: React.FC = () => {
                         </tr>
                     ))}
                 </tbody>
-                {/* the p tag was here before */}
             </table>
 
             {editingRecipe && (
@@ -166,6 +219,27 @@ const ManageRecipes: React.FC = () => {
                                         }
                                     />
                                 </div>
+                            </div>
+                            <div className="field">
+                                <label className="label">Image</label>
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    id="file"
+                                    style={{ display: 'none' }}
+                                    onChange={handleUpload}
+                                />
+                                <button className="button is-success mr-3" onClick={() => document.getElementById('file')?.click()}>Upload Image</button>
+                                {uploadError && (
+                                    <p className="help is-danger">{uploadError}</p>
+                                )}
+                                {/* Display image preview if available */}
+                                {imagePreview && (
+                                    <div>
+                                        <p>Selected Image:</p>
+                                        <img src={imagePreview} alt="Selected" style={{ maxWidth: '200px', marginTop: '10px' }} />
+                                    </div>
+                                )}
                             </div>
                             <div className="field">
                                 <label className="label">Text</label>
@@ -217,6 +291,7 @@ const ManageRecipes: React.FC = () => {
                     ></button>
                 </div>
             )}
+
             {removingRecipe && (
                 <div className="modal is-active">
                     <div className="modal-background"></div>
